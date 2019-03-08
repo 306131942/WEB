@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>事件详解</title>
+</head>
+<body>
+    <div id="id1">
+        <button id="btn1" >按钮</button>
+        <a href="http://www.baidu.com" id="aid">百度一下</a>
+    </div>
+    <!--<script>-->
+        <!--function demo(){-->
+            <!--alert("html事件处理，直接添加到HTML结构中");-->
+        <!--}-->
+    <!--</script>-->
+    <!--<script>-->
+        <!--var btn1 = document.getElementById("btn1");-->
+        <!--btn1.onclick = function (){alert("0、DOM0级事件处理，把一个函数赋值给一个事件处理程序属性");}//被覆盖掉-->
+        <!--btn1.onclick = function (){alert("1、DOM0级事件处理，把一个函数赋值给一个事件处理程序属性");}//被覆盖掉-->
+        <!--btn1.onclick = function (){alert("2、DOM0级事件处理，把一个函数赋值给一个事件处理程序属性");}-->
+        <!--btn1.onclick = null;-->
+    <!--</script>-->
+    <!--<script>-->
+        <!--var btn1 = document.getElementById("btn1");-->
+        <!--btn1.addEventListener('click',demo1);-->
+        <!--btn1.addEventListener('click',demo2);//不会被覆盖-->
+        <!--function demo1(){-->
+            <!--alert('DOM2级事件处理程序1');-->
+        <!--} function demo2(){-->
+            <!--alert('DOM2级事件处理程序2');-->
+        <!--}-->
+        <!--btn1.removeEventListener('click',demo2);-->
+    <!--</script>-->
+    <!--<script>-->
+        <!--var btn1 = document.getElementById('btn1');-->
+        <!--if(btn1.addEventListener){///////////////////////////DOM2级-->
+            <!--btn1.addEventListener('click',demo)-->
+        <!--}-->
+        <!--else if(btn1.attachEvent){///////////////////////IE-->
+            <!--btn1.attachEvent('onclick',demo)-->
+        <!--}-->
+        <!--else{-->
+            <!--btn1.onclick////////////////////////////////DOM0级-->
+        <!--}-->
+        <!--function demo(){-->
+            <!--alert(0);-->
+        <!--}-->
+    <!--</script>-->
+    <script>
+        var btn1 = document.getElementById('btn1');
+        var btn2 = document.getElementById('id1');
+        btn1.addEventListener('click',showtype);
+        id1.addEventListener('click',showid);
+        document.getElementById('aid').addEventListener('click',showA)
+        function showtype(event){
+//            alert(event.type);
+            alert(event.target);
+            event.stopPropagation();//阻止事件冒泡
+        }
+        function showid(){
+            alert('div');
+        }
+        function showA(event){
+//            event.stopPropagation();
+            event.preventDefault();
+        }
+    </script>
+</body>
+</html>

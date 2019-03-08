@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+//函数声明：会被前置
+//    函数表达式
+//    function add(a,b);
+    var num = add(1,2);//3
+    document.write(num + '<br/>');
+    function add(a,b)
+    {
+        a = +a;
+        b = +b;
+        if(isNaN(a)||isNaN(b))
+        {
+            return;
+        }
+        return a+b;
+    }
+
+//全局作用域下的this，全局对象window（浏览器里）
+    document.write( this +"<br/>");//[object Window]
+    document.write( (this.document===document) +"<br/>");//true
+    document.write( (this===window) +"<br/>");//true
+    this.a2 = 37;
+    document.write( window.a2 + "<br/>")//37
+
+
+//一般函数的this，全局对象window（浏览器里）、node.js里是global object
+    function f1(){
+        return this;
+    }
+   document.write(f1()+"<br/>");//[object Window]
+   document.write( (f1()===window)+"<br/>");//true
+
+//严格函数下，this指向undefined
+    function f2()
+    {
+        "use strict";
+        return this;
+    }
+    document.write(f2()+"<br/>");
+    document.write((f2()===undefined)+"<br/>");
+
+//作为对象方法的函数的this：
+    var o ={
+        prop:37,
+        f:function(){
+            return this.prop;
+        }
+    };
+    document.write(o.f()+"</br>");
+
+    var o2 = {prop2:37};
+    function independent(){
+        return this.prop2;
+    }
+    o2.f2 = independent;
+    document.write(o2.f2()+"</br>");
+
+
+//对象原型链上的this
+    var o3 = { f:function(){
+        return this.a + this.b;
+    }};
+    var p3 = Object.create(o3);
+    p3.a = 1;
+    p3.b = 4;
+    document.write(p3.f()+"<br/>")
+
+//get/set方法与this
+//构造器中的this
+//call/apply方法与this
+    function add(c4,d4)
+    {
+        return this.a4 + this.b4 + c4 + d4;
+    }
+    var o4 = {a4:1, b4:3};
+    document.write(add.call(o4,5,7)+"<br/>");//16
+    document.write(add.apply(o4,[10,20])+"<br/>");//34
+    function bar()
+    {
+        document.write(Object.prototype.toString.call(this)+"<br/>")
+    }
+    bar.call(7);//[object Number]
+
+//bind与this
+
+
+</script>
+</body>
+</html>

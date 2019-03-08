@@ -1,0 +1,41 @@
+响应式布局：
+1、服务器根据不同的浏览器用户端，为用户呈现不同的页面效果。
+2、可以让一个网站兼容不同分辨率的设备，给用户更好的视觉使用体验。
+3、移动互联网催生了响应式布局的诞生。
+
+
+
+响应式设计
+优点：解决了设备之间的差异化展示
+缺点：兼容性代码多，工作量大，加载速度受影响。
+对原有网站布局会产生影响，用户判断未必精确。
+
+
+设计原则：
+移动优先 设计初期就考虑
+渐进增强 充分发挥硬件设备功能
+
+
+实现响应式布局
+1.CSS3-Media Query——最简单的方式（可满足大部分的需求）
+2.借助原生JavaScript——成本高，不推荐使用
+3.第三方开源框架——可以很好地支持浏览器响应式布局的设计（如bootstrap）
+
+CSS3-Media Query媒体查询
+·devic-width，device-height——屏幕宽高        根据设备物理宽高   屏幕宽高（实际窗口大小）
+·width,height——渲染窗口宽高                屏幕宽高（实际窗口大小）
+·orientation——设备方向       根据设备方向，竖/横
+·resolutions——设备分辨率（注意区别像素PX和分辨率DPI的概念区别）
+
+
+
+
+外联样式表：
+<link rel="stylesheet" type="text/css" href="link.css" media="only screen and (max-width:480px)"/>
+内嵌样式表：
+<style>
+@media screen and (min-width:480px)
+{
+body{background:blue;}
+}
+</style>

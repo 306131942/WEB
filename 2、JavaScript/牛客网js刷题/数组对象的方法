@@ -1,0 +1,135 @@
+JavaScript Array 对象
+http://www.w3school.com.cn/jsref/jsref_obj_array.asp
+
+Array 对象
+        Array 对象用于在单个的变量中存储多个值。
+
+创建 Array 对象的语法：
+        new Array();
+        new Array(size);
+        new Array(element0, element1, ..., elementn);
+
+参数
+        参数 size 是期望的数组元素个数。返回的数组，length 字段将被设为 size 的值。
+        参数 element ..., elementn 是参数列表。当使用这些参数来调用构造函数 Array() 时，
+        新创建的数组的元素就会被初始化为这些值。它的 length 字段也会被设置为参数的个数。
+
+返回值
+        返回新创建并被初始化了的数组。
+        如果调用构造函数 Array() 时没有使用参数，那么返回的数组为空，length 字段为 0。
+        当调用构造函数时只传递给它一个数字参数，该构造函数将返回具有指定个数、元素为 undefined 的数组。
+        当其他参数调用 Array() 时，该构造函数将用参数指定的值初始化数组。
+        当把构造函数作为函数调用，不使用 new 运算符时，它的行为与使用 new 运算符调用它时的行为完全一样。
+
+Array 对象属性
+        属性 	描述
+        constructor 	返回对创建此对象的数组函数的引用。
+                            constructor 属性返回对创建此对象的数组函数的引用。
+        length 	设置或返回数组中元素的数目。
+        prototype 	使您有能力向对象添加属性和方法。
+                    prototype 属性使您有能力向对象添加属性和方法。
+
+ Array 对象方法
+        方法 	描述
+         1   改原来的数组
+         0    不改原来的数组
+1       pop() 	删除并返回数组的最后一个元素  arrayObject.pop()
+1       shift() 	删除并返回数组的第一个元素arrayObject.shift()
+1       push() 	向数组的末尾添加一个或更多元素，并返回新的长度。arrayObject.push(newelement1,newelement2,..)
+1       unshift() 	向数组的开头添加一个或更多元素，并返回新的长度。arrayObject.unshift(newelement1,newelement2,....,newelementX)
+1       splice() 	删除元素，并向数组添加新元素。arrayObject.splice(index,howmany,item1,.....,itemX)
+1        reverse() 	颠倒数组中元素的顺序。arrayObject.reverse()
+1       sort() 	对数组的元素进行排序
+1       join() 	把数组的所有元素放入一个字符串。元素通过指定的分隔符进行分隔。arrayObject.join(separator)
+0       concat() 	连接两个或更多的数组，并返回结果。arrayObject.concat(arrayX,arrayX,......,arrayX)
+0       slice() 	从某个已有的数组返回选定的元素arrayObject.slice(start,end)
+        toSource() 	返回该对象的源代码。object.toSource()
+                    只有 Gecko 核心的浏览器（比如 Firefox）支持该方法，
+                    也就是说 IE、Safari、Chrome、Opera 等浏览器均不支持该方法。
+        toString() 	把数组转换为字符串，并返回结果。
+                        返回值
+                        arrayObject 的字符串表示。返回值与没有参数的 join() 方法返回的字符串相同。
+                        当数组用于字符串环境时，JavaScript 会调用这一方法将数组自动转换成字符串。
+                        但是在某些情况下，需要显式地调用该方法。
+        toLocaleString() 	把数组转换为本地数组，并返回结果。
+        valueOf() 	返回数组对象的原始值
+        （14个）
+
+
+
+
+
+
+
+
+
+1、arr.slice(start,end)返回新的数组,不包括end(非必需)；可用于不改变原来的数组，新生成一个数组
+                   var a = new array();
+                   a = arr.slice(0);
+5、concat() 方法用于连接两个或多个数组。
+        该方法不会改变现有的数组，而仅仅会返回被连接数组的一个副本。
+        concat() 方法将把它的所有参数转换成字符串，然后按顺序连接到字符串 stringObject 的尾部，
+        并返回连接后的字符串。
+        请注意，stringObject 本身并没有被更改。
+       var newa =  a.concat();
+
+2、splice
+             splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。
+            //    注释：该方法会改变原始数组。
+            //    arrayObject.splice(index,howmany,item1,.....,itemX)
+            //    参数 	描述
+            //    index 	必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。
+            //    howmany 	不一定必需。要删除的项目数量。如果设置为 0，则不会删除项目。
+            //    item1, ..., itemX 	可选。向数组添加的新项目。
+3、 push(x)末尾加
+    unshift（x）头部  会改变数组，向数组的开头添加一个或更多元素，并返回新的长度。
+                      注释：unshift() 方法无法在 Internet Explorer 中正确地工作！
+
+4、pop()末尾减   会改变数组
+    pop() 方法将删除 arrayObject 的最后一个元素，把数组长度减 1，并且返回它删除的元素的值。
+    如果数组已经为空，则 pop() 不改变数组，并返回 undefined 值。
+  shift()头部
+
+6、
+7、indexOf(searchvalue,fromindex)   (必需，非必需)
+
+            定义和用法
+            indexOf() 方法可返回某个指定的字符串值在字符串中首次出现的位置。
+            语法
+            stringObject.indexOf(searchvalue,fromindex)
+            参数 	描述
+            searchvalue 	必需。规定需检索的字符串值。
+            fromindex 	可选的整数参数。规定在字符串中开始检索的位置。
+            它的合法取值是 0 到 stringObject.length - 1。如省略该参数，则将从字符串的首字符开始检索。
+            说明
+            该方法将从头到尾地检索字符串 stringObject，看它是否含有子串 searchvalue。
+            开始检索的位置在字符串的 fromindex 处或字符串的开头（没有指定 fromindex 时）。
+            如果找到一个 searchvalue，则返回 searchvalue 的第一次出现的位置。
+            stringObject 中的字符位置是从 0 开始的。
+            提示和注释
+            注释：indexOf() 方法对大小写敏感！
+            注释：如果要检索的字符串值没有出现，则该方法返回 -1。
+
+8、split()
+
+            定义和用法
+            split() 方法用于把一个字符串分割成字符串数组。
+            语法
+            stringObject.split(separator,howmany)
+            参数 	描述
+            separator 	必需。字符串或正则表达式，从该参数指定的地方分割 stringObject。
+            howmany 	可选。该参数可指定返回的数组的最大长度。如果设置了该参数，返回的子串不会多于这个参数指定的数组。
+            如果没有设置该参数，整个字符串都会被分割，不考虑它的长度。
+            返回值
+            一个字符串数组。该数组是通过在 separator 指定的边界处将字符串 stringObject 分割成子串创建的。
+            返回的数组中的字串不包括 separator 自身。
+            但是，如果 separator 是包含子表达式的正则表达式，那么返回的数组中包括与这些子表达式匹配的
+            字串（但不包括与整个正则表达式匹配的文本）。
+            提示和注释
+            注释：如果把空字符串 ("") 用作 separator，那么 stringObject 中的每个字符之间都会被分割。
+            注释：String.split() 执行的操作与 Array.join 执行的操作是相反的。
+            var sentence = 'I am  a student!';
+            document.write(sentence.split(/\s+/));///////////////////////////////
+
+9、
+10、

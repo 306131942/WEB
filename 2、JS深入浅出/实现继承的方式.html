@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+//    继承的三种方式：
+//    Student.protptype = Rerson.prototype; // 禁止使用，修改子类时会一并修改父类
+//    Student.prototype = new Person(); // 不推荐使用，使用Person的构造器创建会带回Person的参数
+//    Student.prototype = Object.create(Person.prototype); // 理想的继承方式
+//    ES5以下没有Object.create()方法，以下为模拟方式：
+//    if (!Object.create) {
+//        Object.create = function(proto) {
+//            function F() {}
+//            F.prototype = proto;
+//            return new F;
+//        };
+//    }
+    function Person(){}
+    function Student(){}
+    Student.prototype = Object.create(Person.prototype);//创建一个空对象，这个空对象的原型指向参数
+    Student.prototype.constructor = Person;
+    if(!Object.create)
+    {
+        Object.create = function(Proto)
+        {
+            function F(){}
+            F.prototype = proto;
+            return new F;
+        }
+    }
+</script>
+</body>
+</html>

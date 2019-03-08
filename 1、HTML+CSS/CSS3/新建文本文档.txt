@@ -1,0 +1,26 @@
+1、
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>Template</title>
+	<style type="text/css">
+	/*  规则 */
+	</style>
+	<link type="text/css"  rel="stylesheet" href="#"/>
+</head>
+<body>
+	<!-- 元素-->
+</body>	
+</html>
+
+2、块级标签：block   <h1-6><p><ol>有序列表<li><blockquote>独立应用
+                             
+     行内标签：inline   <a>链接<img><em>斜体<strong>重要<abbr>简写<cite>引证<q>文本内引用
+
+3、标签1 标签2            祖孙关系，选中标签2
+    标签1 > 标签2        父子关系，选中标签2
+    标签1 + 标签2        紧跟标签1的同胞，选中标签2，只有一个
+    标签1 ~ 标签2        跟在标签1的同胞，有多个！！！！
+    标签1 * { }            标签1内的所有元素，所有孙子元素
+    标签1 * 标签2 {}      非子选择符，除a都会选中   

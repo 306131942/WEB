@@ -1,0 +1,14 @@
+1，AngularJS是一个JavaScript框架，是以JavaScript编写的库
+2，我们建议把脚本放在 <body> 元素的底部。
+	这会提高网页加载速度，因为 HTML 加载不受制于脚本加载。
+3，AngularJS通过ng-directives扩展了HTML
+	ng-app指令定义一个AngularJS应用程序
+	ng-model指令把元素（比如输入域的值）绑定到应用程序
+	ng-bind指令把应用程序数据绑定到html视图
+4，AngularJS能做什么
+	AngularJS把应用程序数据绑定到html元素
+	AngularJS可以克隆和重复html元素
+	AngularJS可以隐藏和显示html元素
+	AngularJS可以在html元素“背后”添加代码
+	AngularJS支持输入验证
+5，AngularJS 属性以 ng- 开头，但是您可以使用 data-ng- 来让网页对 HTML5 有效

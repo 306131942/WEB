@@ -1,0 +1,99 @@
+﻿question：
+类型判断
+
+
+
+1、数据类型（弱类型特性）
+六种：五种原始类型：number, string, boolean, null, undefined
+         一种对象类型object：Function, Array, Date...
+隐式转换：
+基本类型---包装类型对象
+
+2、表达式和运算符
+3、语句
+4、对象
+5、数组
+
+6、函数和作用域（函数、this）
+创建函数的方式：
+function add (a,b){
+//do sth
+}
+
+//function variable
+var add = function (a,b){
+//do sth
+};
+
+//IEF(Immediately Exexuted Functon)
+(function(){
+//do sth
+}) ();
+
+//first-class function
+return function(){
+//do sth
+};
+
+NFE(Named Function Expression)
+var add = function foo (a,b){
+//do sth
+};
+
+//不常见 函数构造器
+var func = new Function ('a', 'b', 'console.log(a + b)');
+
+a.变量的声明&函数声明：会被前置
+b.函数表达式：命名函数表达式
+c.Function函数构造器 var func = new Function();
+
+this：
+全局作用域下的this，全局对象window（浏览器里）
+一般函数的this，全局对象window（浏览器里）、node.js里是global object
+严格函数下，this指向undefined
+作为对象方法的函数的this：
+对象原型链上的this:
+
+7、函数和作用域（闭包、作用域）
+
+
+
+
+
+8、oop上
+
+prototype
+instanceof   左边：对象，右边：函数（构造器）
+[1, 2] instanceof Array === true     
+new Object() instanceof Array === false； //空对象的原型----Object.prototype---null
+判断函数的prototype属性在是否出现在左边对象的原型链上
+
+new + 构造器 这样会创建一个对象，这个对象的原型指向构造器的原型。
+例如：new Person 时需要 name, age ，在创建Person 实例作为 Stundent.prototype 时，
+传如何东西进去作为 name,age 都是很奇怪的。
+
+
+
+继承的三种方式：
+1.Student.protptype = Rerson.prototype; // 禁止使用，修改子类时会一并修改父类
+2.Student.prototype = new Person(); // 不推荐使用，
+                                                          //使用Person的构造器创建会带回Person的参数
+3.Student.prototype = Object.create(Person.prototype); // 理想的继承方式
+ES5以下没有Object.create()方法，以下为模拟方式：
+if (!Object.create) {
+Object.create = function(proto) {
+function F() {}
+F.prototype = proto;
+return new F;
+};
+}
+
+
+
+9、oop下:模拟重载、链式调用、模块化、实现（探测器）
+
+调用基类构造器
+Person.call(this, name);
+
+
+10、正则与匹配模式

@@ -1,0 +1,28 @@
+第一章：入门准备
+1、EditPlus和Sublime
+2、不能对fonts进行重新命名，css文件里的源码使用了相对路径（../fonts/）,重命名后读取不到
+3、移动先行
+4、先jQuery后JavaScript
+
+
+5、CSS       核心是选择器的定义以及在各自优先级上的处理
+6、JavaScript       
+( function () {
+/*code*/
+}() );
+
+( function () {
+/*code*/
+}) ();
+
+
+( function () {
+/*code*/
+}(1) );           //传入参数
+
+( function () {
+/*code*/
+}) (2);
+
+
+第二章：整体架构

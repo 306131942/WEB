@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="gb2312">
+    <title>构造函数模式</title>
+
+</head>
+<body>
+<script type="text/javascript">
+    //笔记：格式化代码：ctrl+alt+L
+    //1, 用于创建特定类型的对象
+    //2, 这样的函数名会被人笑话
+    //3， js开发的时候写单引号
+    //4，js里构造函数比较特殊的地方
+    //5, 其他的语言里， 如PHP里人家实现，有一个关键字A class
+    //6, zaomen就是构造函数，他又充当了类的概念
+    //7,
+    var AA = (function zaomen(huawen) {
+        //instanceof 检测某个对象是不是另一个对象的实例。
+        //判断一个实例是否属于它的父类型
+        //判断this是不是zaomen()的实例，不是则new 一个，返回true or false
+        if (!(this instanceof zaomen)) {
+            new zaomen();
+        }
+        var _huawen = '普通';
+        if (huawen) {
+            _huawen = huawen;
+        }
+        this.suo = '普通';
+        this.huawen = _huawen;
+        this.create = function () {
+            return '[锁头]' + this.suo + ', [花纹]' + this.huawen;
+        }
+    })
+    var BB = (function zaomen(huawen) {
+        //instanceof 检测某个对象是不是另一个对象的实例。
+        //判断一个实例是否属于它的父类型
+        //判断this是不是zaomen()的实例，不是则new 一个，返回true or false
+        if (!(this instanceof zaomen)) {
+            new zaomen();
+        }
+        var _huawen = '普通';
+        if (huawen) {
+            _huawen = huawen;
+        }
+        this.suo = '普通';
+        this.huawen = _huawen;
+        this.create = function () {
+            return '[锁头]' + this.suo + ', [花纹]' + this.huawen;
+        }
+    })
+
+    var xiaozhang = new AA.zaomen();
+    alert('xiaozhang = ' + xiaozhang.create());
+
+    var xiaoli = new BB.zaomen('绚丽 ');
+    alert('xiali = ' + xiaoli.create());
+</script>
+</body>
+</html>

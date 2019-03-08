@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function getNewArray(){
+        var array=[1,2,3,4,5];
+        Array.prototype.age=13;
+        var result = [];
+        for(var i=0;i<array.length;i++){
+            result.push(array[i]);
+        }
+        document.write(result.join(' ') + '<br/>');//1 2 3 4 5
+    }
+    getNewArray();
+    function getNewArrayTwo(){
+        var array=[1,2,3,4,5 ];
+        Array.prototype.age=13;
+        var result=[];
+        for(var i in array){
+            result.push(array[i]);
+        }
+        document.write(result.join(' ') + '<br/>');//1 2 3 4 5 13
+        //所以建议不要对数组执行for in循环，事实上，在高性能javascript这本书中,也强调了for in循环的不好,
+        // 因为它总是会访问该对象的原型,看下原型上是否有属性,这在无意中就给遍历增加了额外的压力。
+    }
+    getNewArrayTwo();
+
+    function finalArray(){
+        var array=[1,2,3,4,5 ];
+        Array.prototype.age=13;
+        var result=[];
+        for(var i in array){
+            if(array.hasOwnProperty(i)){
+                result.push(array[i]);
+            }
+        }
+        document.write(result.join(''));
+    }
+    finalArray();
+</script>
+</body>
+</html>

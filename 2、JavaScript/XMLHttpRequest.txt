@@ -1,0 +1,11 @@
+1、XMLHttpRequest对象用于在后台与服务器交换数据
+2、
+    在不重新加载页面的情况下更新网页
+    在页面已加载后从服务器请求数据
+    在页面已加载后从服务器接收数据
+    在后台向服务器发送数据
+3、创建XMLHttpRequest对象
+	IE7+、firefox、chrome、safari、opera
+		xmlhttp = new XMLHttpRequest();
+老版本的IE5、IE6使用activeX对象
+	xmlhttp = new  ActiveXObject("Microsoft.XMLHTTP");

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        //独立的对象，建2个，一个xiaowang，一个xiaoli
+        //让xiaoli和xiaowang通过门铃进行通信
+        //先看一下xiaowang家有没有门，如果有门直接通过门铃通讯didi，如果没有门，先建门
+        //两个单例之间看是通信
+        var xiaowang = (function(argument){
+            var xiaowangjia = function(message){
+                this.menling = message;
+            };
+            var men = 'dididididid';
+            var info = {
+                sendMessage:function(message){
+                    if(!men){
+                        men = new xiaowangjia(message);
+                    }
+                    return men;
+                }
+            };
+            return men;
+        })();
+
+        var xiaoli = {
+            callXiaowang:function(msg){
+                var _xw = xiaowang.sendMessage(msg);
+                alert(_xw.menling);
+                _xw = null;//等待垃圾回收
+            }
+        };
+        xiaoli.callXiaowang('didi');
+        //总结：
+        //静态单例，常驻在内存里面
+    </script>
+
+    <script>
+        var top = {
+            init:function(){
+                this.render();
+                this.bind();
+            },
+            a:4,
+            render:function(){
+              var me = this;
+                me.btna = $('#a');
+            },
+            bind:function(){
+                var me = this;
+                me.btna.click(function(){
+                    //业务逻辑取出去
+                    me.test();
+                });
+            },
+            test:function(){
+                a = 5;
+            }
+        }
+        var banner = {
+            init:function(){
+                this.render();
+                this.bind();
+            },
+            a:4,
+            render:function(){
+                var me = this;
+                me.btna = $('#a');
+            },
+            bind:function(){
+                var me = this;
+                me.btna.click(function(){
+                    //业务逻辑取出去
+                    me.test();
+                });
+            },
+            test:function(){
+                //a = 6;
+                top.a = 6;
+                //自己保护自己，实例又只有一个
+            }
+        }
+        top.init();
+        banner.init();
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

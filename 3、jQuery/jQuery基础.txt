@@ -1,0 +1,179 @@
+1、
+<head>
+<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js">
+</script>
+</head> 
+
+2、您也许已经注意到在我们的实例中的所有 jQuery 函数位于一个 document ready 函数中：
+$(document).ready(function(){
+   // jQuery methods go here...
+$(this).hide() - 隐藏当前元素
+$("p").hide() - 隐藏所有段落
+$("p .test").hide() - 隐藏所有 class="test" 的段落
+$("#test").hide() - 隐藏所有 id="test" 的元素
+});
+这是为了防止文档在完全加载（就绪）之前运行 jQuery 代码。
+如果在文档没有完全加载之前就运行函数，操作可能失败。下面是两个具体的例子：
+    试图隐藏一个不存在的元素
+    获得未完全加载的图像的大小
+提示：简洁写法（与以上写法效果相同）:
+$(function(){
+   // jQuery methods go here...
+});
+以上两种方式你可以选择你喜欢的方式实现文档就绪后执行jQuery方法。
+
+3、元素选择器
+$(document).ready(function(){
+  $("button").click(function(){
+    $("p").hide();
+  });
+});
+
+4、常用jQuery事件方法
+$(document).ready()          $(document).ready() 方法允许我们在文档完全加载完后执行函数。
+                                     该事件方法在 jQuery 语法 章节中已经提到过。
+click()             click() 方法是当按钮点击事件被触发时会调用一个函数。
+                     该函数在用户点击 HTMl 元素时执行。
+dblclick()         当双击元素时，会发生 dblclick 事件。
+mouseenter()   当鼠标指针穿过元素时，会发生 mouseenter 事件。
+mouseleave()   当鼠标指针离开元素时，会发生 mouseleave 事件。
+mousedown()   当鼠标指针移动到元素上方，并按下鼠标按键时，会发生 mousedown 事件。
+mouseup()       当在元素上松开鼠标按钮时，会发生 mouseup 事件。
+hover()            hover()方法用于模拟光标悬停事件
+focus()             当元素获得11:10 2015/10/15焦点时，发生 focus 事件。当通过鼠标点击选中元素或通过 tab 键定位到元素时，该元素就会获得焦点。
+blur()               当元素失去焦点时，发生 blur 事件。
+
+5、常用jQuery函数
+
+5.1   隐藏/显示和淡入淡出
+hide()   隐藏 HTML 元素
+show()  显示 HTML 元素；
+toggle() 方法来切换 hide() 和 show() 方法。显示被隐藏的元素，并隐藏已显示的元素；
+fadeIn() 用于淡入已隐藏的元素。语法:$(selector).fadeIn(speed,callback);callback 参数是 fading 完成后所执行的函数名称。
+fadeToggle() 方法可以在 fadeIn() 与 fadeOut() 方法之间进行切换。
+
+5.2   滑动和动画
+slideDown() 方法用于向下滑动元素。
+slideUp() 方法用于向上滑动元素。
+slideToggle() 方法可以在 slideDown() 与 slideUp() 方法之间进行切换。
+animate({params},speed,callback); 创建自定义动画。params 参数定义形成动画的 CSS 属性。
+stop()  方法用于停止动画或效果，在它们完成之前。stop() 方法适用于所有 jQuery 效果函数，包括滑动、淡入淡出和自定义动画。
+
+
+5.3    jQuey Callback
+Callback 函数在当前动画 100% 完成之后执行。
+   使用 callback 实例
+$("button").click(function(){
+  $("p").hide("slow",function(){
+    alert("The paragraph is now hidden");
+  });
+});
+
+以下实例没有回调函数，警告框会在隐藏效果完成前弹出：
+没有 callback(回调)
+$("button").click(function(){
+  $("p").hide(1000);
+  alert("The paragraph is now hidden");
+});
+
+
+5.4   jQuery  Chaining
+通过 jQuery，可以把动作/方法链接在一起。
+Chaining 允许我们在一条语句中运行多个 jQuery 方法（在相同的元素上）。
+
+<script>
+$(document).ready(function()
+  {
+  $("button").click(function(){
+    $("#p1").css("color","red")
+      .slideUp(2000)
+      .slideDown(2000);
+  });
+});
+</script>
+
+6、jQuery - 获取内容和属性
+
+    text() - 设置或返回所选元素的文本内容
+    html() - 设置或返回所选元素的内容（包括 HTML 标记）
+
+$("#btn1").click(function(){
+  alert("Text: " + $("#test").text());
+});
+$("#btn2").click(function(){
+  alert("HTML: " + $("#test").html());
+}); 
+
+    val() - 设置或返回表单字段的值
+
+$("#btn1").click(function(){
+  alert("Value: " + $("#test").val());
+}); 
+
+   attr() 方法用于获取属性值。
+ 下面的例子演示如何获得链接中 href 属性的值：
+实例
+$("button").click(function(){
+  alert($("#w3s").attr("href"));
+}); 
+
+
+
+7、jQuery - 设置内容和属性：通过 text()、html() 以及 val() 方法来设置内容：
+
+$("#btn1").click(function(){
+  $("#test1").text("Hello world!");
+});
+$("#btn2").click(function(){
+  $("#test2").html("<b>Hello world!</b>");
+});
+$("#btn3").click(function(){
+  $("#test3").val("Dolly Duck");
+});
+
+
+text()、html() 以及 val() 的回调函数
+
+
+8、jQuery - noConflict() 方法
+
+$.noConflict();
+jQuery(document).ready(function(){
+  jQuery("button").click(function(){
+    jQuery("p").text("jQuery is still working!");
+  });
+}); 
+
+
+var jq = $.noConflict();
+jq(document).ready(function(){
+  jq("button").click(function(){
+    jq("p").text("jQuery is still working!");
+  });
+}); 
+
+
+9、JSONP 教程
+Jsonp(JSON with Padding) 是 json 的一种"使用模式"，可以让网页从别的域名（网站）那获取资料，即跨域读取数据。
+为什么我们从不同的域（网站）访问数据需要一个特殊的技术(JSONP )呢？这是因为同源策略。
+同源策略，它是由Netscape提出的一个著名的安全策略，现在所有支持JavaScript 的浏览器都会使用这个策略。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,12 @@
+bootstrap-3.3.4-dist
+用于生产环境的 Bootstrap
+编译并压缩后的 CSS、JavaScript 和字体文件。不包含文档和源码文件。
+
+
+bootstrap-3.3.4：
+Bootstrap 源码
+Less、JavaScript 和 字体文件的源码，并且带有文档。需要 Less 编译器和一些设置工作。
+
+bootstrap-sass-3.3.4
+Sass
+这是 Bootstrap 从 Less 到 Sass 的源码移植项目，用于快速地在 Rails、Compass 或 只针对 Sass 的项目中引入。

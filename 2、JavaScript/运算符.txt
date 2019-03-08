@@ -1,0 +1,62 @@
+typeof 和 instanceof  ===
+1、typeof运算符用来测试表达式的类型，其结果为一个表达该表达式数据类型的字符串
+如下：
+            表达式值                                         返回结果
+      Undefined                                            undefined
+      null                                                      object
+      Boolean                                                boolean
+      Number                                                number
+      String                                                    string
+      Object( 没有实现Call属性的内建对象 )       object
+      Object（实现Call属性的内建对象）           function
+      Object（host对象）                                有实现决定
+
+var a = 3;
+typeof(a);//number
+
+var person = new Object();
+person.sex = "male";
+typeof(person);//object
+
+两个数字常量，返回number
+typeof(NaN);//number
+typeof(Infinity);//number
+
+typeof对于核心类的实例返回的值永远是object，即构造方法创建
+var myB = new String("hello, world");
+typeof(myB);//object
+
+var a = new Number(5);
+typeof(a);//object
+
+var a = new Bolean("true");
+typeof(a);//object 
+
+var myB = "hello, world";
+typeof(myB);//string 
+
+
+var a = "true";
+typeof(a);//boolean
+
+
+
+2、instanceof运算符用来检测表达式是否是指定类的实例
+Object是一切类的基类，所以，任何对象都是Object的实例
+
+var myB = new String("hello, world");
+console.log(myB instanceof String);//true
+
+
+var myB = new String("hello, world");
+console.log(myB instanceof Object );
+
+
+
+
+
+3、全等运算符===
+4、
+
+
+

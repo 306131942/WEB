@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+
+//    基于原型链的继承
+
+
+//    function Foo(){
+//        this.y = 2;
+//    }
+//    typeof Foo.prototype;//Object   是一个函数属性，是一个对象
+//    Foo.prototype.x = 1;
+//    var obj3 = new Foo();
+//    obj3.y;//2
+//    obj3.x;//1
+//
+//    //当直接调用Foo时，this指向window
+//    //当通过new构造器，构造实例时，obj3---Foo.prototype
+       //// this指向一个原型为Foo.prototype的空对象
+    //创建实例时，实例对象的原型指向构造器的prototy属性，即这个对象
+    //多个对象共享的方法则在prototype对象上添加属性和方法
+    function Person(name, age){
+        this.name  = name;
+        this.age = age;
+    }
+    Person.prototype.hi = function(){
+        document.write("Hi, My name is " + this.name +
+                ", I am " + this.age + " years old now." + "<br/>");
+    }
+    Person.prototype.legsNum = 2;
+    Person.prototype.armsNum = 2;
+    Person.prototype.walk = function(){
+        document.write(this.name + " is walking..." + "<br/>")
+    }
+    function Student(name, age, className){
+        Person.call(this, name, age);
+        this.className = className;
+    }
+    Student.prototype = Object.create(Person.prototype);
+    Student.prototype.constructor = Student;
+    Student.prototype.hi = function(){
+        document.write("Hi, My name is " + this.name +
+                ", I am " + this.age + " years old now,and from " + this.className
+                + ". <br/>");
+    }
+    Student.prototype.learn = function(subject){
+        document.write(this.name + " is learning " + subject + " at " +
+        this.className + ".<br/>");
+    }
+    var bosn = new Student("Bosn", 27, "Class 3,Grad 2");
+    bosn.hi();
+    document.write(bosn.legsNum + "<br/>");
+    bosn.walk();
+    bosn.learn("math");
+
+
+
+    //内置构造器的prototype
+    //创建对象-new/原型值
+//    function foo(){}
+//    foo.prototype.z = 3;
+    // 任何一个函数会有一个prototype这样的对象，作为foo的实例，
+    // 也就是new出来的实例的对象原型，prototype对象是所有实例共享的原型。
+
+
+</script>
+</body>
+</html>

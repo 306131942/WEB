@@ -1,0 +1,15 @@
+3种常用的命名方法：
+1、帕斯卡命名法 Pascal Notation：所有单词第一个字母大写，其他小写。
+类、接口（前面加I）：如HelloWorld、IHelloWorld
+
+2、驼峰名命名法 Camel Notation：除了第一个单词外，所有单词第一个字母大写，其他小写
+变量名、函数名、方法、属性：function displayUserInfo(){}
+                                             var userName
+
+有另外一种形式：单词均小写，单词间用下划线隔开:function display_user_info(){}
+                                                                            var user_name
+
+3、匈牙利命名法 Hungarian Notation：变量名=特性（字母前缀）+描述
+
+前两种命名法现在使用得最多，大部分的流行语言，例如java，c#等，都使用帕斯卡命名法或驼峰命名法。而对于传统的windows编程，
+例如c,c++等，则较多使用匈牙利命名......

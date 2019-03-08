@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script>
+        //抽象工厂模式
+        var XMLHttpFactory = function(){
+        };
+
+        XMLHttpFactory.property = {
+            //如果真的调用这个方法会抛出一个错误，他不能被实例化，只能用来派生子类
+            createFactory:function(){
+                throw new Error('This is a abstract class!');
+            }
+        };
+
+        //派生子类
+        var XHRHander = function(){
+          XMLHttpFactory.call(this);
+        };
+
+        XHRHander.prototype = new XMLHttpFactory();
+        XHRHander.prototype.constructor = XHRHander;
+
+        //重新定义createFactory方法
+        XHRHander.prototype.createFactory = function(){
+            var XMLHttp = null;
+            if(window.XMLHttpRequest){
+                XMLHttp = new XMLHttpRequest();
+            }
+            else if(window.ActiveObject){
+                XMLHttp = new ActiveXObject("Microsoft.XMLHttp")
+            }
+            return XMLHttp;
+        }
+
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

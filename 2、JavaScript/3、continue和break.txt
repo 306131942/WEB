@@ -1,0 +1,23 @@
+
+<html>
+  <head><title>continue和break的用法</title></head>
+  <body>
+   <script language='javascript' type='text/javascript'>
+     var x;
+     document.write('continue语句'); 
+     for(x=1;x<10;x++)
+       { if (x%2==0) continue;   // 遇到偶数则跳出此次循环，进入下次循环
+          document.write(x+'&nbsp');
+        }
+     document.write('<br>');
+     document.write('break语句');
+     for (x=1;x<=10;x++)
+       { if (x%3==0) break;     // 遇到能被3整除，结束整个循环
+          document.write(x+'&nbsp');
+       }
+     </script>
+  </body>
+</html>
+
+--------------------------------------结果：continue语句1 3 5 7 9 
+--------------------------------------              break语句1 2 

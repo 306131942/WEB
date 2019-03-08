@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>编程练习3_13</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <style>
+        body{
+            padding: 30px;
+        }
+    </style>
+</head>
+<body>
+<ul class="nav nav-tabs" role="tablist" id="mytab">
+    <li class="active"><a href="#home1" role="tab" data-toggle="tab">第一项</a></li>
+    <li ><a href="#home2"  role="tab" data-toggle="tab">第二项</a></li>
+    <li ><a href="#home3"  role="tab" data-toggle="tab">第三项</a></li>
+    <li ><a href="#home4"  role="tab" data-toggle="tab">第四项</a></li>
+</ul>
+<div class="tab-content" id="mytabto">
+    <div class="tab-pane active" id="home1">
+        <p>h1慕课网是一家从事互联网免费教学的网络教育公司。秉承"开拓、创新、公平、分享"的精神，
+            将互联网特性全面的应用在教育领域，致力于为教育机构及求学者打造一站式互动在线教育品牌。</p>
+    </div>
+    <div class="tab-pane" id="home2">
+        <p>h2慕课网是一家从事互联网免费教学的网络教育公司。秉承"开拓、创新、公平、分享"的精神，
+            将互联网特性全面的应用在教育领域，致力于为教育机构及求学者打造一站式互动在线教育品牌。</p>
+    </div>
+    <div class="tab-pane" id="home3">
+        <p>h3慕课网是一家从事互联网免费教学的网络教育公司。秉承"开拓、创新、公平、分享"的精神，
+            将互联网特性全面的应用在教育领域，致力于为教育机构及求学者打造一站式互动在线教育品牌。</p>
+    </div>
+    <div class="tab-pane" id="home4">
+        <p>h4慕课网是一家从事互联网免费教学的网络教育公司。秉承"开拓、创新、公平、分享"的精神，
+            将互联网特性全面的应用在教育领域，致力于为教育机构及求学者打造一站式互动在线教育品牌。</p>
+    </div>
+
+</div>
+<script src="js/jquery-1.11.1.js"></script>
+<script src="js/bootstrap.js"></script>
+<script>
+    $(function(){
+        $('#mytab a[href = "#home2"]').tab('show');
+    });
+ /* $(document).ready(function(){
+      $("#mytab  a").click(function(){
+          var href = $(this).attr("href");
+          $("#mytabto a[href='" + href + "']").tab("show");
+      });
+  });*/
+</script>
+</body>
+</html>

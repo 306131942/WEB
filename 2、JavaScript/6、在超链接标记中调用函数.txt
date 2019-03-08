@@ -1,0 +1,17 @@
+
+<html>
+<head>
+  <script language="JavaScript">
+    function hello() {
+      window.alert("Hello!");
+    }
+  </script>
+</head>
+<body>
+<a href="#" onClick="hello();"> 通过onClick属性调用函数 </a><br>
+<a href="javascript:hello();"> 通过href属性调用函数 </a>
+</body>
+</html>
+
+
+//<a href="javascipte:hello();"></a>

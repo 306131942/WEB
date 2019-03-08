@@ -1,0 +1,44 @@
+1、插入CSS
+优先级：行内样式>内部样式>链入样式>导入样式>缺省浏览器样式
+
+<标记 style="属性1：属性值;属性2：属性值">
+
+或者
+
+...
+</head>
+<style type="text/css">                               /*<script  language="JavaScript">或者直接<script>..</script>*/
+<!--
+@import url(".css")      //   @import".css"                                               /*导入外部样式表文件*/
+标记1.类名称1{属性1：属性值;属性2：属性值}   /*以下是类选择符class=..的使用*/
+标记1.类名称2{属性1：属性值;属性2：属性值}
+          .类名称1{属性1：属性值;属性2：属性值}   /*不同的标记p,h1....*/
+标记1#id名1{属性1：属性值;属性2：属性值}       /*以下是选择符id=..的使用*/
+标记1#id名2{属性1：属性值;属性2：属性值}   
+          #id名1{属性1：属性值;属性2：属性值}   
+-->
+<body>
+...
+
+或者
+<head>
+...
+     <link   herf=".css"   rel="stylesheet"   type="text/css"   >        
+ /*<script  type="text/javascript" src=" .js"></script>*/
+...
+</head>
+
+
+2、插入JS：
+在<head>...</head>或<body>...</body>之间，
+<script  language="JavaScript">
+...
+</script>
+
+或者
+<head>
+..
+<script  type="text/javascript" src=" .js"></script>//////外部脚本不能包含 <script> 标签。   
+..
+</head>
+

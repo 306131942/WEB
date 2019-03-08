@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //    splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。
+    //    注释：该方法会改变原始数组。
+    //    arrayObject.splice(index,howmany,item1,.....,itemX)
+    //    参数 	描述
+    //    index 	必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。
+    //    howmany 	不一定必需。要删除的项目数量。如果设置为 0，则不会删除项目。
+    //    item1, ..., itemX 	可选。向数组添加的新项目。
+    var arr = [0,1,2,3,4,5,6,7,8];
+    document.write(arr.splice(4,0) + '<br/>');//空，，，，，，，0,1,2,3,4,5,6,7
+    document.write(arr.splice(4) + '<br/>');//4,5,6,7,8，，，，，，0,1,2,3,
+    document.write(arr.splice(3,1) + '<br/>');//3,,,,,,,,,,,,,,,,0,1,2
+    document.write(arr + '<br/>');//0,1,2
+
+
+    var a2 = [5,6,7,8,9,['aa','bb',['1210']],100];
+    document.write(a2.toString() + '<br/>');//5,6,7,8,9,aa,bb,1210,100
+
+    var a = [1,2,3,4,5,6,7,8,9];
+    document.write(a.splice(3,2)+ '<br/>');    // -> 4,5
+    document.write(a+ '<br/>');        // -> 1,2,3,6,7,8,9
+    document.write(a.splice(4)+ '<br/>');  // -> 7,8,9 注：IE下返回空
+    document.write(a+ '<br/>');        // -> 1,2,3,6
+    document.write(a.splice(0,1)+ '<br/>');    // -> 1
+    document.write(a+ '<br/>');        // -> 2,3,6
+    document.write(a.splice(1,1,["aa","bb",5])+ '<br/>');   // -> 3
+    document.write(a+ '<br/>');        // -> 2,aa,bb,5,6
+    document.write('这里：'+a.splice(1,1)+ '<br/>'); // -> aa,bb,5(作为一个元素)              2,6
+    document.write(a.splice(1,1,7,8,9)+ '<br/>');//6                      2,7,8,9
+    document.write(a.splice(1,2,"ee").join("#")+ '<br/>'); // -> 7#8
+    document.write(a+ '<br/>');        // -> 2,ee,9
+    document.write(a.splice(1,2,"cc","aa","tt").join("#")+ '<br/>');  // -> ee#9
+    document.write(a+ '<br/>');        // -> 2,cc,aa,tt
+
+
+
+    document.write('<br/>');        // -> 2,cc,aa,tt
+    document.write('<br/>');        // -> 2,cc,aa,tt
+    var sentence = 'I am  a student!';
+    document.write(sentence.split(/\s+/));
+
+
+
+
+
+</script>
+</body>
+</html>

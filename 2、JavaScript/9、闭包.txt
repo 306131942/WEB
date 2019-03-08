@@ -1,0 +1,53 @@
+1、闭包是一个函数，称为闭包函数或者绑定函数，
+
+
+
+
+
+
+1、
+var counter = 0;
+
+function add() {
+    counter += 1;
+}
+
+add();
+add();
+add();
+// 计数器现在为 3 
+
+2、
+function add() {
+    var counter = 0;
+    counter += 1;
+}
+
+add();
+add();
+add();
+
+// 本意是想输出 3, 但事与愿违，输出的都是 1 ! 
+//局部变量只能用于定义它函数内部。对于其他的函数或脚本代码是不可用的。
+//全局和局部变量即便名称相同，它们也是两个不同的变量。修改其中一个，不会影响另一个的值。 
+//变量声明是如果不使用 var 关键字，那么它就是一个全局变量，即便它在函数内定义。
+
+3、
+function add() {
+    var counter = 0;
+    function plus() {counter += 1;}
+    plus();   
+    return counter;
+}
+
+4、
+var add = (function () {
+    var counter = 0;
+    return function () {return counter += 1;}
+})();
+
+add();
+add();
+add();
+
+// 计数器为 3 

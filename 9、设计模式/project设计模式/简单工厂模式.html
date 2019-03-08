@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript">
+        var gongchang = {};
+        gongchang.chanyifu = function(argument){
+            this.gongren = 50;
+            alert('我们有' + this.gongren + '工人。');
+        };
+        gongchang.chanxie = function(){
+            alert('产鞋子~');
+        };
+        gongchang.yunshu = function(){
+            alert('运输~');
+        };
+        gongchang.changzhang = function(para){
+            return new gongchang[para]();
+        };
+        var me = gongchang.changzhang('chanyifu');
+        alert(me.gongren);
+    </script>
+    <script>
+        //简单工厂
+        var XMLHttpFactory = function () {
+        };
+        XMLHttpFactory.createXMLHttp = function(){
+            var XMLHttp = null;
+            //XMLHttpFactory.createXMLHttp()这个方法根据当前环境的具体情况返回一个XHR对象
+            if(window.XMLHttpRequest){
+                XMLHttp = new XMLHttpRequest();
+            }
+            else if(window.ActiveXObject){
+                XMLHttp = new ActiveXObject('Microsoft.XMLHTTP');
+            }
+            return XMLHttp;
+        }
+        var AjaxHander = function () {
+            var XMLHttp = XMLHttpFactory.createXMLHttp();
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>

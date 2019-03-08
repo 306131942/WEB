@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function findAllOccurrences(arr, target) {
+        var  ar = [];
+        ar = arr.split('');
+        var  a = [];
+        var  j = 0;
+        for(var i=0; i<ar.length; i++)
+        {
+            if(target==ar[i])
+            {
+                a[j] = i;
+                j++;
+            }
+        }
+        document.write(a);
+    }
+    findAllOccurrences('abcdefabc' ,'a');
+</script>
+</body>
+</html>

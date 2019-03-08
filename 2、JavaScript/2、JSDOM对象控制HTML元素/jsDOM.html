@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <p name="pn">hello</p>
+    <p name="pn">hello</p>
+    <p name="pn">hello</p>
+    <p name="pn">hello</p>
+    <a href="" id="aid" title="得到了a标签的属性">hello</a>
+    <a href="" id="aid2">aid2</a>
+    <ul>
+        <li title="第一个哦">1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+<script>
+    function getName(){
+        var count = document.getElementsByTagName("p");
+//        var count = document.getElementsByName("pn");
+        alert(count.length);
+        var p = count[1];
+        p.innerHTML = 'World';
+    }
+//    getName();
+    function getAttr(){
+        var anode = document.getElementById('aid');
+        var attr = anode.getAttribute('title');
+        alert(attr);
+    }
+//    getAttr();
+    function setAttr(){
+        var anode = document.getElementById('aid2');
+        anode.setAttribute('title','动态设置A的title属性');
+        alert(anode.getAttribute('title'));
+    }
+//    setAttr();
+//    function getChildNode(){
+//        var childNode = document.getElementsByTagName('ul')[0].childNodes;
+//        alert(childNode.length);
+//        alert(childNode.nodeType);
+//        alert(childNode.getAttribute('title'));
+//    }
+//    getChildNode();
+
+
+    function
+</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+localhost
+http://localhost/index0.html
+http://localhost/index0.php
+登入mysql:            http://localhost/shujuku/index.php
+账号密码：root 123456
+
+ 1.先在安装目录找到my.ini配置文件，打开配置文件，找到[mysqld]一行，在下面添加skip-grant-tables后保存该文件，重新启mysql动服务;

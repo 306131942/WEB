@@ -1,0 +1,62 @@
+1、什么是 Bootstrap？
+Bootstrap 是基于 HTML、CSS、JAVASCRIPT 的，它简洁灵活，使得 Web 开发更加快捷。[1] 
+          它由Twitter的设计师Mark Otto和Jacob Thornton合作开发，是一个CSS/HTML框架。
+         Bootstrap提供了优雅的HTML和CSS规范，它即是由动态CSS语言Less写成。
+         Bootstrap 是一个用于快速开发 Web 应用程序和网站的前端框架。Bootstrap 是基于 HTML、CSS、JAVASCRIPT 的。
+Bootstrap 是由 Twitter 的 Mark Otto 和 Jacob Thornton 开发的。Bootstrap 是 2011 年八月在 GitHub 上发布的开源产品。
+
+
+2、特点：
+移动设备优先：自 Bootstrap 3 起，框架包含了贯穿于整个库的移动设备优先的样式。
+浏览器支持：所有的主流浏览器都支持 Bootstrap。
+响应式设计：Bootstrap 的响应式 CSS 能够自适应于台式机、平板电脑和手机。更多有关响应式设计的内容详见 Bootstrap 响应式设计 
+
+3、Bootstrap 环境安装
+如果您使用的是未编译的源代码，您需要编译 LESS 文件来生成可重用的 CSS 文件。对于编译 LESS 文件，Bootstrap 官方只支持 Recess
+，这是 Twitter 的基于 less.js 的 CSS 提示。
+
+4、Bootstrap CDN推荐
+本站实例采用的是百度的静态资源库(http://cdn.code.baidu.com/)上的Bootstrap资源。
+百度的静态资源库的 CDN 服务，访问速度更快、加速效果更明显、没有速度和带宽限制、永久免费,引入代码如下：
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+<!-- 可选的Bootstrap主题文件（一般不使用） -->
+<script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap-theme.min.css"></script>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+
+5、
+接下来让我们看下这个 class 包含了哪些 css 属性。
+在下面的代码中，可以看到img-responsive class 为图像赋予了 max-width: 100%; 和 height: auto; 属性，
+可以让图像按比例缩放，不超过其父元素的尺寸。
+.img-responsive {
+  display: inline-block;
+  height: auto;
+  max-width: 100%;
+}
+这表明相关的图像呈现为 inline-block。当您把元素的 display 属性设置为 inline-block，
+元素相对于它周围的内容以内联形式呈现，但与内联不同的是，这种情况下我们可以设置宽度和高度。
+设置 height:auto，相关元素的高度取决于浏览器。
+设置 max-width 为 100% 会重写任何通过 width 属性指定的宽度。这让图片对响应式布局的支持更友好
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

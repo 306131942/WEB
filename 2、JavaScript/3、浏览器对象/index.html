@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="time"></div>
+<script>
+    var myTime = setInterval(function(){
+        getTime();}, 1000);
+    function getTime()
+    {
+        var today = new Date();
+//        var t = d.toLocaleTimeString();
+//        document.getElementById('time').innerHTML = t;
+        var h=today.getHours();
+        var m=today.getMinutes();
+        var s=today.getSeconds();
+// add a zero in front of numbers<10
+        h=checkTime(h);
+        m=checkTime(m);
+        s=checkTime(s);
+        document.getElementById('time').innerHTML=h+":"+m+":"+s;
+    }
+
+    function checkTime(i)
+   {
+        if (i<10)
+        {
+            i="0" + i;
+        }
+        return i;
+   }
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+    <!--<script>-->
+        <!--function startTime()-->
+        <!--{-->
+            <!--var today=new Date();-->
+            <!--var h=today.getHours();-->
+            <!--var m=today.getMinutes();-->
+            <!--var s=today.getSeconds();-->
+<!--// add a zero in front of numbers<10-->
+            <!--h=checkTime(h);-->
+            <!--m=checkTime(m);-->
+            <!--s=checkTime(s);-->
+            <!--document.getElementById('txt').innerHTML=h+":"+m+":"+s;-->
+            <!--t=setTimeout(function(){startTime()},1000);-->
+        <!--}-->
+
+        <!--function checkTime(i)-->
+        <!--{-->
+            <!--if (i<10)-->
+            <!--{-->
+                <!--i="0" + i;-->
+            <!--}-->
+            <!--return i;-->
+        <!--}-->
+    <!--</script>-->
+<!--</head>-->
+
+<!--<body onload="startTime()">-->
+<!--<div id="txt"></div>-->
+<!--</body>-->
+<!--</html-->>

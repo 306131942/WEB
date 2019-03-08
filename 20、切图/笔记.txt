@@ -1,0 +1,4 @@
+ctrl + a
+ctrl + C选择透明背景
+
+魔棒选择工具  选中后delete

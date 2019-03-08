@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>如果数组中存在 item，则返回元素在数组中的位置，否则返回 -1</title>
+</head>
+<body>
+<script>
+    var array = [1,2,3,1,4,3];
+    var item = 3;
+    function indexOf(arr, item) {
+        var bool = false;
+        for(var i=0;i<arr.length;i++){
+            if(arr[i] == item){
+                document.write(i + ' ');
+                bool = true;
+            }else if(i == arr.length-1 && bool == false){
+                document.write(-1);
+            }
+        }
+    }
+    indexOf(array,item);
+//    document.write(array.indexOf(item));   ///////////只能输出第一个的位置
+</script>
+</body>
+</html>

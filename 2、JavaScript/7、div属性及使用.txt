@@ -1,0 +1,24 @@
+1、写在<div>里面：
+
+示例 <div style="  position:absolute ;  ........................;"></div>
+
+                 1、Height:设置DIV的高度。
+                 2、Width:设置DIV的宽度。
+                 3、background-color
+                 4、position:设置DIV的定位方式。如：<div style="position:relative; top:10px;left:10px; ">
+                 5、z-index:设置DIV的层叠顺序。
+                 6、left:设置对象相对于文档层次中最近一个定位对象的左边界的位置。
+
+2、写在title后面：
+
+示例 <style type="text/css">
+          .class1  {               ;}
+           #id1   {                 ;}
+           </style>
+
+3、链接在。css文件里
+
+示例    <link rel="stylesheet" href=" 文件名.css" type="text/css">
+
+
+//<link rel="stylesheet" hef=".css" type="text/css">

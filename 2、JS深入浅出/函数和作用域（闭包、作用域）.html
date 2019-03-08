@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>闭包和作用域</title>
+    <script>
+            //闭包：外层函数的局部变量
+            function outer(){
+                var localVal = 30;
+                return function(){
+                    return localVal;
+                }
+            }
+            var func = outer();
+            document.write( func()+"<br/>");//30
+
+            function outer2(){
+                var local2 = 2;
+                function outer1(){
+                    var local1 = 1;
+                    document.write(local1+"<br/>");
+                    document.write(local2+"<br/>");
+                    document.write(global3+"<br/>");
+                    //visited local1,local2 or global3
+//                    1
+//                    2
+//                    3
+                }
+                outer1();
+            }
+            var global3 = 3;
+            outer2();
+
+            function outer3(){
+                var i3 = 1;
+                var func = new Function("console.log(typeof i);");
+                func();
+            }
+            outer3();//undefined
+
+//
+//        document.getElementById(body).innerHTML ="<div id='d1'>aa</div><div id='d2'>bb</div><div id='d3'>cc</div>";
+//        for(var i=1; i<4; i++){
+//            document.getElementById('div'+i);
+//            addEventListener('click',function(){
+//                alert(i);
+//            });
+//        }
+
+
+        //封装一些变量
+        //灵活和方便
+        //空间浪费、内存泄露、性能消耗
+
+
+
+//作用域：全局、函数、eval
+//没有块级作用域，for和while循环里面定义相当于在外面定义的
+        var a = 10;
+            (function(){
+                var b = 20;
+            })();
+        console.log(a);
+//        console.log(b);
+        function f1(){
+            var a1 = 10;
+            for(var i=1; i<4; i++){
+                document.write(a1+"<br/>");
+            }
+            document.write(i+"<br/>");
+        }
+        f1();
+
+  //作用域链
+//利用函数作用域封装
+
+            (function(){/////////////变成局部变量
+                //do sth here
+                var a, b;
+            })();
+            !function(){///////////把函数变成函数表达式而不是函数声明
+                //函数声明，会被前置处理
+                //do sth here
+                var a, b;
+            }();
+
+
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

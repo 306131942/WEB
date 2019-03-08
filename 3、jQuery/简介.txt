@@ -1,0 +1,49 @@
+1、jQuery，顾名思义，也就是JavaScript和查询（Query），即是辅助JavaScript开发的库。
+
+
+2、操作文档对象、
+选择DOM元素、
+制作动画效果、
+事件处理、
+使用Ajax以及其他功能。
+
+3、把jQuery存储在CDN公共库上可加快网站载入速度
+许多用户在访问其他站点时，已经从谷歌或微软加载过 jQuery。
+所有结果是，当他们访问您的站点时，会从缓存中加载 jQuery，
+这样可以减少加载时间。同时，大多数 CDN 都可以确保当用户向其请求文件时，
+会从离用户最近的服务器上返回响应，这样也可以提高加载速度。
+
+
+4、使用HTML5重构的页面可省略掉 type="text/javascript"。
+推荐使用国内CDN公共库，速度更快，稳定性更高。
+把jQuery代码统统放到页面底部可以提高载入速度。
+许多网站都采用Google CDN提供的jQuery库，使用它可以得到出色的缓存效果。	
+
+5、通过 jQuery AJAX 方法，您能够使用 HTTP Get 和 HTTP Post 从远程服务器上请求文本、
+HTML（标准通用标记语言下的一个应用）、XML（标准通用标记语言下的一个子集） 
+或 JSON - 同时您能够把这些外部数据直接载入网页的被选元素中。
+
+
+
+
+6、 插件机制
+
+jQuery的官方插件是jQuery UI。开发者可以任意扩展jQuery的函数库或者按照自己的需求开发UI组件。
+网上已经有数以万计的jQuery插件，覆盖各种各样的需求。例如Ajax辅助、数据表格、动态列表、
+XML工具、拖曳、cookie处理、弹出层等等。jQuery 的文档说明很全，而且各种应用也说得很详细，
+同时还有许多成熟的插件可供选择,例如ComponentOne Studio for ASP NET Wijmo.
+随着jQuery插件在网站建设过程中的使用率不断的增加，所以有必要跟进时代步伐开发出一些新的插件/代码片段，
+以此来巩固并提高前端用户体验，将用户体验提升到一个新的高度。
+其中包括Flat jQuery Price Slider、Gmaps jQuery Map Plugin 、FormChimp——MailChimp Ajax plugin for jQuery 等。
+
+
+7、 控件
+jQuery Gantt控件是一个基于原生HTML5/jQuery，功能丰富的控件，该控件真正实现了跨平台，在许多设备和浏览器中无缝的运行。
+
+    使用项目甘特图中内置的调度，依赖等功能实现任务分层列表的可视化。
+    使用资源甘特图实现一个资源利用视图。
+    使用基于API的jQuery或者基于API的MVC可帮您轻松地安装甘特图并加快应用速度。
+    可与诸如KnockOut(KO),jQuery.tmpl等流行的jQuery模式一同使用。
+
+
+
