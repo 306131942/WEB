@@ -1,0 +1,36 @@
+一、HTML的注释方法
+<!-- html注释:START -->
+内容
+<!-- html注释:END -->
+
+二、CSS的注释方法
+<style type="text/css">
+ /* css注释*/
+ </style>
+
+在单独的css样式表文件中也采用此方法注释
+
+三、JS的注释方法
+<script type="text/javascript">
+ //js注释
+</script>
+
+四、ASP的注释方法
+
+<% 
+Set xml=Server.CreateObject("Microsoft.XMLDOM")
+ Set Fs=xml.documentElement.childNodes  
+ 'ASP注释
+%>
+
+其他注释方法：
+
+比如vbs用   '注释 或 REM   注释内容
+
+PHP支持C，C++和Unix风格的注释方式： 
+
+/* C,C++风格多行注释 */
+
+ // C++风格单行注释
+
+# Unix风格单行注释

@@ -1,0 +1,197 @@
+[]        可选
+|         只选一项
+{}       必选
+[,...n]   前面的项可重复n次，每次由逗号隔开
+
+
+
+建立数据库
+name和filename可以不同          关键词：on primary, name, filename, size, maxsize, filegrowth, mdf, ldf, log
+1、create database  student on primary
+(name=student_data,
+filename='c:\......\student_data.mdf',
+size=10,
+maxsize=unlimited,
+filegrowth=10%)
+(name=student_log,
+filename='c:\......\student_log.ldf',
+size=1,
+maxsize=5,
+filegrowth=1)
+
+
+
+
+
+
+
+2、 主数据文件.mdf
+     副主数据文件.ndf
+     事务日志文件.ldf
+
+   master数据库：记录系统级别信息，用户密码等
+   model数据库：建立新数据库的模板
+   msdb数据库：管理一些活动
+   temp数据库：保存临时产生的数据，启动时为空
+
+  事务：用户定义的一个数据库操作序列，不可分割的工作单元。
+          一条或者一组SQL语句，甚至是整个程序都可以称为一个事务，一般的讲，一个程序包含多个事务。
+          ACID特性：atomicity,consistency,isolation,durability
+                       原子性，操作不可分割，要么全部执行，要么都不执行
+                       一致性：事务完成时，具有一致的状态
+                       隔离性：事务执行时不能被其他事物干扰
+                       持久性：事务的结果的改变是永久的
+视图：
+触发器：
+存储过程：
+
+
+
+建立数据表
+主键PRIMARY KEY约束、 外键FOREIGN KRY约束、强制唯一性UNIQUE约束、范围检查CHECK约束,默认值DEFAULT约束
+关键词：primary key, default, unique(用在某一非主键列，但值是唯一的), constraint, references StuInfo(stu_id)
+3、create table StuendInfo
+(StuNo       char(12)  [constraint pk_StuNo]        PRIMARY KEY,
+stu_id        char(10)  [constraint fk_stu_id]        FOREIGN KRY REFERENCES StuInfo(stu_id)，
+StuName    char(20)  [constraint un_StuName]    UNIQUE not null,
+stu_grade   int         [constraint ck_stu_grade ]   CHECK (stu_grade between 0 and 100),
+Sex            char(2)   [constraint de_sex]             DEFAULT '男',
+Birth          datetime,
+EnterDate   smallint,
+)
+
+
+create table stuinfo
+(stu_name   char(12) primary key,
+stu_id  char(10) foreign key references Stu(stu_id),
+sex  char(2) default '男',
+stu_grade  int check( stu_grade between 0 and 100),
+stu_body  unique not null,
+)
+
+插入数据表insert into, value, select
+4、insert into stuinfo
+   value(......)
+
+insert into stuinfo(stu_id,name,stu_grade)
+value(...)
+ 
+insert into stu_computer_info
+select * from stu_info where sdept='信息学院'
+
+修改数据表update set
+5、update stu_info
+    set name='圆圆' where stu_id='2012120351'
+
+update stu_info
+set stu_grade=stu_grade+10
+where sex='女'
+
+选修了这门课的人加10分
+update stu_info
+set stu_grade=stu_grade+10
+where(cno in
+          (select cno from courseInfo where cName='数据结构'))
+
+
+update sc
+set ordinary = ordinery-5
+where stuNo in(
+                      select stuNo
+                       from stuInfo
+                       where  speNo=(
+                                               select speNo
+                                                from specialtyInnfo
+                                                where speName='计算机网络'))
+
+
+
+
+删除delete from
+6、delete from SC
+
+     delete from SC
+       where cno='20121120351'
+
+
+   delete from SC
+   where cno=(
+                       select cno
+                        from courseInfo
+                         where cName='BEC' )         
+
+
+
+查询select from where
+7、
+select *
+from stuInfo
+
+select id,name
+from stuInfo
+
+select id as 学号, name as 姓名, year(getdate())-year(birth) as 年龄
+from stuInfo
+
+
+select distinct stuno
+from stuInfo
+
+select *
+from stuInfo
+where (    not(    year(birth)=1993)       )
+
+
+
+select *
+from stuInfo
+where (  speNo in ('2012','2013') )
+where (name like '王%')
+where (name like '王_')
+where (name is null)
+
+
+
+
+8、排序order by
+分组group by
+asc 默认的升序
+desc降序
+
+select stuno, totalsc
+from sc
+where(cno='1212')
+order by totalsc desc
+
+
+select count(*) as 总人数
+from stuInfo
+
+
+select count(distinct stuNo) as 选课总人数
+from sc 
+where(cno='01') or(cno='02')
+
+
+select max(grade) as 最高分
+from sc
+where (cno='01')
+
+
+select avg(grade) as 平均分
+from sc
+where (cno='01')
+
+
+select cno,count(stuNo) as 该课人数
+from sc
+group by cno
+
+where作用于表或者视图，而having 作用于组！！！！！！！！！！！！！！！！！！！
+select stuNo,count(*) as 选课数量
+from sc
+group by stuNo
+having (count(*)>=2)
+
+
+
