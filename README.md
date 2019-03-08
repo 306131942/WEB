@@ -1,21 +1,14 @@
-# luocg
-
-> Vue+ElementUIҳ��ѧϰ�����շ���������ҳ�棬�����ͻ�����ҳ�桢ģ�����ҳ��
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+1、HTML+CSS;
+2、JavaScript;
+2、JS深入浅出-视频学习；
+3、jQuery;
+4、Bootstrap;
+5、http;
+6、xml;
+7、正则表达式;
+8、JSON;
+9、设计模式-视频学习
+10、Node.js
+11、html5
+12、13、14、15、16、17、18、19、20、21、22、23、24、25、26、27、28、29、30、
+1、2、3、4、5、6、7、8、9、10、11、12
