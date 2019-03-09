@@ -1,0 +1,972 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+    <meta name="mobile-agent" content="format=html5;url=http://m.studyofnet.com/news/257.html">
+    <meta name="mobile-agent" content="format=xhtml;url=http://m.studyofnet.com/news/257.html">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <title>MVC过滤器的用法 - 学习也休闲</title><script src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/hm.js"></script><script async="" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/core.php"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+    <meta name="Keywords" content="MVC过滤器,MVC Filters">
+    <meta name="Description" content="MVC过滤器是加在 Controller 或 Action 上的一种 Attribute，通过过滤器，MVC 网站在处理用户请求时，可以处理一些附加的操作，如：用户权限验证、系统日志、异常处理、缓存等。MVC 中包含Authorization filter、Action filter、Result filter、Exception filter 四种过滤器。">
+    <script language="javascript">
+    var browser = {
+        versions: function () {
+            var u = navigator.userAgent, app = navigator.appVersion;
+            return {//移动终端浏览器版本信息
+                trident: u.indexOf('Trident') > -1, //IE内核
+                presto: u.indexOf('Presto') > -1, //opera内核
+                webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                mobile: !!u.match(/AppleWebKit.*Mobile.*/) || !!u.match(/AppleWebKit/), //是否为移动终端
+                ios: !!u.match(/i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                iPhone: u.indexOf('iPhone') > -1 || (u.indexOf('Mac') > -1 && u.indexOf('Macintosh') < 0), //是否为iPhone或者QQHD浏览器
+                iPad: u.indexOf('iPad') > -1, //是否iPad
+                webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+            };
+        }(),
+        language: (navigator.browserLanguage || navigator.language).toLowerCase()
+    }
+    if (!browser.versions.iPad) {
+        if (browser.versions.android || browser.versions.iPhone) {
+            var result = window.location.toString();
+            self.location = result.replace("www.", "m.");
+        }
+    }
+   </script>
+    <link href="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/index.css" rel="stylesheet" type="text/css">
+    <script src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/jquery-1.js" type="text/javascript"></script>
+    <script src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/jquery.js" type="text/javascript"></script>
+    <script src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/search.js" type="text/javascript"></script>
+    <script src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/public.js" type="text/javascript"></script>
+    <link href="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/news.css" rel="stylesheet" type="text/css">
+
+
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e57570dfe7029c30a9bbbc6124d745d0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/logger.js"></script><link type="text/css" rel="stylesheet" href="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/bdsstyle.css"></head>
+<body><iframe style="display: none;" frameborder="0"></iframe><div style="display: block;" id="bdshare_s"><iframe id="bdsIfr" style="position:absolute;display:none;z-index:9999;" frameborder="0"></iframe><div style="display: none;" id="bdshare_l"><div id="bdshare_l_c"><h6>分享到</h6><ul><li><a href="#" class="bds_mshare mshare">一键分享</a></li><li><a href="#" class="bds_qzone qqkj">QQ空间</a></li><li><a href="#" class="bds_tsina xlwb">新浪微博</a></li><li><a href="#" class="bds_bdysc bdysc">百度云收藏</a></li><li><a href="#" class="bds_renren rrw">人人网</a></li><li><a href="#" class="bds_tqq txwb">腾讯微博</a></li><li><a href="#" class="bds_bdxc bdxc">百度相册</a></li><li><a href="#" class="bds_kaixin001 kxw">开心网</a></li><li><a href="#" class="bds_tqf txpy">腾讯朋友</a></li><li><a href="#" class="bds_tieba bdtb">百度贴吧</a></li><li><a href="#" class="bds_douban db">豆瓣网</a></li><li><a href="#" class="bds_tsohu shwb">搜狐微博</a></li><li><a href="#" class="bds_bdhome bdhome">百度新首页</a></li><li><a href="#" class="bds_sqq sqq">QQ好友</a></li><li><a href="#" class="bds_thx thx">和讯微博</a></li><li><a href="#" class="bds_more">更多...</a></li></ul><p><a href="#" class="goWebsite">百度分享</a></p></div></div></div>
+    <div class="toolbar">
+    <div class="clearfix toolbar-inner">
+        <div class="quicklink">
+            <ul class="accesslink" id="userlogin">
+                <li><a href="http://www.studyofnet.com/"><span>学习也休闲</span></a></li>
+                <li><a href="http://user.studyofnet.com/" rel="nofollow"><span>立即登录</span></a></li>
+                <li><a href="http://user.studyofnet.com/login/register" rel="nofollow"><span>注册新账号</span></a></li>
+            </ul>
+        </div>
+        <div id="studyofnet_topbar">
+                <div class="userbar">
+<a href="http://m.studyofnet.com/" style="color: #e60067">手机版</a>                    <a href="http://user.studyofnet.com/member/myFavorite" rel="nofollow">进入会员中心</a>
+                    <a href="javascript:void(0)" onclick="setHomepage('http://www.studyofnet.com/')" rel="nofollow">设为首页</a>
+                    <a href="javascript:void(0)" onclick="addFav('http://www.studyofnet.com/','学习也休闲')" rel="nofollow">添加收藏</a> 
+
+                </div></div>
+    </div>
+</div>
+<div id="ddd">
+  <div class="w" id="header">
+    <div id="logo" class="ld"><a href="http://www.studyofnet.com/"><b></b><img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/Logo.gif" alt="学习也休闲" height="50" width="259"></a></div><!--logo end-->
+    <div id="search">
+<div class="re-search2">
+    <dl>
+    <dd style="width:510px;float:none;"> 
+        <input class="text ac_input" id="wd" maxlength="30" name="wd" autocomplete="off" onkeypress="return checkswd(event)" value="请输入关键字" onfocus="this.style.color='#333';if(this.value =='请输入关键字'){this.value=''}" onblur="if(this.value==''){this.value='请输入关键字';this.style.color='#c7c7c7'}" type="text">
+          <input value="搜索" class="button" onclick="startsearch($('#wd').val(), event);" type="button">
+    </dd>
+</dl>
+</div>
+    </div>
+    
+  </div>
+  <div id="Menu_Screen">
+   <div id="Menu_Page">
+    <div id="Menu_NavigatorMenu">
+     <div id="Menu_MainNav">
+	<div class="CenterDiv">
+		<div id="MenuItems">
+		<ul>
+			<li class="nav_item"><a href="http://www.studyofnet.com/" onfocus="this.blur()" id="M_A_home">首页</a></li>				
+			<li class="nav_item current"><a href="http://www.studyofnet.com/news/list-8881-1-1.html" onfocus="this.blur()" id="M_A_project">编程学习</a></li>	
+			<li class="nav_item"><a href="http://www.studyofnet.com/news/list-8882-1-1.html" onfocus="this.blur()" id="M_A_web">Web前端</a></li>	
+			<li class="nav_item"><a href="http://www.studyofnet.com/news/list-8883-1-1.html" onfocus="this.blur()" id="M_A_db">数据库</a></li>
+			<li class="nav_item"><a href="http://www.studyofnet.com/news/list-8884-1-1.html" onfocus="this.blur()" id="M_A_sheji">软件设计</a></li>
+		</ul>
+		</div>
+	</div>
+</div>
+      <div class="Menu_SubNav">
+    	<div id="M_A_home_items">
+		
+	    </div>
+
+    <div id="M_A_project_items">
+		<a href="http://www.studyofnet.com/news/list-8881.1-1-1.html">Web编程</a>
+		<a href="http://www.studyofnet.com/news/list-8881.2-1-1.html">C#编程</a>
+		<a href="http://www.studyofnet.com/news/list-8881.3-1-1.html" style="color:#A00;font-weight:bold;">ASP.NET编程</a>
+        <a href="http://www.studyofnet.com/news/list-8881.9-1-1.html">面试</a>
+		<a href="http://www.studyofnet.com/news/list-8881.8-1-1.html">其它</a>
+	</div>
+	<div id="M_A_web_items" style="display:none;padding-left:70px;">
+		<a href="http://www.studyofnet.com/news/list-8882.1-1-1.html">javascript</a>
+		<a href="http://www.studyofnet.com/news/list-8882.2-1-1.html">jquery</a>
+		<a href="http://www.studyofnet.com/news/list-8882.3-1-1.html">extjs</a>
+		<a href="http://www.studyofnet.com/news/list-8882.4-1-1.html">css</a>
+		<a href="http://www.studyofnet.com/news/list-8882.6-1-1.html">其它</a>
+	</div>
+	<div id="M_A_db_items" style="display:none;padding-left:140px;">			
+		<a href="http://www.studyofnet.com/news/list-8883.2-1-1.html">数据库管理</a>
+		<a href="http://www.studyofnet.com/news/list-8883.3-1-1.html">SQL语言</a>
+		<a href="http://www.studyofnet.com/news/list-8883.5-1-1.html">数据库设计</a>
+		<a href="http://www.studyofnet.com/news/list-8883.6-1-1.html">其它</a>
+	</div>
+	<div id="M_A_sheji_items" style="display:none;padding-left:210px;">
+		<a href="http://www.studyofnet.com/news/list-8884.1-1-1.html">设计模式</a>
+		<a href="http://www.studyofnet.com/news/list-8884.2-1-1.html">面向对象</a>
+		<a href="http://www.studyofnet.com/news/list-8884.3-1-1.html">软件架构</a>
+		<a href="http://www.studyofnet.com/news/list-8884.4-1-1.html">其它</a>
+	</div>
+</div>
+</div>
+</div>
+  </div>
+</div>
+
+     <div class="w main">
+
+        <div id="main_right">
+      <div class="news_location">您的位置：<a href="http://www.studyofnet.com/" title="学习也休闲">首页</a> &gt; <a href="http://www.studyofnet.com/news/list-8881-1-1.html" title="编程学习">编程学习</a> &gt; <a href="http://www.studyofnet.com/news/list-8881.3-1-1.html" title="ASP.NET">ASP.NET</a></div>           
+    <div class="wrap">
+	<div class="content">
+		<div class="art_con_left">
+ <div class="art_box m_b_15">
+ <h1>MVC过滤器的用法</h1>
+ <div class="art_info m_b_15"><span style="padding-left:10px; float:right;" id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+<a href="#" title="分享到新浪微博" class="bds_tsina"></a>
+<a href="#" title="分享到百度贴吧" class="bds_tieba"></a>
+<a href="#" title="分享到百度空间" class="bds_hi"></a>
+<a href="#" title="分享到QQ空间" class="bds_qzone"></a>
+<a href="#" title="分享到腾讯微博" class="bds_tqq"></a>
+<a href="#" title="分享到人人网" class="bds_renren"></a>
+<a href="#" title="分享到网易微博" class="bds_t163"></a>
+<a href="#" title="分享到豆瓣网" class="bds_douban"></a>
+<span class="bds_more">更多</span>
+</span>2013/12/21  <span style="padding-left:10px;">来源：MVC学习</span><span style="padding-left:10px;">浏览量：8573 </span></div>
+ <div class="attention m_b_10">
+  <div class="label">学习标签：
+            <a href="http://www.studyofnet.com/news?wd=MVC" target="_blank">MVC</a>
+            <a href="http://www.studyofnet.com/news?wd=MVC%e8%bf%87%e6%bb%a4%e5%99%a8" target="_blank">MVC过滤器</a>
+  </div>
+ </div>
+           
+          
+ <div class="summary m_b_15"><span style="font-weight:bold">本文导读</span>：MVC
+过滤器是加在 Controller 或 Action 上的一种 Attribute，通过过滤器，MVC 
+网站在处理用户请求时，可以处理一些附加的操作，如：用户权限验证、系统日志、异常处理、缓存等。MVC 中包含Authorization 
+filter、Action filter、Result filter、Exception filter 四种过滤器。</div>
+     <script type="text/javascript">
+         var userStudyofnet = "http://user.studyofnet.com";
+    </script>
+<div class="art_con" id="contentText">
+    <p>
+	APS.NET MVC中的每一个请求，都会分配给相应的控制器和对应的行为方法去处理，而在这些处理的前前后后如果想再加一些额外的逻辑处理。这时候就用到了过滤器。</p>
+<p>
+	<strong>在Asp.netMvc中当你有以下及类似以下需求时你可以使用Filter功能</strong></p>
+<p>
+	&nbsp;</p>
+<ol>
+	<li>
+		判断登录与否或用户权限</li>
+	<li>
+		决策输出缓存</li>
+	<li>
+		防盗链</li>
+	<li>
+		防蜘蛛</li>
+	<li>
+		本地化与国际化设置</li>
+	<li>
+		实现动态Action</li>
+</ol>
+<p>
+	&nbsp;</p>
+<p>
+	<strong>MVC支持的过滤器类型有四种，分别是：Authorization(授权),Action（行为）,Result（结果）和Exception（异常）。</strong></p>
+<p>
+	<strong>如下表</strong></p>
+<p>
+	&nbsp;</p>
+<table style="width: 553px" border="1" cellpadding="0" cellspacing="0">
+	<tbody>
+		<tr>
+			<td width="157">
+				<p>
+					过滤器类型</p>
+			</td>
+			<td width="144">
+				<p>
+					接口</p>
+			</td>
+			<td width="252">
+				<p>
+					描述</p>
+			</td>
+		</tr>
+		<tr>
+			<td width="157">
+				<p>
+					Authorization</p>
+			</td>
+			<td width="144">
+				<p>
+					IAuthorizationFilter</p>
+			</td>
+			<td width="252">
+				<p>
+					此类型（或过滤器）用于限制进入控制器或控制器的某个行为方法</p>
+			</td>
+		</tr>
+		<tr>
+			<td width="157">
+				<p>
+					Exception</p>
+			</td>
+			<td width="144">
+				<p>
+					IExceptionFilter</p>
+			</td>
+			<td width="252">
+				<p>
+					用于指定一个行为，这个被指定的行为处理某个行为方法或某个控制器里面抛出的异常</p>
+			</td>
+		</tr>
+		<tr>
+			<td width="157">
+				<p>
+					Action</p>
+			</td>
+			<td width="144">
+				<p>
+					IActionFilter</p>
+			</td>
+			<td width="252">
+				<p>
+					用于进入行为之前或之后的处理</p>
+			</td>
+		</tr>
+		<tr>
+			<td width="157">
+				<p>
+					Result</p>
+			</td>
+			<td width="144">
+				<p>
+					IResultFilter</p>
+			</td>
+			<td width="252">
+				<p>
+					用于返回结果的之前或之后的处理</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	&nbsp;</p>
+<p>
+	但是默认实现它们的过滤器只有三种，分别是Authorize（授权），ActionFilter，HandleError（错误处理）；各种信息如下表所示</p>
+<p>
+	&nbsp;</p>
+<table border="1" cellpadding="0" cellspacing="0">
+	<tbody>
+		<tr>
+			<td valign="top" width="143">
+				<p>
+					过滤器</p>
+			</td>
+			<td valign="top" width="139">
+				<p>
+					类名</p>
+			</td>
+			<td valign="top" width="143">
+				<p>
+					实现接口</p>
+			</td>
+			<td valign="top" width="143">
+				<p>
+					描述</p>
+			</td>
+		</tr>
+		<tr>
+			<td valign="top" width="143">
+				<p>
+					ActionFilter</p>
+			</td>
+			<td valign="top" width="139">
+				<p>
+					AuthorizeAttribute</p>
+			</td>
+			<td valign="top" width="143">
+				<p>
+					IAuthorizationFilter</p>
+			</td>
+			<td valign="top" width="143">
+				<p>
+					此类型（或过滤器）用于限制进入控制器或控制器的某个行为方法</p>
+			</td>
+		</tr>
+		<tr>
+			<td valign="top" width="143">
+				<p>
+					HandleError</p>
+			</td>
+			<td valign="top" width="139">
+				<p>
+					HandleErrorAttribute</p>
+			</td>
+			<td valign="top" width="143">
+				<p>
+					IExceptionFilter</p>
+			</td>
+			<td valign="top" width="143">
+				<p>
+					用于指定一个行为，这个被指定的行为处理某个行为方法或某个控制器里面抛出的异常</p>
+			</td>
+		</tr>
+		<tr>
+			<td valign="top" width="143">
+				<p>
+					自定义</p>
+			</td>
+			<td valign="top" width="139">
+				<p>
+					ActionFilterAttribute</p>
+			</td>
+			<td valign="top" width="143">
+				<p>
+					IActionFilter和IResultFilter</p>
+			</td>
+			<td valign="top" width="143">
+				<p>
+					用于进入行为之前或之后的处理或返回结果的之前或之后的处理</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	&nbsp;</p>
+<p>
+	<strong>一、应用于Action的Filter</strong></p>
+<p>
+	创建 Action filter 必须实现 IActionFilter 接口，该接口定义了两个方法</p>
+<p>
+	&nbsp;</p>
+<table style="margin-left: 2em" border="1" cellpadding="3" cellspacing="0">
+	<tbody>
+		<tr>
+			<td>
+				方法名</td>
+			<td>
+				调用时机</td>
+			<td>
+				可进行的操作</td>
+		</tr>
+		<tr>
+			<td>
+				OnActionExecuting</td>
+			<td>
+				Action方法执行之前</td>
+			<td>
+				可以给 filterContext.Result 赋值，以阻止 Action 的执行<br>
+				可以通过 filterContext.ActionParameters 查看或修改 Action 的参数</td>
+		</tr>
+		<tr>
+			<td>
+				OnActionExecuted</td>
+			<td>
+				Action方法执行之后</td>
+			<td>
+				可以通过 filterContext.Exception 获取 Action 执行时抛出的异常，并能把它标记为“已处理”：filterContext.ExceptionHandled = true。<br>
+				可以查看通过filterContext.Result查看 Action 的执行结果，但是不能修改。</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	&nbsp;</p>
+<p>
+	Action过滤器是通过继承<font color="#008000"><strong>ActionFilterAttribute</strong></font>类来实现的一个Attribute类。ActionFilterAttribute 是一个抽象类，提供了两个virtual的方法给我们重写，<font color="#008000"><strong>OnActionExecuting</strong></font>和<font color="#008000"><strong>OnActionExecuted</strong></font>。</p>
+<p>
+	ASP.NET MVC 框架会在调用Action方法之前调用你Action过滤器中的OnActionExecuting方法，在之后调用Action过滤器中的OnActionExecuted方法。当然在创建Action过滤器的时候你<font color="#008000">不需</font>两个方法都实现。</p>
+<p>
+	&nbsp;</p>
+<p>
+	<strong>下面的示例是在调用Action方法之前和之后的日志跟踪：</strong></p>
+<div style="line-height: 16px">
+	<div>
+		&nbsp;</div>
+	<div>
+		<div style="text-indent: 12px; font: bold 12px arial">
+			C# 代码 &nbsp;&nbsp;<span class="spanCopyCode" id="copy4474829670639202303" style="color: green; cursor: pointer">复制</span></div>
+		<div id="4474829670639202303" style="border-bottom: #cccccc 1pt solid; border-left: #cccccc 1pt solid; word-wrap: break-word; background: rgb(245,245,245); word-break: normal; border-top: #cccccc 1pt solid; border-right: #cccccc 1pt solid">
+			<pre><span><!--
+
+
+
+
+--><img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/None.gif" align="top"><span style="color: #000000">
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/None.gif" align="top"></span><span style="color: #0000ff">public</span><span style="color: #000000"> </span><span style="color: #0000ff">class</span><span style="color: #000000"> LoggingFilterAttribute : ActionFilterAttribute
+<img id="Highlighter_62_522_Open_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_62_522_Open_Text').style.display='none'; document.getElementById('Highlighter_62_522_Closed_Image').style.display='inline'; document.getElementById('Highlighter_62_522_Closed_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedBlockStart.gif" align="top"><img id="Highlighter_62_522_Closed_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_62_522_Closed_Text').style.display='none'; document.getElementById('Highlighter_62_522_Open_Image').style.display='inline'; document.getElementById('Highlighter_62_522_Open_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ContractedBlock.gif" style="display: none" align="top"> </span><span id="Highlighter_62_522_Closed_Text" style="border-bottom: #808080 1px solid; border-left: #808080 1px solid; background-color: #ffffff; display: none; border-top: #808080 1px solid; border-right: #808080 1px solid">...</span><span id="Highlighter_62_522_Open_Text"><span style="color: #000000">{
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">     </span><span style="color: #0000ff">public</span><span style="color: #000000"> </span><span style="color: #0000ff">override</span><span style="color: #000000"> </span><span style="color: #0000ff">void</span><span style="color: #000000"> OnActionExecuting(FilterExecutingContext 
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">        filterContext)
+<img id="Highlighter_160_274_Open_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_160_274_Open_Text').style.display='none'; document.getElementById('Highlighter_160_274_Closed_Image').style.display='inline'; document.getElementById('Highlighter_160_274_Closed_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedSubBlockStart.gif" align="top"><img id="Highlighter_160_274_Closed_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_160_274_Closed_Text').style.display='none'; document.getElementById('Highlighter_160_274_Open_Image').style.display='inline'; document.getElementById('Highlighter_160_274_Open_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ContractedSubBlock.gif" style="display: none" align="top">     </span><span id="Highlighter_160_274_Closed_Text" style="border-bottom: #808080 1px solid; border-left: #808080 1px solid; background-color: #ffffff; display: none; border-top: #808080 1px solid; border-right: #808080 1px solid">...</span><span id="Highlighter_160_274_Open_Text"><span style="color: #000000">{
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">         filterContext.HttpContext.Trace.Write(</span><span style="color: #800000">"</span><span style="color: #800000">Starting: </span><span style="color: #800000">"</span><span style="color: #000000"> </span><span style="color: #000000">+</span><span style="color: #000000"> 
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">         filterContext.ActionMethod.Name);
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedSubBlockEnd.gif" align="top">     }</span></span><span style="color: #000000"> 
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top"> 
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">    </span><span style="color: #0000ff">public</span><span style="color: #000000"> </span><span style="color: #0000ff">override</span><span style="color: #000000"> </span><span style="color: #0000ff">void</span><span style="color: #000000"> OnActionExecuted(FilterExecutedContext 
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">        filterContext)
+<img id="Highlighter_371_519_Open_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_371_519_Open_Text').style.display='none'; document.getElementById('Highlighter_371_519_Closed_Image').style.display='inline'; document.getElementById('Highlighter_371_519_Closed_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedSubBlockStart.gif" align="top"><img id="Highlighter_371_519_Closed_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_371_519_Closed_Text').style.display='none'; document.getElementById('Highlighter_371_519_Open_Image').style.display='inline'; document.getElementById('Highlighter_371_519_Open_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ContractedSubBlock.gif" style="display: none" align="top">     </span><span id="Highlighter_371_519_Closed_Text" style="border-bottom: #808080 1px solid; border-left: #808080 1px solid; background-color: #ffffff; display: none; border-top: #808080 1px solid; border-right: #808080 1px solid">...</span><span id="Highlighter_371_519_Open_Text"><span style="color: #000000">{
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">         </span><span style="color: #0000ff">if</span><span style="color: #000000"> (filterContext.Exception </span><span style="color: #000000">!=</span><span style="color: #000000"> </span><span style="color: #0000ff">null</span><span style="color: #000000">)
+<img id="Highlighter_428_512_Open_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_428_512_Open_Text').style.display='none'; document.getElementById('Highlighter_428_512_Closed_Image').style.display='inline'; document.getElementById('Highlighter_428_512_Closed_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedSubBlockStart.gif" align="top"><img id="Highlighter_428_512_Closed_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_428_512_Closed_Text').style.display='none'; document.getElementById('Highlighter_428_512_Open_Image').style.display='inline'; document.getElementById('Highlighter_428_512_Open_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ContractedSubBlock.gif" style="display: none" align="top">         </span><span id="Highlighter_428_512_Closed_Text" style="border-bottom: #808080 1px solid; border-left: #808080 1px solid; background-color: #ffffff; display: none; border-top: #808080 1px solid; border-right: #808080 1px solid">...</span><span id="Highlighter_428_512_Open_Text"><span style="color: #000000">{
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">             filterContext.HttpContext.Trace.Write(</span><span style="color: #800000">"</span><span style="color: #800000">Exception thrown</span><span style="color: #800000">"</span><span style="color: #000000">);
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedSubBlockEnd.gif" align="top">         }</span></span><span style="color: #000000">
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedSubBlockEnd.gif" align="top">     }</span></span><span style="color: #000000">
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedBlockEnd.gif" align="top"> }</span></span><span style="color: #000000">
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/None.gif" align="top"></span></span></pre>
+		</div>
+	</div>
+</div>
+<p>
+	&nbsp;</p>
+<p>
+	<strong>部分参数说明</strong></p>
+<p>
+	&nbsp;</p>
+<p>
+	<span style="font-size: 12px"><font color="#008000"><strong>Action Filter Context</strong></font></span></p>
+<p>
+	OnActionExecuting方法有一个类型为<font color="#008000">FilterExecut<strong><font color="#ff00ff">ing</font></strong>Context</font>的参数，而OnActionExecuted方法有一个相应的类型为<font color="#008000">FilterExcut<font color="#ff00ff"><strong>ed</strong></font>Context</font>的
+参数。两个Context类都是继承自FilterContext类，而FilterContext类继承自ControllerContext类并包含
+一个ActionMethod属性。你可以使用ActionMethod属性来坚定这个Action过滤器是应用到哪个Action方法上的。</p>
+<p>
+	<font color="#008000">FilterExecut<strong><font color="#ff00ff">ing</font></strong>Context</font>类包含一个 Cancel 的属性，允许你取消当前的Action。</p>
+<p>
+	<font color="#008000">FilterExcut<font color="#ff00ff"><strong>ed</strong></font>Context</font>
+ 类包含一个Exception属性和一个ExceptionHandled属性。如果Exception属性为null，则没有异常在action 
+stack中，表明Action方法运行并没有发生错误。如果Exception属性不为null，则过滤器知道该怎么处理，过滤器处理完异常后会发出已
+经处理完的信号，然后将ExceptionHandled属性设为true。就算ExceptionHandled属性为true，堆栈中添加到其他
+Action方法的OnActionExcetued方法将会照常被调用，这种场景就如就算一个异常被处理了，日志记录filter一样照常执行。</p>
+<p>
+	&nbsp;</p>
+<p>
+	<strong>使用方法</strong></p>
+<p>
+	你可以将过滤器应用到任何一个你喜欢的Action方法上。下面的示例演示一个控制器中包含的用Action过滤器Attribute标记的Action方法。</p>
+<div style="line-height: 16px">
+	<div>
+		&nbsp;</div>
+	<div>
+		<div style="text-indent: 12px; font: bold 12px arial">
+			C# 代码 &nbsp;&nbsp;<span class="spanCopyCode" id="copy3437824695580296334" style="color: green; cursor: pointer">复制</span></div>
+		<div id="3437824695580296334" style="border-bottom: #cccccc 1pt solid; border-left: #cccccc 1pt solid; word-wrap: break-word; background: rgb(245,245,245); word-break: normal; border-top: #cccccc 1pt solid; border-right: #cccccc 1pt solid">
+			<pre><span><!--
+
+
+
+
+--><img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/None.gif" align="top"><span style="color: #000000">
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/None.gif" align="top"></span><span style="color: #0000ff">public</span><span style="color: #000000"> </span><span style="color: #0000ff">class</span><span style="color: #000000"> HomeController : Controller
+<img id="Highlighter_43_382_Open_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_43_382_Open_Text').style.display='none'; document.getElementById('Highlighter_43_382_Closed_Image').style.display='inline'; document.getElementById('Highlighter_43_382_Closed_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedBlockStart.gif" align="top"><img id="Highlighter_43_382_Closed_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_43_382_Closed_Text').style.display='none'; document.getElementById('Highlighter_43_382_Open_Image').style.display='inline'; document.getElementById('Highlighter_43_382_Open_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ContractedBlock.gif" style="display: none" align="top"> </span><span id="Highlighter_43_382_Closed_Text" style="border-bottom: #808080 1px solid; border-left: #808080 1px solid; background-color: #ffffff; display: none; border-top: #808080 1px solid; border-right: #808080 1px solid">...</span><span id="Highlighter_43_382_Open_Text"><span style="color: #000000">{
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">     [LoggingFilter]
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">     </span><span style="color: #0000ff">public</span><span style="color: #000000"> </span><span style="color: #0000ff">void</span><span style="color: #000000"> Index()
+<img id="Highlighter_96_134_Open_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_96_134_Open_Text').style.display='none'; document.getElementById('Highlighter_96_134_Closed_Image').style.display='inline'; document.getElementById('Highlighter_96_134_Closed_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedSubBlockStart.gif" align="top"><img id="Highlighter_96_134_Closed_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_96_134_Closed_Text').style.display='none'; document.getElementById('Highlighter_96_134_Open_Image').style.display='inline'; document.getElementById('Highlighter_96_134_Open_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ContractedSubBlock.gif" style="display: none" align="top">     </span><span id="Highlighter_96_134_Closed_Text" style="border-bottom: #808080 1px solid; border-left: #808080 1px solid; background-color: #ffffff; display: none; border-top: #808080 1px solid; border-right: #808080 1px solid">...</span><span id="Highlighter_96_134_Open_Text"><span style="color: #000000">{
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">         RenderView(</span><span style="color: #800000">"</span><span style="color: #800000">Index</span><span style="color: #800000">"</span><span style="color: #000000">);
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedSubBlockEnd.gif" align="top">     }</span></span><span style="color: #000000"> 
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top"> 
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">    [LoggingFilter]
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">     </span><span style="color: #0000ff">public</span><span style="color: #000000"> </span><span style="color: #0000ff">void</span><span style="color: #000000"> About()
+<img id="Highlighter_188_226_Open_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_188_226_Open_Text').style.display='none'; document.getElementById('Highlighter_188_226_Closed_Image').style.display='inline'; document.getElementById('Highlighter_188_226_Closed_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedSubBlockStart.gif" align="top"><img id="Highlighter_188_226_Closed_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_188_226_Closed_Text').style.display='none'; document.getElementById('Highlighter_188_226_Open_Image').style.display='inline'; document.getElementById('Highlighter_188_226_Open_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ContractedSubBlock.gif" style="display: none" align="top">     </span><span id="Highlighter_188_226_Closed_Text" style="border-bottom: #808080 1px solid; border-left: #808080 1px solid; background-color: #ffffff; display: none; border-top: #808080 1px solid; border-right: #808080 1px solid">...</span><span id="Highlighter_188_226_Open_Text"><span style="color: #000000">{
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">         RenderView(</span><span style="color: #800000">"</span><span style="color: #800000">About</span><span style="color: #800000">"</span><span style="color: #000000">);
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedSubBlockEnd.gif" align="top">     }</span></span><span style="color: #000000"> 
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top"> 
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">    [LoggingFilter]
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">     </span><span style="color: #0000ff">public</span><span style="color: #000000"> </span><span style="color: #0000ff">void</span><span style="color: #000000"> ClickMe()
+<img id="Highlighter_282_379_Open_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_282_379_Open_Text').style.display='none'; document.getElementById('Highlighter_282_379_Closed_Image').style.display='inline'; document.getElementById('Highlighter_282_379_Closed_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedSubBlockStart.gif" align="top"><img id="Highlighter_282_379_Closed_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_282_379_Closed_Text').style.display='none'; document.getElementById('Highlighter_282_379_Open_Image').style.display='inline'; document.getElementById('Highlighter_282_379_Open_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ContractedSubBlock.gif" style="display: none" align="top">     </span><span id="Highlighter_282_379_Closed_Text" style="border-bottom: #808080 1px solid; border-left: #808080 1px solid; background-color: #ffffff; display: none; border-top: #808080 1px solid; border-right: #808080 1px solid">...</span><span id="Highlighter_282_379_Open_Text"><span style="color: #000000">{
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">         HttpContext.Trace.Write(</span><span style="color: #800000">"</span><span style="color: #800000">Button was clicked.</span><span style="color: #800000">"</span><span style="color: #000000">);
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">         InvokeAction(</span><span style="color: #800000">"</span><span style="color: #800000">Index</span><span style="color: #800000">"</span><span style="color: #000000">);
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedSubBlockEnd.gif" align="top">     }</span></span><span style="color: #000000">
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedBlockEnd.gif" align="top"> }</span></span><span style="color: #000000">
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/None.gif" align="top"></span></span></pre>
+		</div>
+	</div>
+</div>
+<p>
+	&nbsp;</p>
+<p>
+	<strong><font color="#008000">Action过滤器的作用范围</font></strong></p>
+<p>
+	除了用Action过滤器标记一个Action方法外，你也可以用来标记一个完成的控制器类。如果这样的话，这个Action过滤器将会应用到该控制器的所有Action方法上。</p>
+<p>
+	另外，如果你的控制器类继承自别的控制器类，而基控制器类可能有它自己的Action过滤器Attributes。如果你在子类中重写了基控制器类的Action方法，则子类的该Action方法也会有它自己的从基类继承而来的Action过滤器Attributes。</p>
+<p>
+	&nbsp;</p>
+<p>
+	<span style="font-size: 12px"><font color="#008000"><strong>Action过滤器的执行顺序</strong></font></span></p>
+<p>
+	每一个Action过滤器都有一个 Order 
+属性，用来决定Action过滤器在该范围内的执行顺序。Order属性必需是0(默认值)或者更大的整数值。省略Order属性则会给该过滤器的
+Order值为 -1, 表明为指明顺序。任何一个在同一范围的Action过滤器Order设为 -1 
+的都将按不确定的顺序执行，单在此之前过滤器有一个特定的顺序(注：下面会说到).</p>
+<p>
+	当设置Order属性的值的时候，必需指定一个唯一的值。如果两个或者更多的Action过滤器具有相同的Order属性值，将会抛出一个异常。</p>
+<p>
+	<strong>示例：</strong></p>
+<div style="line-height: 16px">
+	<div>
+		&nbsp;</div>
+	<div>
+		<div style="text-indent: 12px; font: bold 12px arial">
+			C# 代码 &nbsp;&nbsp;<span class="spanCopyCode" id="copy5795149793317793712" style="color: green; cursor: pointer">复制</span></div>
+		<div id="5795149793317793712" style="border-bottom: #cccccc 1pt solid; border-left: #cccccc 1pt solid; word-wrap: break-word; background: rgb(245,245,245); word-break: normal; border-top: #cccccc 1pt solid; border-right: #cccccc 1pt solid">
+			<pre><span><!--
+
+
+
+
+--><img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/None.gif" align="top"><span style="color: #000000"> 
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/None.gif" align="top"> [Filter1(Order </span><span style="color: #000000">=</span><span style="color: #000000"> </span><span style="color: #800080">2</span><span style="color: #000000">)]
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/None.gif" align="top"> [Filter2(Order </span><span style="color: #000000">=</span><span style="color: #000000"> </span><span style="color: #800080">3</span><span style="color: #000000">)]
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/None.gif" align="top"> [Filter3(Order </span><span style="color: #000000">=</span><span style="color: #000000"> </span><span style="color: #800080">1</span><span style="color: #000000">)]
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/None.gif" align="top"> </span><span style="color: #0000ff">public</span><span style="color: #000000"> </span><span style="color: #0000ff">void</span><span style="color: #000000"> Index()
+<img id="Highlighter_90_120_Open_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_90_120_Open_Text').style.display='none'; document.getElementById('Highlighter_90_120_Closed_Image').style.display='inline'; document.getElementById('Highlighter_90_120_Closed_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedBlockStart.gif" align="top"><img id="Highlighter_90_120_Closed_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_90_120_Closed_Text').style.display='none'; document.getElementById('Highlighter_90_120_Open_Image').style.display='inline'; document.getElementById('Highlighter_90_120_Open_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ContractedBlock.gif" style="display: none" align="top"> </span><span id="Highlighter_90_120_Closed_Text" style="border-bottom: #808080 1px solid; border-left: #808080 1px solid; background-color: #ffffff; display: none; border-top: #808080 1px solid; border-right: #808080 1px solid">...</span><span id="Highlighter_90_120_Open_Text"><span style="color: #000000">{
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">     RenderView(</span><span style="color: #800000">"</span><span style="color: #800000">Index</span><span style="color: #800000">"</span><span style="color: #000000">);
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedBlockEnd.gif" align="top"> }</span></span><span style="color: #000000"> </span></span></pre>
+		</div>
+	</div>
+</div>
+<p>
+	Filter的执行顺序为：Filter3 =&gt; Filter1 =&gt; Filter2.</p>
+<p>
+	&nbsp;</p>
+<p>
+	<strong>二、Controller的Filter</strong></p>
+<p>
+	&nbsp;</p>
+<p>
+	ASP.NET MVC 控制器(Controller)类定义的OnActionExecuting 和 OnActionExcuted 
+方法你可以重写。当你重写一个或者这两个方法的时候，你实际上定义了一个将会应用到该控制器类中所有的Action方法的Action过滤器。严格来说，
+这个方法没有构成一个Action过滤器，但不管怎样，她们提供的功能是相似的。</p>
+<p>
+	&nbsp;</p>
+<p>
+	<strong>将Filter应用在Controller上有2种方式</strong></p>
+<p>
+	<strong>1.直接将Filter应用在Controller上，如：</strong></p>
+<p>
+	<span style="color: #0000cd">&nbsp;&nbsp;&nbsp; [TestFilter]<br>
+	&nbsp;&nbsp;&nbsp; public class EiceController : Controller<br>
+	&nbsp;&nbsp;&nbsp; {<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; }</span></p>
+<p>
+	&nbsp;</p>
+<p>
+	<strong>2.重写Controller内的</strong></p>
+<p>
+	<br>
+	<span style="color: #0000cd">OnActionExecuting/OnActionExecuted/OnResultExecuting/OnResultExecuted的四个方法。</span></p>
+<p>
+	&nbsp;</p>
+<p>
+	<strong>在下面的示例中，控制器级别的OnActionExecuting和OnActionExecuted方法应用到控制器中所有的Action方法中：</strong></p>
+<div style="line-height: 16px">
+	<div>
+		&nbsp;</div>
+	<div>
+		<div style="text-indent: 12px; font: bold 12px arial">
+			C# 代码 &nbsp;&nbsp;<span class="spanCopyCode" id="copy8110937612004131804" style="color: green; cursor: pointer">复制</span></div>
+		<div id="8110937612004131804" style="border-bottom: #cccccc 1pt solid; border-left: #cccccc 1pt solid; word-wrap: break-word; background: rgb(245,245,245); word-break: normal; border-top: #cccccc 1pt solid; border-right: #cccccc 1pt solid">
+			<pre><span><!--
+
+
+
+
+--><img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/None.gif" align="top"><span style="color: #000000">
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/None.gif" align="top"></span><span style="color: #0000ff">public</span><span style="color: #000000"> </span><span style="color: #0000ff">class</span><span style="color: #000000"> HomeController : Controller
+<img id="Highlighter_43_783_Open_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_43_783_Open_Text').style.display='none'; document.getElementById('Highlighter_43_783_Closed_Image').style.display='inline'; document.getElementById('Highlighter_43_783_Closed_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedBlockStart.gif" align="top"><img id="Highlighter_43_783_Closed_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_43_783_Closed_Text').style.display='none'; document.getElementById('Highlighter_43_783_Open_Image').style.display='inline'; document.getElementById('Highlighter_43_783_Open_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ContractedBlock.gif" style="display: none" align="top"> </span><span id="Highlighter_43_783_Closed_Text" style="border-bottom: #808080 1px solid; border-left: #808080 1px solid; background-color: #ffffff; display: none; border-top: #808080 1px solid; border-right: #808080 1px solid">...</span><span id="Highlighter_43_783_Open_Text"><span style="color: #000000">{
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">     </span><span style="color: #0000ff">public</span><span style="color: #000000"> </span><span style="color: #0000ff">void</span><span style="color: #000000"> Index()
+<img id="Highlighter_75_113_Open_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_75_113_Open_Text').style.display='none'; document.getElementById('Highlighter_75_113_Closed_Image').style.display='inline'; document.getElementById('Highlighter_75_113_Closed_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedSubBlockStart.gif" align="top"><img id="Highlighter_75_113_Closed_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_75_113_Closed_Text').style.display='none'; document.getElementById('Highlighter_75_113_Open_Image').style.display='inline'; document.getElementById('Highlighter_75_113_Open_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ContractedSubBlock.gif" style="display: none" align="top">     </span><span id="Highlighter_75_113_Closed_Text" style="border-bottom: #808080 1px solid; border-left: #808080 1px solid; background-color: #ffffff; display: none; border-top: #808080 1px solid; border-right: #808080 1px solid">...</span><span id="Highlighter_75_113_Open_Text"><span style="color: #000000">{
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">         RenderView(</span><span style="color: #800000">"</span><span style="color: #800000">Index</span><span style="color: #800000">"</span><span style="color: #000000">);
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedSubBlockEnd.gif" align="top">     }</span></span><span style="color: #000000">
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top"> 
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">    </span><span style="color: #0000ff">public</span><span style="color: #000000"> </span><span style="color: #0000ff">void</span><span style="color: #000000"> About()
+<img id="Highlighter_145_183_Open_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_145_183_Open_Text').style.display='none'; document.getElementById('Highlighter_145_183_Closed_Image').style.display='inline'; document.getElementById('Highlighter_145_183_Closed_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedSubBlockStart.gif" align="top"><img id="Highlighter_145_183_Closed_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_145_183_Closed_Text').style.display='none'; document.getElementById('Highlighter_145_183_Open_Image').style.display='inline'; document.getElementById('Highlighter_145_183_Open_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ContractedSubBlock.gif" style="display: none" align="top">     </span><span id="Highlighter_145_183_Closed_Text" style="border-bottom: #808080 1px solid; border-left: #808080 1px solid; background-color: #ffffff; display: none; border-top: #808080 1px solid; border-right: #808080 1px solid">...</span><span id="Highlighter_145_183_Open_Text"><span style="color: #000000">{
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">         RenderView(</span><span style="color: #800000">"</span><span style="color: #800000">About</span><span style="color: #800000">"</span><span style="color: #000000">);
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedSubBlockEnd.gif" align="top">     }</span></span><span style="color: #000000">
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top"> 
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">    </span><span style="color: #0000ff">public</span><span style="color: #000000"> </span><span style="color: #0000ff">void</span><span style="color: #000000"> ClickMe()
+<img id="Highlighter_217_314_Open_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_217_314_Open_Text').style.display='none'; document.getElementById('Highlighter_217_314_Closed_Image').style.display='inline'; document.getElementById('Highlighter_217_314_Closed_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedSubBlockStart.gif" align="top"><img id="Highlighter_217_314_Closed_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_217_314_Closed_Text').style.display='none'; document.getElementById('Highlighter_217_314_Open_Image').style.display='inline'; document.getElementById('Highlighter_217_314_Open_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ContractedSubBlock.gif" style="display: none" align="top">     </span><span id="Highlighter_217_314_Closed_Text" style="border-bottom: #808080 1px solid; border-left: #808080 1px solid; background-color: #ffffff; display: none; border-top: #808080 1px solid; border-right: #808080 1px solid">...</span><span id="Highlighter_217_314_Open_Text"><span style="color: #000000">{
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">         HttpContext.Trace.Write(</span><span style="color: #800000">"</span><span style="color: #800000">Button was clicked.</span><span style="color: #800000">"</span><span style="color: #000000">);
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">         InvokeAction(</span><span style="color: #800000">"</span><span style="color: #800000">Index</span><span style="color: #800000">"</span><span style="color: #000000">);
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedSubBlockEnd.gif" align="top">     }</span></span><span style="color: #000000">
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top"> 
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">    </span><span style="color: #0000ff">protected</span><span style="color: #000000"> </span><span style="color: #0000ff">override</span><span style="color: #000000"> </span><span style="color: #0000ff">void</span><span style="color: #000000"> OnActionExecuting(FilterExecutingContext 
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">        filterContext)
+<img id="Highlighter_415_533_Open_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_415_533_Open_Text').style.display='none'; document.getElementById('Highlighter_415_533_Closed_Image').style.display='inline'; document.getElementById('Highlighter_415_533_Closed_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedSubBlockStart.gif" align="top"><img id="Highlighter_415_533_Closed_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_415_533_Closed_Text').style.display='none'; document.getElementById('Highlighter_415_533_Open_Image').style.display='inline'; document.getElementById('Highlighter_415_533_Open_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ContractedSubBlock.gif" style="display: none" align="top">     </span><span id="Highlighter_415_533_Closed_Text" style="border-bottom: #808080 1px solid; border-left: #808080 1px solid; background-color: #ffffff; display: none; border-top: #808080 1px solid; border-right: #808080 1px solid">...</span><span id="Highlighter_415_533_Open_Text"><span style="color: #000000">{
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">         filterContext.HttpContext.Trace.Write(</span><span style="color: #800000">"</span><span style="color: #800000">Starting: </span><span style="color: #800000">"</span><span style="color: #000000"> </span><span style="color: #000000">+</span><span style="color: #000000"> 
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">             filterContext.ActionMethod.Name);
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedSubBlockEnd.gif" align="top">     }</span></span><span style="color: #000000">
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top"> 
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">    </span><span style="color: #0000ff">protected</span><span style="color: #000000"> </span><span style="color: #0000ff">override</span><span style="color: #000000"> </span><span style="color: #0000ff">void</span><span style="color: #000000"> OnActionExecuted(FilterExecutedContext 
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">        filterContext)
+<img id="Highlighter_632_780_Open_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_632_780_Open_Text').style.display='none'; document.getElementById('Highlighter_632_780_Closed_Image').style.display='inline'; document.getElementById('Highlighter_632_780_Closed_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedSubBlockStart.gif" align="top"><img id="Highlighter_632_780_Closed_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_632_780_Closed_Text').style.display='none'; document.getElementById('Highlighter_632_780_Open_Image').style.display='inline'; document.getElementById('Highlighter_632_780_Open_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ContractedSubBlock.gif" style="display: none" align="top">     </span><span id="Highlighter_632_780_Closed_Text" style="border-bottom: #808080 1px solid; border-left: #808080 1px solid; background-color: #ffffff; display: none; border-top: #808080 1px solid; border-right: #808080 1px solid">...</span><span id="Highlighter_632_780_Open_Text"><span style="color: #000000">{
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">         </span><span style="color: #0000ff">if</span><span style="color: #000000"> (filterContext.Exception </span><span style="color: #000000">!=</span><span style="color: #000000"> </span><span style="color: #0000ff">null</span><span style="color: #000000">)
+<img id="Highlighter_689_773_Open_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_689_773_Open_Text').style.display='none'; document.getElementById('Highlighter_689_773_Closed_Image').style.display='inline'; document.getElementById('Highlighter_689_773_Closed_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedSubBlockStart.gif" align="top"><img id="Highlighter_689_773_Closed_Image" onclick="this.style.display='none'; document.getElementById('Highlighter_689_773_Closed_Text').style.display='none'; document.getElementById('Highlighter_689_773_Open_Image').style.display='inline'; document.getElementById('Highlighter_689_773_Open_Text').style.display='inline';" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ContractedSubBlock.gif" style="display: none" align="top">         </span><span id="Highlighter_689_773_Closed_Text" style="border-bottom: #808080 1px solid; border-left: #808080 1px solid; background-color: #ffffff; display: none; border-top: #808080 1px solid; border-right: #808080 1px solid">...</span><span id="Highlighter_689_773_Open_Text"><span style="color: #000000">{
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/InBlock.gif" align="top">             filterContext.HttpContext.Trace.Write(</span><span style="color: #800000">"</span><span style="color: #800000">Exception thrown</span><span style="color: #800000">"</span><span style="color: #000000">);
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedSubBlockEnd.gif" align="top">         }</span></span><span style="color: #000000">
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedSubBlockEnd.gif" align="top">     }</span></span><span style="color: #000000">
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ExpandedBlockEnd.gif" align="top"> }</span></span><span style="color: #000000">
+<img src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/None.gif" align="top"></span></span></pre>
+		</div>
+	</div>
+</div>
+<p>
+	&nbsp;</p>
+<p>
+	<strong>三、几个系统常用的Filter过滤器</strong></p>
+<p>
+	&nbsp;</p>
+<h2>
+	<b>1、AcceptVerbs</b></h2>
+<p>
+	规定页面的访问形式，如</p>
+<pre><span style="color: #0000cd">        [AcceptVerbs(HttpVerbs.Post)]
+         public ActionResult Example(){
+             return View();
+         }</span></pre>
+<p>
+	<br>
+	页面只能以Post形式访问，即表单提交。</p>
+<p>
+	&nbsp;</p>
+<h2>
+	<b>2、ActionName</b></h2>
+<p>
+	规定Action的名称。</p>
+<p>
+	应用场景：如果不想用方法名做为Action名，或Action名为关键字的话，如</p>
+<pre><span style="color: #0000cd">       [ActionName("class")]
+         public ActionResult Example(){
+             return View();
+         }</span></pre>
+<p>
+	&nbsp;</p>
+<h2>
+	<b>3、NonAction</b></h2>
+<p>
+	当前方法仅是普通方法不解析为Action</p>
+<p>
+	&nbsp;</p>
+<h2>
+	<b>4、OutputCache</b></h2>
+<p>
+	为Action添加缓存</p>
+<pre><span style="color: #0000cd">        [OutputCache(Duration = 60, VaryByParam = "*")]
+        public ActionResult Example()
+        {
+            return View();
+        }</span></pre>
+<p>
+	&nbsp;</p>
+<h2>
+	<b>5、ValidateInput</b></h2>
+<p>
+	该Action可以接受Html等危险代码（ASP.NET MVC在aspx中设置&lt;%@ Page 的属性无法完成等同任务。）</p>
+<pre><span style="color: #0000cd">        [ValidateInput(false)]
+        public ActionResult Example()
+        {
+            return View();
+        }</span></pre>
+<p>
+	&nbsp;</p>
+<h2>
+	<b>6、ValidateAntiForgeryTokenAttribute</b></h2>
+<p>
+	用于验证服务器篡改。</p>
+<pre><span style="color: #0000cd">        [ValidateAntiForgeryToken]
+        public ActionResult Example()
+        {
+            return View();
+        }</span></pre>
+
+
+<div class="detail" style="margin-top:10px;">
+<script type="text/javascript">
+var cpro_id="u1826519";
+(window["cproStyleApi"] = window["cproStyleApi"] || {})[cpro_id]={at:"3",rsi0:"640",rsi1:"240",pat:"6",tn:"baiduCustNativeAD",rss1:"#FFFFFF",conBW:"1",adp:"1",ptt:"0",titFF:"%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91",titFS:"14",rss2:"#000000",titSU:"0",ptbg:"90",piw:"140",pih:"90",ptp:"0"}
+</script>
+<script src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/c.js" type="text/javascript"></script>
+
+				<div class="digg">
+						<dl class="support" id="articleSupport" onclick="scpopup('257')">
+							<dt>收藏</dt>
+							<dd id="ddFavoriteCount">146</dd>
+						</dl>
+                       <dl onclick="AddUsefullArticle('257')">
+							<dt>很赞</dt>
+							<dd id="ddUsefullCount">131</dd>
+						</dl>
+				</div>
+
+			</div>
+ 
+  <div class="sc fl">
+<div style="margin-bottom:15px">
+
+</div>
+              <li>上一篇：<a title="Asp.net操作Word文档 " href="http://www.studyofnet.com/news/244.html" target="_blank">Asp.net操作Word文档 </a> </li>
+              <li>下一篇：<a title="datatable和list的转换 " href="http://www.studyofnet.com/news/260.html" target="_blank">datatable和list的转换 </a> </li>
+
+  </div> 
+
+<div class="clear"></div>
+  <div class="ad_cont_03">
+      <strong>您可能感兴趣</strong>
+				<div id="ccont04" style="">
+					<ul class="clist">
+					</ul>
+				</div>	
+            </div>
+</div>         
+ </div>
+</div>
+
+        <div class="side_right">
+             <div class="rindexlist" style="margin-top:0px;">
+		
+<script type="text/javascript">
+    var cpro_id="u1826520";
+    (window["cproStyleApi"] = window["cproStyleApi"] || {})[cpro_id]={at:"3",rsi0:"300",rsi1:"250",pat:"17",tn:"baiduCustNativeAD",rss1:"#FFFFFF",conBW:"1",adp:"1",ptt:"0",titFF:"",titFS:"14",rss2:"#000000",titSU:"0"}
+</script>
+<script src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/c.js" type="text/javascript"></script>
+
+				 <div id="downTab" class="r_column">
+    <div class="r_310title">
+        <h3>浏览排行</h3>
+        <ul>
+            <li class="now" panel="down1"><a href="javascript:void(0)">本周</a></li>
+            <li panel="down2"><a href="javascript:void(0)">本月</a></li>
+        </ul>
+    </div>
+    <div class="r_downlist">
+    <div id="down1">
+    <dl>
+    <dt><a href="http://www.studyofnet.com/news/194.html" title="asp.net中fileupload上传文件的方法" target="_blank">asp.net中fileupload上传文件的方法</a>
+    </dt>
+    <dd> <span>[19748]</span>
+    </dd>
+    <dt><a href="http://www.studyofnet.com/news/578.html" title="类型初始值设定项引发异常 解决方法" target="_blank">类型初始值设定项引发异常 解决方法</a>
+    </dt>
+    <dd> <span>[14157]</span>
+    </dd>
+    <dt><a href="http://www.studyofnet.com/news/270.html" title="Linq中select查询" target="_blank">Linq中select查询</a>
+    </dt>
+    <dd> <span>[12613]</span>
+    </dd>
+    <dt><a href="http://www.studyofnet.com/news/452.html" title="IEnumerable的用法" target="_blank">IEnumerable的用法</a>
+    </dt>
+    <dd> <span>[12578]</span>
+    </dd>
+    <dt><a href="http://www.studyofnet.com/news/311.html" title="ViewState的用法" target="_blank">ViewState的用法</a>
+    </dt>
+    <dd> <span>[12043]</span>
+    </dd>
+    <dt><a href="http://www.studyofnet.com/news/306.html" title="无法识别的属性“targetFramework”的解决方法" target="_blank">无法识别的属性“targetFramework”的解决方法</a>
+    </dt>
+    <dd> <span>[10599]</span>
+    </dd>
+    <dt><a href="http://www.studyofnet.com/news/345.html" title="MVC上传文件的方法" target="_blank">MVC上传文件的方法</a>
+    </dt>
+    <dd> <span>[8542]</span>
+    </dd>
+    <dt><a href="http://www.studyofnet.com/news/322.html" title="@RenderBody、@RenderPage、@RenderSection用法" target="_blank">@RenderBody、@RenderPage、@RenderSection用法</a>
+    </dt>
+    <dd> <span>[8423]</span>
+    </dd>
+    <dt><a href="http://www.studyofnet.com/news/216.html" title="response的contentType的类型值" target="_blank">response的contentType的类型值</a>
+    </dt>
+    <dd> <span>[7974]</span>
+    </dd>
+    </dl>
+   </div>
+        <div style="display: none;" id="down2">
+        <dl>
+       <dt><a href="http://www.studyofnet.com/news/1291.html" title="查看SQL SERVER中某个查询用了多少TempDB空间" target="_blank">查看SQL SERVER中某个查询用了多少TempDB空间</a>
+        </dt>
+        <dd> <span>[253]</span>
+        </dd>
+       <dt><a href="http://www.studyofnet.com/news/1290.html" title="SQL Server将数据导出到SQL脚本文件" target="_blank">SQL Server将数据导出到SQL脚本文件</a>
+        </dt>
+        <dd> <span>[173]</span>
+        </dd>
+       <dt><a href="http://www.studyofnet.com/news/1289.html" title="iis建立ftp站点" target="_blank">iis建立ftp站点</a>
+        </dt>
+        <dd> <span>[284]</span>
+        </dd>
+       <dt><a href="http://www.studyofnet.com/news/1288.html" title="PC上的URL复制到手机浏览器打开" target="_blank">PC上的URL复制到手机浏览器打开</a>
+        </dt>
+        <dd> <span>[498]</span>
+        </dd>
+       <dt><a href="http://www.studyofnet.com/news/1287.html" title="电脑屏幕截图保存在哪" target="_blank">电脑屏幕截图保存在哪</a>
+        </dt>
+        <dd> <span>[509]</span>
+        </dd>
+       <dt><a href="http://www.studyofnet.com/news/1286.html" title="使用谷歌浏览器模拟移动端打开网页" target="_blank">使用谷歌浏览器模拟移动端打开网页</a>
+        </dt>
+        <dd> <span>[216]</span>
+        </dd>
+       <dt><a href="http://www.studyofnet.com/news/1285.html" title="设置404错误页面的几个建议" target="_blank">设置404错误页面的几个建议</a>
+        </dt>
+        <dd> <span>[338]</span>
+        </dd>
+       <dt><a href="http://www.studyofnet.com/news/1284.html" title="SQL中not in有Null值时" target="_blank">SQL中not in有Null值时</a>
+        </dt>
+        <dd> <span>[472]</span>
+        </dd>
+       <dt><a href="http://www.studyofnet.com/news/1283.html" title="ASP.NET如何获取上传图片的宽和高" target="_blank">ASP.NET如何获取上传图片的宽和高</a>
+        </dt>
+        <dd> <span>[303]</span>
+        </dd>
+       <dt><a href="http://www.studyofnet.com/news/1282.html" title="aspx文件中CodeFile与CodeBehind的区别" target="_blank">aspx文件中CodeFile与CodeBehind的区别</a>
+        </dt>
+        <dd> <span>[266]</span>
+        </dd>
+  
+</dl>
+
+        </div>
+    </div>
+</div>
+<div style="margin-top:10px;margin-bottom:10px;">
+        <script type="text/javascript">
+var cpro_id="u1826521";
+(window["cproStyleApi"] = window["cproStyleApi"] || {})[cpro_id]={at:"3",rsi0:"300",rsi1:"250",pat:"6",tn:"baiduCustNativeAD",rss1:"#FFFFFF",conBW:"1",adp:"1",ptt:"0",titFF:"%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91",titFS:"14",rss2:"#000000",titSU:"0",ptbg:"90",piw:"140",pih:"90",ptp:"0"}
+</script>
+<script src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/c.js" type="text/javascript"></script>
+
+</div>
+<div id="weekRank" class="m rank" style="margin-top:10px;">
+
+    <div class="mt">
+		<h2 style="font-size:14px;">一月好评排行榜</h2>
+	</div>
+	 <div class="mc">
+		<ul class="tabcon">
+       <li style="border-top:none;"><span>1</span><div class="p-name"><a target="_blank" href="http://www.studyofnet.com/news/1076.html" title="asp.net 参数化like模糊查询">asp.net 参数化like模糊查询 </a></div></li>
+       <li><span>2</span><div class="p-name"><a target="_blank" href="http://www.studyofnet.com/news/798.html" title="JavaScriptSerializer对Json对象的序列化和反序列化">JavaScriptSerializer对Json对象的序列化和反序列化 </a></div></li>
+       <li><span>3</span><div class="p-name"><a target="_blank" href="http://www.studyofnet.com/news/270.html" title="Linq中select查询">Linq中select查询 </a></div></li>
+       <li><span>4</span><div class="p-name"><a target="_blank" href="http://www.studyofnet.com/news/693.html" title="DataReader用法">DataReader用法 </a></div></li>
+       <li><span>5</span><div class="p-name"><a target="_blank" href="http://www.studyofnet.com/news/239.html" title="ASP.NET合并两个相关联的DataTable">ASP.NET合并两个相关联的DataTable </a></div></li>
+       <li><span>6</span><div class="p-name"><a target="_blank" href="http://www.studyofnet.com/news/830.html" title=".NET使用Html Agility Pack解析html">.NET使用Html Agility Pack解析html </a></div></li>
+       <li><span>7</span><div class="p-name"><a target="_blank" href="http://www.studyofnet.com/news/234.html" title="HttpWebResponse.StatusCode请求状态代码">HttpWebResponse.StatusCode请求状态代码 </a></div></li>
+       <li><span>8</span><div class="p-name"><a target="_blank" href="http://www.studyofnet.com/news/489.html" title="ASP.NET中Partial Class部分类">ASP.NET中Partial Class部分类 </a></div></li>
+       <li><span>9</span><div class="p-name"><a target="_blank" href="http://www.studyofnet.com/news/921.html" title="源代码管理中出现重复文件的解决方法">源代码管理中出现重复文件的解决方法 </a></div></li>
+       <li><span>10</span><div class="p-name"><a target="_blank" href="http://www.studyofnet.com/news/306.html" title="无法识别的属性“targetFramework”的解决方法">无法识别的属性“targetFramework”的解决方法 </a></div></li>
+       <li><span>11</span><div class="p-name"><a target="_blank" href="http://www.studyofnet.com/news/542.html" title="JSON中的特殊字符">JSON中的特殊字符 </a></div></li>
+		</ul>
+	</div>
+</div>
+
+ 
+</div>
+<div class="m rank" style="margin-top:10px;border:1px solid #fff">
+<script type="text/javascript">
+/*详细页右侧广告位底部悬浮*/
+var cpro_id = "u1522781";
+</script>
+<script src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/c.js" type="text/javascript"></script>
+</div>
+<span class="clr"></span>
+  </div>
+
+	</div>
+ 
+ 
+</div>  
+   
+<!--right-->
+
+</div>
+		
+
+	</div>
+        <script type="text/javascript">
+            document.domain = "studyofnet.com";
+        </script>
+<script src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/articleDetail.js" type="text/javascript"></script>
+<script src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ZeroClipboard.js" type="text/javascript"></script>
+<script src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/thickbox_plus.js" type="text/javascript"></script>
+<script src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/loginFrame.js" type="text/javascript"></script>
+<script src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/bds_s_v2.js" type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=0"></script>
+
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date() / 3600000)
+     $(document).ready(function(){initCopyCode();});
+</script>     
+    <div class="w">
+	<div class="foot_copyright">
+        <div style="width:980px;margin:auto;position:relative;"><a title="学习也休闲首页" style="color: #e60067" href="http://www.studyofnet.com/">首页</a>
+            <a href="http://www.studyofnet.com/news/list-8881-1-1.html">编程学习</a>
+            <a href="http://www.studyofnet.com/news/list-8882-1-1.html">Web前端</a>
+            <a href="http://www.studyofnet.com/news/list-8883-1-1.html">数据库</a>
+            <a href="http://www.studyofnet.com/news/list-8884-1-1.html">软件设计</a>
+
+            <br> 学习也休闲网 ©2010-2013 保留所有权利  <a href="http://www.miibeian.gov.cn/" target="_blank" rel="nofollow">蜀ICP备12032523号-1</a>
+       </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $.getScript("http://user.studyofnet.com/headerlogin/loginmsg?r=" + Math.random());
+</script><script type="text/javascript">
+(function () {
+    var $backToTopTxt = "返回顶部", $backToTopEle = $('<div class="backToTop"></div>').appendTo($("body"))
+        .text($backToTopTxt).attr("title", $backToTopTxt).click(function () {
+            $("html, body").animate({ scrollTop: 0 }, 120);
+        }), $backToTopFun = function () {
+            var st = $(document).scrollTop(), winh = $(window).height();
+            (st > 0) ? $backToTopEle.show() : $backToTopEle.hide();
+            //IE6下的定位
+            if (!window.XMLHttpRequest) {
+                $backToTopEle.css("top", st + winh - 166);
+            }
+        };
+    $(window).bind("scroll", $backToTopFun);
+    $(function () { $backToTopFun(); });
+})();
+$('#Menu_MainNav #MenuItems .nav_item a').hover(
+function () {
+    var trigger = $(this).attr('id');
+    var trigger_items = $("#" + trigger + "_items");
+    if (trigger_items.is(":hidden")) {
+        $('.Menu_SubNav div').hide();
+        trigger_items.show();
+    }
+},
+function () {
+}
+);
+$('#Menu_NavigatorMenu').hover(function () { }, function () {
+    $('.Menu_SubNav div').hide();
+    var oldChoose = $('#MenuItems li.current a:eq(0)').attr('id');
+    $("#" + oldChoose + "_items").show();
+});
+</script><div style="display: none;" title="返回顶部" class="backToTop">返回顶部</div>
+
+
+<div style="position: absolute; left: 263px; top: 2665px; width: 24px; height: 14px; z-index: 99;"><embed id="ZeroClipboardMovie_1" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" name="ZeroClipboardMovie_1" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=1&amp;width=24&amp;height=14" wmode="transparent" align="middle" height="14" width="24"></div><div style="position: absolute; left: 263px; top: 3749px; width: 24px; height: 14px; z-index: 99;"><embed id="ZeroClipboardMovie_2" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" name="ZeroClipboardMovie_2" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=2&amp;width=24&amp;height=14" wmode="transparent" align="middle" height="14" width="24"></div><div style="position: absolute; left: 263px; top: 4788px; width: 24px; height: 14px; z-index: 99;"><embed id="ZeroClipboardMovie_3" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" name="ZeroClipboardMovie_3" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=3&amp;width=24&amp;height=14" wmode="transparent" align="middle" height="14" width="24"></div><div style="position: absolute; left: 263px; top: 5818px; width: 24px; height: 14px; z-index: 99;"><embed id="ZeroClipboardMovie_4" src="MVC%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%94%A8%E6%B3%95%20-%20%E5%AD%A6%E4%B9%A0%E4%B9%9F%E4%BC%91%E9%97%B2_files/ZeroClipboard.swf" loop="false" menu="false" quality="best" bgcolor="#ffffff" name="ZeroClipboardMovie_4" allowscriptaccess="always" allowfullscreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" flashvars="id=4&amp;width=24&amp;height=14" wmode="transparent" align="middle" height="14" width="24"></div></body></html>

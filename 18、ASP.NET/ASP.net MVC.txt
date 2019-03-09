@@ -1,0 +1,2 @@
+1、第三天
+在 Asp.Net MVC中有个 Model Binder的概念：

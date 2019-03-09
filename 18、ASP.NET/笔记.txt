@@ -1,0 +1,209 @@
+极客学院
+228639296
+ldl13414184997
+http://www.jikexueyuan.com/path/aspdotnet/
+
+
+1、C#语言基础
+
+1.1、C#语言简介和开发前的准备（17）
+	C#  .net framework   C  C++   JAVA   免费就是最贵的？
+	Anders Hejlsberg
+	版本和下载：
+	hello world:    新建项目-Visual C#-Windows-控制台程序
+1.2、
+1.3、......
+
+2、ASP.NET MVC入门
+2.1、ASP.NET简介与准备（20）
+	MSDN、免费的用于制作网站或则网络应用的框架、
+	如何成为一名 Asp.Net 工程师进行了介绍、
+	下载安装：community  旗舰版
+
+
+2.2、Asp.Net WebForm 与 MVC 简介（32）
+2.2.1、Asp.Net Web Forms 简介
+	基于网页，基于web的表单的一种开发，使用控件，事件驱动的基于
+	模块的开发方式	
+	它是一种基于控件和事件驱动的开发模式。
+2.2.2、Asp.Net WebForms 的你好世界
+	新建网站-web site
+	新建项目-asp.net web application     dl全部打包编译
+2.2.3、Asp.Net MVC 简介
+	model view controller   
+	模型-视图-控件
+	逻辑分离
+2.2.4、Asp.Net MVC 的你好世界
+
+
+
+2.3、Asp.Net MVC的Model、View与Controller
+	创建mvc   添加controler
+	F12转到定义区
+	debug
+	断点--f5---继续执行---
+	ctrl+F5不会进入断点
+	ctrl+F5---	ctrl+shift+B编译，可看到结果，可以边编译边看到结果
+
+	ctrl+alt+p    把iisexpress.exe附加上去，则回进入断点
+
+	2.3.3 Asp.Net MVC添加View 和Razor引擎===============在page inspector查看
+	Razor引擎可直接在view调用服务器的代码和变量
+@Code
+    Dim total As Integer = 7
+End Code
+<p>the value of total: @total</p>
+注释：	'
+	2.3.4 asp.net view相关解析
+	网页刷新f5 catch不会清空
+	ctrl+f5清空缓存，加载最新的js文件
+	
+	2.3.5 asp.net MVC添加model
+	model处理数据模型，处理数据库打交道的事情
+	entity framework连接数据库的方式：顶层，设计的角度，
+	数据库存在date first     存在或者不存在code first   数据库不存在model first
+	
+	2.3.6asp.net MVC连接和创建数据库LocalDB
+	crud
+	create read  update delete
+	model新建=web.config配置=control添加包含视图的MVC5控制器（使用Entity framework）运行即可
+	
+
+2.4、Asp.Net MVC解析Action和View
+2.4.1	获取get  修改post     跨页攻击
+	
+
+
+
+2.5、Asp.Net MVC的搜索功能
+	添加搜索功能link
+	通过ui进行搜索
+	基于已有种类进行搜索
+
+
+
+
+2.6、Asp.Net MVC的校验机制
+	添加加校验机制
+	校验机制的浏览器实现效果
+	校验机制的服务器端实现效果
+
+
+
+
+2.7、
+
+3、C#语言进阶
+
+4、Entity Framework
+	4.1Entity Framework概述和准备
+		什么是Entity Framework:微软推荐的数据连接技术
+			：ADO.NET Entity Framework是微软以ado.net为基础发展出来的
+对象关系对应（O/R Mapping）解决方案：object relational mapping对象关系映射
+		什么是ORM
+		Entity Framework使用场景
+			Database first:根据一个已有的数据库，来生成数据模型，然后生成entity和class
+			code first：已有对应的各种业务需求的class
+			model first:
+			数据有 	没有	
+			
+		Entity Framework的版本
+		Entity Framework的框架
+		Entity Framework的开源 https://entityframework.codeplex.com/
+		Entity Framework安装：	5和6  nuGET获得
+		LocalDB安装：C:\Program Files\Microsoft SQL Server\110\Tools\Binn
+cd C:\Program Files\Microsoft SQL Server\110\Tools\Binn
+SqlLocalDB.exe -?
+SqlLocalDB.exe info
+SqlLocalDB.exe info v11.0
+SqlLocalDB.exe create MyLocalDB
+SqlLocalDB.exe start MyLocalDB
+SqlLocalDB.exe stop MyLocalDB
+实例管道名称: np:\\.\pipe\LOCALDB#50435FD0\tsql\query并用sql server进行管理
+				
+		sqlserver安装
+			
+	4.2Entity Framework创建数据模型
+	根据已有的数据库创建数据模型：
+	数据模型解析和Model Browser:已有数据库导入数据模型，自动生成数据模型
+	DBContext
+
+	4.3Entity Framework的entity	
+		类型、相互之间的关系、生命周期（状态）
+		种类：两种简单的、动态代理。entity---poco==plain old CLR object----CSDL SDL  MSL
+
+总结：	public class
+	not be sealed
+	not be abstract
+	navigation property must be public, virtual
+	collection must be ICollection
+	proxyCreationEnable must be true 
+	
+CLR:common language runtime公共语言运行库，负责资源管理（内存分配、垃圾收集）！！！！！！！！！！！
+		相互关系：一对一，一对多，多对多
+		生命周期：添加、删除、修改、unchange未修改
+		add()
+		savechange()
+		remove()
+		
+		
+		
+
+SSDL:存储模型，数据库里的
+CSDL:概念模型，画出来的entity模型
+CS mapping:两者之间的对应关系
+
+
+
+	4.4Entity Framework的code first模型
+		1、使用code first模式创建数据库
+		2、code first Mirgration（迁移）：add-migration AddUrl
+					update-migration
+		code first当class改变时，
+				没改变数据表的结构，通过程序包管理器控制台进行
+				直接改变数据表的结构=====添加的代码
+				直接改变数据表的结构
+		3、Data+Annotation：
+using System.ComponentModel.DataAnnotations;
+ [StringLength(50)]
+ public string Name { get; set; }
+程序包管理器控制台
+add-migration AddAnnotation
+update-database
+
+		Fluent+API：
+ protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            //base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Blog>().Property(b => b.Url).HasColumnName("Urladdress");
+        }
+add-migration FluentApi
+update-database
+
+		4、使用code first模连接已有数据库
+
+
+	4.5Entity Framework的mode first模型和模型选择
+	根据model first 先设计数据模型model,在根据model来创建数据库（自动生成），根据数据模型
+	自动生成class(entity)
+
+	1、创建model
+	2、根据model创建数据库和代码
+	3、模式选择：判断数据存不存在-----
+		class存在？（code first）-----数据存在？（database）
+
+
+	code first:数据库可存可不存
+	model first:数据库不存在：model---数据库--code
+	database first:数据库不存在
+
+
+
+5、JavaScript入门
+6、jQuery入门
+
+
+7、ASP.NET MVC进阶
+
+
+

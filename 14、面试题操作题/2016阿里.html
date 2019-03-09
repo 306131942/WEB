@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{
+            margin: 0;
+        }
+        .fn-clear:after{
+            content: " ";
+            clear: both;
+            display: block;
+            font-size: 0;
+            visibility:hidden;
+            height:0;
+        }
+        .fn-clear{
+            zoom: 1;
+        }
+        .container{
+             padding: 10px;
+         }
+        .header{
+            background: #eee;
+            position: relative;
+            margin-top: 10px;
+        }
+        .logo{
+             width: 100px;
+             height: 100px;
+             float: left;
+             background: #f60;
+         }
+        .username{
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+        .main{
+            margin-top: 10px;
+        }
+        /*固定宽度200px*/
+        .aside-bar{
+            width: 200px;
+            float: right;
+            background: #ccc;
+        }
+        .content{
+            margin-right: 200px;
+            background: #f6f6f6;
+        }
+        .footer{
+            background: #999999;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header fn-clear">
+        <div class="logo">logo</div>
+        <div class="username">zhoumingXXX@163.com</div>
+    </div>
+    <div class="main">
+        <div class="aside-bar">aside</div>
+        <div class="content">左侧内容</div>
+    </div>
+    <div class="footer">footer</div>
+</div>
+</body>
+</html>

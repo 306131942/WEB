@@ -1,0 +1,289 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>JS点击缩略图弹出大图网页特效</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery.js" language="javascript" type="text/javascript"></script>
+<script language="javascript" type="text/javascript" src="js/public.js"></script>
+<!--[if IE 6]>
+<script src="js/ie6PNG.js" type="text/javascript"></script>
+<script type="text/javascript">DD_belatedPNG.fix('*');</script>
+<![endif]-->
+</head>
+<body class="keBody">
+<h1 class="keTitle">JS点击缩略图弹出大图网页特效</h1>
+<div class="kePublic">
+<!--效果html开始-->
+<!--图库弹出层 开始-->
+<div class="mskeLayBg"></div>
+<div class="mskelayBox">
+  <div class="mske_html">
+  
+  </div>
+  <img class="mskeClaose" src="images/mke_close.png" width="27" height="27" />
+</div>
+<!--图库弹出层 结束-->
+<div class="msKeimgBox">
+ <ul>
+  <li>
+  <img src="images/skeImg.jpg" width="185" height="93" />
+  <span class="hidden">
+  <img src="images/bkeImg.jpg" width="974" height="488" />
+  <div class="mskeImgBg">
+  <img class="mske_downIco" src="images/mke_spng1.png" width="155" height="57" />
+  <div class="mske_imgDown"><a class="cor_bs" href="#">1024 x 768</a> <a class="cor_bs" href="#">1280 x 960</a> <a class="cor_bs" href="#">1600 x 1200</a></div>
+  </div>
+  </span>
+  </li>
+  <li>
+  <img src="images/skeImg1.jpg" width="185" height="93" />
+  <span class="hidden">
+  <img src="images/bkeImg1.jpg" width="974" height="488" />
+  <div class="mskeImgBg">
+  <img class="mske_downIco" src="images/mke_spng1.png" width="155" height="57" />
+  <div class="mske_imgDown"><a class="cor_bs" href="#">1024 x 768</a> <a class="cor_bs" href="#">1280 x 960</a> <a class="cor_bs" href="#">1600 x 1200</a></div>
+  </div>
+  </span>
+  </li>
+  <li>
+  <img src="images/skeImg2.jpg" width="185" height="93" />
+  <span class="hidden">
+  <img src="images/bkeImg2.jpg" width="974" height="488" />
+  <div class="mskeImgBg">
+  <img class="mske_downIco" src="images/mke_spng1.png" width="155" height="57" />
+  <div class="mske_imgDown"><a class="cor_bs" href="#">1024 x 768</a> <a class="cor_bs" href="#">1280 x 960</a> <a class="cor_bs" href="#">1600 x 1200</a></div>
+  </div>
+  </span>
+  </li>
+  <li>
+  <img src="images/skeImg.jpg" width="185" height="93" />
+  <span class="hidden">
+  <img src="images/bkeImg.jpg" width="974" height="488" />
+  <div class="mskeImgBg">
+  <img class="mske_downIco" src="images/mke_spng1.png" width="155" height="57" />
+  <div class="mske_imgDown"><a class="cor_bs" href="#">1024 x 768</a> <a class="cor_bs" href="#">1280 x 960</a> <a class="cor_bs" href="#">1600 x 1200</a></div>
+  </div>
+  </span>
+  </li>
+  <li>
+  <img src="images/skeImg1.jpg" width="185" height="93" />
+  <span class="hidden">
+  <img src="images/bkeImg1.jpg" width="974" height="488" />
+  <div class="mskeImgBg">
+  <img class="mske_downIco" src="images/mke_spng1.png" width="155" height="57" />
+  <div class="mske_imgDown"><a class="cor_bs" href="#">1024 x 768</a> <a class="cor_bs" href="#">1280 x 960</a> <a class="cor_bs" href="#">1600 x 1200</a></div>
+  </div>
+  </span>
+  </li>
+  <li>
+  <img src="images/skeImg2.jpg" width="185" height="93" />
+  <span class="hidden">
+  <img src="images/bkeImg2.jpg" width="974" height="488" />
+  <div class="mskeImgBg">
+  <img class="mske_downIco" src="images/mke_spng1.png" width="155" height="57" />
+  <div class="mske_imgDown"><a class="cor_bs" href="#">1024 x 768</a> <a class="cor_bs" href="#">1280 x 960</a> <a class="cor_bs" href="#">1600 x 1200</a></div>
+  </div>
+  </span>
+  </li>
+  <li>
+  <img src="images/skeImg.jpg" width="185" height="93" />
+  <span class="hidden">
+  <img src="images/bkeImg.jpg" width="974" height="488" />
+  <div class="mskeImgBg">
+  <img class="mske_downIco" src="images/mke_spng1.png" width="155" height="57" />
+  <div class="mske_imgDown"><a class="cor_bs" href="#">1024 x 768</a> <a class="cor_bs" href="#">1280 x 960</a> <a class="cor_bs" href="#">1600 x 1200</a></div>
+  </div>
+  </span>
+  </li>
+  <li>
+  <img src="images/skeImg1.jpg" width="185" height="93" />
+  <span class="hidden">
+  <img src="images/bkeImg1.jpg" width="974" height="488" />
+  <div class="mskeImgBg">
+  <img class="mske_downIco" src="images/mke_spng1.png" width="155" height="57" />
+  <div class="mske_imgDown"><a class="cor_bs" href="#">1024 x 768</a> <a class="cor_bs" href="#">1280 x 960</a> <a class="cor_bs" href="#">1600 x 1200</a></div>
+  </div>
+  </span>
+  </li>
+  <li>
+  <img src="images/skeImg2.jpg" width="185" height="93" />
+  <span class="hidden">
+  <img src="images/bkeImg2.jpg" width="974" height="488" />
+  <div class="mskeImgBg">
+  <img class="mske_downIco" src="images/mke_spng1.png" width="155" height="57" />
+  <div class="mske_imgDown"><a class="cor_bs" href="#">1024 x 768</a> <a class="cor_bs" href="#">1280 x 960</a> <a class="cor_bs" href="#">1600 x 1200</a></div>
+  </div>
+  </span>
+  </li>
+  <li>
+  <img src="images/skeImg.jpg" width="185" height="93" />
+  <span class="hidden">
+  <img src="images/bkeImg.jpg" width="974" height="488" />
+  <div class="mskeImgBg">
+  <img class="mske_downIco" src="images/mke_spng1.png" width="155" height="57" />
+  <div class="mske_imgDown"><a class="cor_bs" href="#">1024 x 768</a> <a class="cor_bs" href="#">1280 x 960</a> <a class="cor_bs" href="#">1600 x 1200</a></div>
+  </div>
+  </span>
+  </li>
+  <li>
+  <img src="images/skeImg1.jpg" width="185" height="93" />
+  <span class="hidden">
+  <img src="images/bkeImg1.jpg" width="974" height="488" />
+  <div class="mskeImgBg">
+  <img class="mske_downIco" src="images/mke_spng1.png" width="155" height="57" />
+  <div class="mske_imgDown"><a class="cor_bs" href="#">1024 x 768</a> <a class="cor_bs" href="#">1280 x 960</a> <a class="cor_bs" href="#">1600 x 1200</a></div>
+  </div>
+  </span>
+  </li>
+  <li>
+  <img src="images/skeImg2.jpg" width="185" height="93" />
+  <span class="hidden">
+  <img src="images/bkeImg2.jpg" width="974" height="488" />
+  <div class="mskeImgBg">
+  <img class="mske_downIco" src="images/mke_spng1.png" width="155" height="57" />
+  <div class="mske_imgDown"><a class="cor_bs" href="#">1024 x 768</a> <a class="cor_bs" href="#">1280 x 960</a> <a class="cor_bs" href="#">1600 x 1200</a></div>
+  </div>
+  </span>
+  </li>
+  <li>
+  <img src="images/skeImg.jpg" width="185" height="93" />
+  <span class="hidden">
+  <img src="images/bkeImg.jpg" width="974" height="488" />
+  <div class="mskeImgBg">
+  <img class="mske_downIco" src="images/mke_spng1.png" width="155" height="57" />
+  <div class="mske_imgDown"><a class="cor_bs" href="#">1024 x 768</a> <a class="cor_bs" href="#">1280 x 960</a> <a class="cor_bs" href="#">1600 x 1200</a></div>
+  </div>
+  </span>
+  </li>
+  <li>
+  <img src="images/skeImg1.jpg" width="185" height="93" />
+  <span class="hidden">
+  <img src="images/bkeImg1.jpg" width="974" height="488" />
+  <div class="mskeImgBg">
+  <img class="mske_downIco" src="images/mke_spng1.png" width="155" height="57" />
+  <div class="mske_imgDown"><a class="cor_bs" href="#">1024 x 768</a> <a class="cor_bs" href="#">1280 x 960</a> <a class="cor_bs" href="#">1600 x 1200</a></div>
+  </div>
+  </span>
+  </li>
+  <li>
+  <img src="images/skeImg2.jpg" width="185" height="93" />
+  <span class="hidden">
+  <img src="images/bkeImg2.jpg" width="974" height="488" />
+  <div class="mskeImgBg">
+  <img class="mske_downIco" src="images/mke_spng1.png" width="155" height="57" />
+  <div class="mske_imgDown"><a class="cor_bs" href="#">1024 x 768</a> <a class="cor_bs" href="#">1280 x 960</a> <a class="cor_bs" href="#">1600 x 1200</a></div>
+  </div>
+  </span>
+  </li>
+  <li>
+  <img src="images/skeImg.jpg" width="185" height="93" />
+  <span class="hidden">
+  <img src="images/bkeImg.jpg" width="974" height="488" />
+  <div class="mskeImgBg">
+  <img class="mske_downIco" src="images/mke_spng1.png" width="155" height="57" />
+  <div class="mske_imgDown"><a class="cor_bs" href="#">1024 x 768</a> <a class="cor_bs" href="#">1280 x 960</a> <a class="cor_bs" href="#">1600 x 1200</a></div>
+  </div>
+  </span>
+  </li>
+  <li>
+  <img src="images/skeImg1.jpg" width="185" height="93" />
+  <span class="hidden">
+  <img src="images/bkeImg1.jpg" width="974" height="488" />
+  <div class="mskeImgBg">
+  <img class="mske_downIco" src="images/mke_spng1.png" width="155" height="57" />
+  <div class="mske_imgDown"><a class="cor_bs" href="#">1024 x 768</a> <a class="cor_bs" href="#">1280 x 960</a> <a class="cor_bs" href="#">1600 x 1200</a></div>
+  </div>
+  </span>
+  </li>
+  <li>
+  <img src="images/skeImg2.jpg" width="185" height="93" />
+  <span class="hidden">
+  <img src="images/bkeImg2.jpg" width="974" height="488" />
+  <div class="mskeImgBg">
+  <img class="mske_downIco" src="images/mke_spng1.png" width="155" height="57" />
+  <div class="mske_imgDown"><a class="cor_bs" href="#">1024 x 768</a> <a class="cor_bs" href="#">1280 x 960</a> <a class="cor_bs" href="#">1600 x 1200</a></div>
+  </div>
+  </span>
+  </li>
+  <li>
+  <img src="images/skeImg.jpg" width="185" height="93" />
+  <span class="hidden">
+  <img src="images/bkeImg.jpg" width="974" height="488" />
+  <div class="mskeImgBg">
+  <img class="mske_downIco" src="images/mke_spng1.png" width="155" height="57" />
+  <div class="mske_imgDown"><a class="cor_bs" href="#">1024 x 768</a> <a class="cor_bs" href="#">1280 x 960</a> <a class="cor_bs" href="#">1600 x 1200</a></div>
+  </div>
+  </span>
+  </li>
+  <li>
+  <img src="images/skeImg1.jpg" width="185" height="93" />
+  <span class="hidden">
+  <img src="images/bkeImg1.jpg" width="974" height="488" />
+  <div class="mskeImgBg">
+  <img class="mske_downIco" src="images/mke_spng1.png" width="155" height="57" />
+  <div class="mske_imgDown"><a class="cor_bs" href="#">1024 x 768</a> <a class="cor_bs" href="#">1280 x 960</a> <a class="cor_bs" href="#">1600 x 1200</a></div>
+  </div>
+  </span>
+  </li>
+  <li>
+  <img src="images/skeImg2.jpg" width="185" height="93" />
+  <span class="hidden">
+  <img src="images/bkeImg2.jpg" width="974" height="488" />
+  <div class="mskeImgBg">
+  <img class="mske_downIco" src="images/mke_spng1.png" width="155" height="57" />
+  <div class="mske_imgDown"><a class="cor_bs" href="#">1024 x 768</a> <a class="cor_bs" href="#">1280 x 960</a> <a class="cor_bs" href="#">1600 x 1200</a></div>
+  </div>
+  </span>
+  </li>
+  <li>
+  <img src="images/skeImg.jpg" width="185" height="93" />
+  <span class="hidden">
+  <img src="images/bkeImg.jpg" width="974" height="488" />
+  <div class="mskeImgBg">
+  <img class="mske_downIco" src="images/mke_spng1.png" width="155" height="57" />
+  <div class="mske_imgDown"><a class="cor_bs" href="#">1024 x 768</a> <a class="cor_bs" href="#">1280 x 960</a> <a class="cor_bs" href="#">1600 x 1200</a></div>
+  </div>
+  </span>
+  </li>
+  <li>
+  <img src="images/skeImg1.jpg" width="185" height="93" />
+  <span class="hidden">
+  <img src="images/bkeImg1.jpg" width="974" height="488" />
+  <div class="mskeImgBg">
+  <img class="mske_downIco" src="images/mke_spng1.png" width="155" height="57" />
+  <div class="mske_imgDown"><a class="cor_bs" href="#">1024 x 768</a> <a class="cor_bs" href="#">1280 x 960</a> <a class="cor_bs" href="#">1600 x 1200</a></div>
+  </div>
+  </span>
+  </li>
+  <li>
+  <img src="images/skeImg2.jpg" width="185" height="93" />
+  <span class="hidden">
+  <img src="images/bkeImg2.jpg" width="974" height="488" />
+  <div class="mskeImgBg">
+  <img class="mske_downIco" src="images/mke_spng1.png" width="155" height="57" />
+  <div class="mske_imgDown"><a class="cor_bs" href="#">1024 x 768</a> <a class="cor_bs" href="#">1280 x 960</a> <a class="cor_bs" href="#">1600 x 1200</a></div>
+  </div>
+  </span>
+  </li>
+ </ul>
+ <div class="mskeTogBtn"></div>
+</div>
+<!--效果html结束-->
+</div>
+<div class="keBottom">
+<p class="keTxtP">科e互联网页特效集锦---更多特效请访问 <a class="keUrl" href="http://www.internetke.com" target="_blank">www.internetke.com</a></p>
+<p class="keTxtP">本站导航：
+<a href="http://www.internetke.com/" target="_blank" class="cor_bs">网站建设</a> | 
+<a href="http://www.internetke.com/material/" target="_blank" class="cor_bs">网页素材</a> | 
+<a href="http://www.internetke.com/effects/" target="_blank" class="cor_bs">网页特效</a> | 
+<a href="http://www.internetke.com/share/" target="_blank" class="cor_bs">设计分享</a> | 
+<a href="http://www.internetke.com/tutorial/" target="_blank" class="cor_bs">建站教程</a> | 
+<a href="http://www.internetke.com/model/" target="_blank" class="cor_bs">网站模版</a> | 
+<a href="http://www.internetke.com/appreciate/" target="_blank" class="cor_bs">酷站赏析</a>
+</p>
+<p class="keTxtP">＊尊重他人劳动成果，转载请自觉注明出处！注：此代码为【科e整理/原创特效】仅供学习交流，请勿用于商业用途。
+<a target="_blank" href="http://wp.qq.com/wpa/qunwpa?idkey=a7df3558c291e0407375b9ad649d96a6e507286ffeb0650c65a221d1500a0779" class="button red" title="北京网站建设,网页特效QQ交流群-科e互联">加入QQ交流群</a></p>
+</div>
+</body>
+</html>

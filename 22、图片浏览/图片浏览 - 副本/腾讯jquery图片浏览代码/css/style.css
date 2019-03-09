@@ -1,0 +1,128 @@
+*{
+    margin:0;padding:0;
+    list-style-type:none;
+}
+a,img{
+    border:0;
+}
+body{
+    font:12px/180% arial, Helvetica, sans-serif;}
+
+
+#picarea{
+    /*margin:40px auto 0 auto;*/
+    margin:40px  auto;
+    width:958px;
+    border:#d9e0ea 1px solid;
+    padding:20px 0 0 0;
+}
+
+#bigpicarea{
+    position:relative;
+    margin:0px auto;
+    width:774px;
+    height:436px;
+    overflow:hidden;
+}
+.image{
+    text-align:center;
+}
+.image img{
+    border:#ececec 1px solid;
+    margin:0px auto;
+}
+#bigpicarea .word{
+    text-align:center;
+    height:50px;
+    line-height:50px;
+    /*background:#fff;*/
+
+    background:rgba(255, 255, 255, 0.5) none repeat scroll 0 0 !important;/*实现FF背景透明，文字不透明*/
+    filter:Alpha(opacity=50);background:#fff;/*实现IE背景透明*/
+    color:#000;
+    position:absolute;
+    bottom:0px;
+    left:0px;
+    width:100%;
+}
+
+
+#smallpicarea{
+    margin:20px 0 0 0;
+    border-top:#ececec 1px solid;
+    padding-top:20px;
+}
+#thumbs{
+    margin:0px auto;
+    width:830px;height:85px;
+    overflow:hidden;
+}
+#thumbs li{
+    margin:0px 7px;
+    width:94px;display:inline;
+    float:left;height:64px;
+    overflow:hidden;
+}
+#thumbs ul{
+    margin-top:3px;
+}
+#thumbs li.last_img{
+    margin-right:4px;
+}
+#thumbs li.first{
+    margin:25px 10px 0px 15px;
+    width:9px;height:16px;
+    cursor:pointer
+}
+#thumbs li.last{
+    margin:25px 10px 0px 15px;
+    width:9px;
+    height:16px;
+    cursor:pointer}
+#thumbs li a{
+    border:#fff 2px solid;
+    width:90px;
+    display:block;
+    font-size:0px;
+}
+#thumbs li a:hover{
+    border:#000 2px solid;
+}
+#thumbs li a.current{
+    border:#f8ae0f 2px solid;
+}
+
+.bigbtnPrev{
+    z-index:100;
+    position:absolute;
+    width:35px;
+    height:51px;
+    top:186px;
+    cursor:pointer;
+    left:30px
+}
+.bigbtnNext{
+    z-index:100;
+    position:absolute;
+    width:35px;
+    height:51px;
+    top:186px;
+    cursor:pointer;
+    right:30px}
+
+#big_play_prev{
+    background-image:url(../images/leftbig.png);
+    width:35px;
+    display:block;
+    height:51px;
+    _background:none;
+    _filter:progid:DXImageTransform.Microsoft.alphaImageLoader(sizingMethod=crop,src='../images/leftbig.png')
+}
+#big_play_next{
+    background-image:url(../images/rightbig.png);
+    width:35px;display:block;
+    height:51px;
+    _background:none;
+    _filter:progid:DXImageTransform.Microsoft.alphaImageLoader(sizingMethod=crop,src='../images/rightbig.png')
+}
+

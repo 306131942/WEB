@@ -1,0 +1,114 @@
+<!--var str=document.getElementById("input").value;-->
+<!--var a=str.split(' ').reverse();//a为数组-->
+<!--document.getElementById("result").innerHTML=a.join(" ");-->
+
+<!--for(var i=st1.length-1; i>=0; i--)   -->
+<!--{      -->
+    <!--if( i==0 )         -->
+    <!--document.write(st1[i]);   -->
+    <!--else   -->
+    <!--document.write(st1[i]+" ");-->
+<!--}-->
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head lang="en">-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title></title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<script>-->
+<!--//    var str = "I am a student!";-->
+<!--//    var st1 = str.split(" ");-->
+<!--//    for(var i=st1.length-1; i>=0; i--)-->
+<!--//    {-->
+<!--//        if( i==0 )-->
+<!--//            document.write(st1[i]);-->
+<!--//        else-->
+<!--//        document.write(st1[i]+" ");-->
+<!--//    }-->
+
+    <!---->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+
+
+<html>
+<head>
+    <script language="javascript">
+        function reverse()
+        {
+            var str=document.getElementById("input").value;
+            var a=str.split(' ').reverse();//a为数组
+
+//            var result=new Array();//result为数组
+//            while(a.length)
+//            {
+//                result.push(a.pop());
+//            }
+//            document.getElementById("result").innerHTML=result.join(" ");
+            document.getElementById("result").innerHTML=a.join(" 1");
+        }
+    </script>
+    <title>javascript</title>
+</head>
+
+<body>
+<!--<table>-->
+    <!--<tr>-->
+        <!--<td><input type="text" id="input"/>=></td>-->
+        <!--<td><div id="result"></div></td>-->
+    <!--</tr>-->
+<!--</table>-->
+
+
+<div>
+    <input type="text" id="input"/>
+    <span id="result"></span>
+</div>
+<input type="button" value="reverse" onclick="reverse()"/>
+
+
+<hr/>
+<script>
+    var arr = new Array(3);
+    arr[0] = "George";
+    arr[1] = "John";
+    arr[2] = "Thomas";
+    document.write(arr + "<br/>");
+    document.write(arr.reverse());
+</script>
+
+
+<hr/>
+<script>
+    var a = ['I ','am','a','student'];
+    document.write(a);
+</script>
+
+<hr/>
+<script>
+    var arr = ['aa','bb','cc','dd','ee'];
+    document.write(arr+'<br/>');
+    arr.pop();//移除最后一个数组元素
+    document.write(arr+'<br/>');
+    arr.shift();//移除第一个数组元素
+    document.write(arr+'<br/>');
+    arr.push('e');//加入元素到末尾
+    document.write(arr+'<br/>');
+    arr.unshift('a');//加入到元素开头
+    document.write(arr+'<br/>');
+</script>
+
+</body>
+</html>
+

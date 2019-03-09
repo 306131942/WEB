@@ -1,0 +1,15 @@
+1、
+JSP与PHP、ASP、ASP.NET等语言类似，运行在服务端的语言。
+JSP（全称Java Server Pages）是由Sun Microsystems公司倡导和许多公司参与共同创建的一种
+使软件开发者可以响应客户端请求，而动态生成HTML、XML或其他格式文档的Web网页的技术标准。
+JSP技术是以Java语言作为脚本语言的，JSP网页为整个服务器端的Java库单元提供了一个接口来
+服务于HTTP的应用程序。
+JSP文件后缀名为(*.jsp)。
+JSP开发的WEB应用可以跨平台使用，既可以运行在Linux上也能运行在Window上。
+
+2、jsp的指令
+语法：<%@ 指令名 属性=“属性值”%>
+page指令
+include指令<%@ include file="" %>//指令元素（静态包含）
+                  <jsp:include flush="true" page=""></jsp:include>//行为元素(动态包含)
+taglib指令

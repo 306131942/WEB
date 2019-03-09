@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-cn"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><script src="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/analytics.js" async=""></script>
+<meta charset="utf-8">
+<title>纯CSS气泡框实现方法探究 - 倒霉熊 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/bundle-darkgreentrip.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/daxiong/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/daxiong/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/daxiong/wlwmanifest.xml">
+<script src="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'daxiong', cb_enable_mathjax=false;</script>
+<script src="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/blog-common.js" type="text/javascript"></script>
+<style type="text/css">
+.c_ad_block,[id^="div-gpt-ad-"],#ibanner {display:none!important;display:none}</style>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/daxiong/"><img id="blogLogo" src="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/daxiong/">倒霉熊</a></h1>
+<h2>是灯泡总会发光的！</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="MyLinks1_HomeLink" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="MyLinks1_MyHomeLink" class="menu" href="http://www.cnblogs.com/daxiong/">首页</a></li>
+<li><a id="MyLinks1_NewPostLink" class="menu" rel="nofollow" href="http://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="MyLinks1_ContactLink" class="menu" rel="nofollow" href="http://msg.cnblogs.com/send/%E5%80%92%E9%9C%89%E7%86%8A">联系</a></li>
+<li><a id="MyLinks1_Syndication" class="menu" href="http://www.cnblogs.com/daxiong/rss">订阅</a>
+<!--<a id="MyLinks1_XMLLink" class="aHeaderXML" href="http://www.cnblogs.com/daxiong/rss"><img src="http://www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="MyLinks1_Admin" class="menu" rel="nofollow" href="http://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			
+<!--done-->
+随笔- 0&nbsp;
+文章- 25&nbsp;
+评论- 4&nbsp;
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/daxiong/articles/3158630.html">纯CSS气泡框实现方法探究</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p>气泡框（或者提示框）是网页中一种很常见的元素，大多用来展示提示信息，如下图所示：</p>
+<p><img src="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/27135746-85abb8f6c7454f48a62b44a1e908bf02.png" alt=""></p>
+<p>拆分来看，形如这种气泡框无外乎就是一个矩形框+一个指示方向的三角形小箭头，要制作出这样的气泡框，如果解决了三角形小箭头就容易了。一种方法就
+是制作这样一个三角形箭头的图片，然后定位在矩形框上。但这种解决办法在后期更改气泡框会很不方便，可能每修改一次气泡框都要重新制作一个三角形小图标。
+如果我们能够直接用HTML和CSS代码实现这样一个三角形小箭头一切都迎刃而解了。</p>
+<p>首先我们来看一下border这个属性，当我们把一个div的border-color设为不同值的时候，可以看到四边都成了一个梯形。</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_973579" class="syntaxhighlighter  css"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="css plain"># test{</code><code class="css keyword">width</code><code class="css plain">:</code><code class="css value">50px</code><code class="css plain">; </code><code class="css keyword">height</code><code class="css plain">:</code><code class="css value">50px</code><code class="css plain">; </code><code class="css keyword">border-width</code><code class="css plain">:</code><code class="css value">50px</code><code class="css plain">; </code><code class="css keyword">border-style</code><code class="css plain">:</code><code class="css value">solid</code><code class="css plain">; </code><code class="css keyword">border-color</code><code class="css plain">:</code><code class="css value">#09F</code> <code class="css value">#990</code> <code class="css value">#933</code> <code class="css value">#0C9</code><code class="css plain">;}</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p><img src="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/27135955-aaa1f2752d73462aadea82e292475eba.png" alt="">&nbsp;</p>
+<p>如果我们继续把这个div的width和height都设为0，可以看到四边都成了一个三角形。</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_758477" class="syntaxhighlighter  css"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="css plain"># test{</code><code class="css keyword">width</code><code class="css plain">:</code><code class="css value">0</code><code class="css plain">; </code><code class="css keyword">height</code><code class="css plain">:</code><code class="css value">0</code><code class="css plain">; </code><code class="css keyword">border-width</code><code class="css plain">:</code><code class="css value">75px</code><code class="css plain">; </code><code class="css keyword">border-style</code><code class="css plain">:</code><code class="css value">solid</code><code class="css plain">; </code><code class="css keyword">border-color</code><code class="css plain">:</code><code class="css value">#09F</code> <code class="css value">#990</code> <code class="css value">#933</code> <code class="css value">#0C9</code><code class="css plain">;}</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p><img src="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/27140105-00e0731396f14261989ffef09b394f6a.png" alt="">&nbsp;</p>
+<p>在主流浏览器中检测一下，发现IE6中存在一个小问题，上下边能形成三角形，左右两边仍然还是梯形</p>
+<p><img src="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/27140155-447ee9befd8040d0bd0b2fb68c0cc89c.png" alt=""></p>
+<p>通过实验发现当把div的font-size和line-height都设为0的时候，div的四边在IE6下都能形成完美的三角形：</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_740301" class="syntaxhighlighter  css"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="css plain">#test{ </code><code class="css keyword">width</code><code class="css plain">:</code><code class="css value">0</code><code class="css plain">; </code><code class="css keyword">height</code><code class="css plain">:</code><code class="css value">0</code><code class="css plain">; </code><code class="css keyword">border-width</code><code class="css plain">:</code><code class="css value">75px</code><code class="css plain">; </code><code class="css keyword">border-style</code><code class="css plain">:</code><code class="css value">solid</code><code class="css plain">; </code><code class="css keyword">border-color</code><code class="css plain">:</code><code class="css value">#09F</code> <code class="css value">#990</code> <code class="css value">#933</code> <code class="css value">#0C9</code><code class="css plain">; </code><code class="css keyword">font-size</code><code class="css plain">:</code><code class="css value">0</code><code class="css plain">; </code><code class="css keyword">line-height</code><code class="css plain">:</code><code class="css value">0</code><code class="css plain">;} </code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p><img src="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/27140233-5b3d1d5d8a664ac2a1df177c0bb3be9e.png" alt=""></p>
+<p>很显然我们只需要其中的一个三角形，那么只需要将其他三边的color设置为透明或者跟页面背景一样的颜色，就能模拟出一个三角来，推荐将其他三边
+颜色设置为透明，即color的值为transparent，如果其他三边颜色跟页面背景一样，虽然视觉上只能看到一个三角，但背景颜色一旦改变，其他三
+边颜色也要随之改变。</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_542692" class="syntaxhighlighter  css"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="css plain">#test{ </code><code class="css keyword">width</code><code class="css plain">:</code><code class="css value">0</code><code class="css plain">; </code><code class="css keyword">height</code><code class="css plain">:</code><code class="css value">0</code><code class="css plain">; </code><code class="css keyword">border-width</code><code class="css plain">:</code><code class="css value">75px</code><code class="css plain">; </code><code class="css keyword">border-style</code><code class="css plain">:</code><code class="css value">solid</code><code class="css plain">; </code><code class="css keyword">border-color</code><code class="css plain">:</code><code class="css value">#09F</code> <code class="css value">transparent</code> <code class="css value">transparent</code><code class="css plain">; </code><code class="css keyword">font-size</code><code class="css plain">:</code><code class="css value">0</code><code class="css plain">; </code><code class="css keyword">line-height</code><code class="css plain">:</code><code class="css value">0</code><code class="css plain">;}</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p><img src="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/27140346-dd09209ce9b74634bb329a5c977d8cd0.png" alt=""></p>
+<p>&nbsp;问题又来了，IE6下transparent无效！其他三边被设置成默认的黑色了。</p>
+<p><img src="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/27140409-453ea666963841138c626205019f8169.png" alt=""></p>
+<p>但通过实验发现把border-style设置为dashed后，IE6下其他三边就能透明了！</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_253006" class="syntaxhighlighter  css"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="css plain">#test{ </code><code class="css keyword">width</code><code class="css plain">:</code><code class="css value">0</code><code class="css plain">; </code><code class="css keyword">height</code><code class="css plain">:</code><code class="css value">0</code><code class="css plain">; </code><code class="css keyword">border-width</code><code class="css plain">:</code><code class="css value">75px</code><code class="css plain">; </code><code class="css keyword">border-style</code><code class="css plain">:</code><code class="css value">solid</code> <code class="css value">dashed</code> <code class="css value">dashed</code><code class="css plain">; </code><code class="css keyword">border-color</code><code class="css plain">:</code><code class="css value">#09F</code> <code class="css value">transparent</code> <code class="css value">transparent</code><code class="css plain">; </code><code class="css keyword">font-size</code><code class="css plain">:</code><code class="css value">0</code><code class="css plain">; </code><code class="css keyword">line-height</code><code class="css plain">:</code><code class="css value">0</code><code class="css plain">;}</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>&nbsp;到这一步我们已经成功的模拟出了一个小三角，下一步我们把这个小三角同矩形框结合起来。先设置一个矩形框，然后把小三角定位到矩形框上。先来写出HTML结构：</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_448850" class="syntaxhighlighter  html"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="html plain">&lt;</code><code class="html keyword">div</code> <code class="html plain">class="tag"&gt;</code></div><div class="line number2 index1 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">em</code><code class="html plain">&gt;&lt;/</code><code class="html keyword">em</code><code class="html plain">&gt;&nbsp;&nbsp;&nbsp; </code></div><div class="line number3 index2 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">CSS气泡框实现</code></div><div class="line number4 index3 alt1"><code class="html plain">&lt;/</code><code class="html keyword">div</code><code class="html plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>CSS样式：</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_238270" class="syntaxhighlighter  css"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="css plain">.tag{ </code><code class="css keyword">width</code><code class="css plain">:</code><code class="css value">300px</code><code class="css plain">; </code><code class="css keyword">height</code><code class="css plain">:</code><code class="css value">100px</code><code class="css plain">; </code><code class="css keyword">border</code><code class="css plain">:</code><code class="css value">5px</code> <code class="css value">solid</code> <code class="css value">#09F</code><code class="css plain">; </code><code class="css keyword">position</code><code class="css plain">:</code><code class="css value">relative</code><code class="css plain">;}</code></div><div class="line number2 index1 alt1"><code class="css plain">.tag em{</code><code class="css keyword">display</code><code class="css plain">:</code><code class="css value">block</code><code class="css plain">; </code><code class="css keyword">border-width</code><code class="css plain">:</code><code class="css value">20px</code><code class="css plain">; </code><code class="css keyword">position</code><code class="css plain">:</code><code class="css value">absolute</code><code class="css plain">; </code><code class="css keyword">bottom</code><code class="css plain">:</code><code class="css value">-40px</code><code class="css plain">; </code><code class="css keyword">left</code><code class="css plain">:</code><code class="css value">100px</code><code class="css plain">;</code><code class="css keyword">border-style</code><code class="css plain">:</code><code class="css value">solid</code> <code class="css value">dashed</code> <code class="css value">dashed</code><code class="css plain">; </code><code class="css keyword">border-color</code><code class="css plain">:</code><code class="css value">#09F</code> <code class="css value">transparent</code> <code class="css value">transparent</code><code class="css plain">;</code><code class="css keyword">font-size</code><code class="css plain">:</code><code class="css value">0</code><code class="css plain">; </code><code class="css keyword">line-height</code><code class="css plain">:</code><code class="css value">0</code><code class="css plain">;}</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>&nbsp;效果如下：</p>
+<p><img src="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/27140650-0278f388c94d4d269f0da7e999e6c6c7.png" alt=""></p>
+<p>现在指示方向的三角形箭头是实心的，而我们想要的是镂空的效果，这里我们再叠加一个同气泡框背景颜色一样的小三角，然后把这个叠加的小三角移动一下位置就能达到了。<br>首先需要对HTML结构进行调整，如下：</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_717320" class="syntaxhighlighter  html"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="html plain">&lt;</code><code class="html keyword">div</code> <code class="html plain">class="tag"&gt;</code></div><div class="line number2 index1 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">em</code><code class="html plain">&gt;&lt;/</code><code class="html keyword">em</code><code class="html plain">&gt;&nbsp;&nbsp;&nbsp; </code></div><div class="line number3 index2 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">span</code><code class="html plain">&gt;&lt;/</code><code class="html keyword">span</code><code class="html plain">&gt;</code></div><div class="line number4 index3 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">CSS气泡框实现</code></div><div class="line number5 index4 alt2"><code class="html plain">&lt;/</code><code class="html keyword">div</code><code class="html plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>CSS样式修改为：</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_162780" class="syntaxhighlighter  css"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="css plain">.tag{ </code><code class="css keyword">width</code><code class="css plain">:</code><code class="css value">300px</code><code class="css plain">; </code><code class="css keyword">height</code><code class="css plain">:</code><code class="css value">100px</code><code class="css plain">; </code><code class="css keyword">border</code><code class="css plain">:</code><code class="css value">5px</code> <code class="css value">solid</code> <code class="css value">#09F</code><code class="css plain">; </code><code class="css keyword">position</code><code class="css plain">:</code><code class="css value">relative</code><code class="css plain">; </code><code class="css keyword">background-color</code><code class="css plain">:</code><code class="css value">#FFF</code><code class="css plain">;}</code></div><div class="line number2 index1 alt1"><code class="css plain">.tag em{</code><code class="css keyword">display</code><code class="css plain">:</code><code class="css value">block</code><code class="css plain">; </code><code class="css keyword">border-width</code><code class="css plain">:</code><code class="css value">20px</code><code class="css plain">; </code><code class="css keyword">position</code><code class="css plain">:</code><code class="css value">absolute</code><code class="css plain">; </code><code class="css keyword">bottom</code><code class="css plain">:</code><code class="css value">-40px</code><code class="css plain">; </code><code class="css keyword">left</code><code class="css plain">:</code><code class="css value">100px</code><code class="css plain">;</code><code class="css keyword">border-style</code><code class="css plain">:</code><code class="css value">solid</code> <code class="css value">dashed</code> <code class="css value">dashed</code><code class="css plain">; </code><code class="css keyword">border-color</code><code class="css plain">:</code><code class="css value">#09F</code> <code class="css value">transparent</code> <code class="css value">transparent</code><code class="css plain">;</code><code class="css keyword">font-size</code><code class="css plain">:</code><code class="css value">0</code><code class="css plain">; </code><code class="css keyword">line-height</code><code class="css plain">:</code><code class="css value">0</code><code class="css plain">;}</code></div><div class="line number3 index2 alt2"><code class="css plain">.tag span{</code><code class="css keyword">display</code><code class="css plain">:</code><code class="css value">block</code><code class="css plain">; </code><code class="css keyword">border-width</code><code class="css plain">:</code><code class="css value">20px</code><code class="css plain">; </code><code class="css keyword">position</code><code class="css plain">:</code><code class="css value">absolute</code><code class="css plain">; </code><code class="css keyword">bottom</code><code class="css plain">:</code><code class="css value">-33px</code><code class="css plain">; </code><code class="css keyword">left</code><code class="css plain">:</code><code class="css value">100px</code><code class="css plain">;</code><code class="css keyword">border-style</code><code class="css plain">:</code><code class="css value">solid</code> <code class="css value">dashed</code> <code class="css value">dashed</code><code class="css plain">; </code><code class="css keyword">border-color</code><code class="css plain">:</code><code class="css value">#FFF</code> <code class="css value">transparent</code> <code class="css value">transparent</code><code class="css plain">;</code><code class="css keyword">font-size</code><code class="css plain">:</code><code class="css value">0</code><code class="css plain">; </code><code class="css keyword">line-height</code><code class="css plain">:</code><code class="css value">0</code><code class="css plain">;}</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>最终效果如下所示：</p>
+<p><img src="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/27140929-1fb65137a64c43da98b56ffeab3923cc.png" alt=""></p>
+<p>注意：叠加的小三角span的bottom值并不是border-width的值，两个小三角bottom的差值理论上应该是2(border-width)<sup>2</sup>的平方根</p>
+<p><img src="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/27141342-86373016c6244abea59acb416f4b74af.jpg" alt=""></p>
+<p>最后来把代码优化一下，以便在后期更容易维护，完整的HTML结构：</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_800521" class="syntaxhighlighter  html"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="html plain">&lt;</code><code class="html keyword">div</code> <code class="html plain">class="tag"&gt;</code></div><div class="line number2 index1 alt1"><code class="html spaces">&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">div</code> <code class="html plain">class="arrow"&gt;</code></div><div class="line number3 index2 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">em</code><code class="html plain">&gt;&lt;/</code><code class="html keyword">em</code><code class="html plain">&gt;&lt;</code><code class="html keyword">span</code><code class="html plain">&gt;&lt;/</code><code class="html keyword">span</code><code class="html plain">&gt;</code></div><div class="line number4 index3 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;/</code><code class="html keyword">div</code><code class="html plain">&gt;</code></div><div class="line number5 index4 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">CSS气泡框实现</code></div><div class="line number6 index5 alt1"><code class="html plain">&lt;/</code><code class="html keyword">div</code><code class="html plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>CSS样式修改为：</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_324680" class="syntaxhighlighter  css"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="css plain">.tag{ </code><code class="css keyword">width</code><code class="css plain">:</code><code class="css value">300px</code><code class="css plain">; </code><code class="css keyword">height</code><code class="css plain">:</code><code class="css value">100px</code><code class="css plain">; </code><code class="css keyword">border</code><code class="css plain">:</code><code class="css value">5px</code> <code class="css value">solid</code> <code class="css value">#09F</code><code class="css plain">; </code><code class="css keyword">position</code><code class="css plain">:</code><code class="css value">relative</code><code class="css plain">; </code><code class="css keyword">background-color</code><code class="css plain">:</code><code class="css value">#FFF</code><code class="css plain">;}</code></div><div class="line number2 index1 alt1"><code class="css plain">.arrow{ </code><code class="css keyword">position</code><code class="css plain">:</code><code class="css value">absolute</code><code class="css plain">; </code><code class="css keyword">width</code><code class="css plain">:</code><code class="css value">40px</code><code class="css plain">; </code><code class="css keyword">height</code><code class="css plain">:</code><code class="css value">40px</code><code class="css plain">; </code><code class="css keyword">bottom</code><code class="css plain">:</code><code class="css value">-40px</code><code class="css plain">; </code><code class="css keyword">left</code><code class="css plain">:</code><code class="css value">100px</code><code class="css plain">; }</code></div><div class="line number3 index2 alt2"><code class="css plain">.arrow *{ </code><code class="css keyword">display</code><code class="css plain">:</code><code class="css value">block</code><code class="css plain">; </code><code class="css keyword">border-width</code><code class="css plain">:</code><code class="css value">20px</code><code class="css plain">; </code><code class="css keyword">position</code><code class="css plain">:</code><code class="css value">absolute</code><code class="css plain">; </code><code class="css keyword">border-style</code><code class="css plain">:</code><code class="css value">solid</code> <code class="css value">dashed</code> <code class="css value">dashed</code> <code class="css value">dashed</code><code class="css plain">; </code><code class="css keyword">font-size</code><code class="css plain">:</code><code class="css value">0</code><code class="css plain">; </code><code class="css keyword">line-height</code><code class="css plain">:</code><code class="css value">0</code><code class="css plain">; }</code></div><div class="line number4 index3 alt1"><code class="css plain">.arrow em{</code><code class="css keyword">border-color</code><code class="css plain">:</code><code class="css value">#09F</code> <code class="css value">transparent</code> <code class="css value">transparent</code><code class="css plain">;}</code></div><div class="line number5 index4 alt2"><code class="css plain">.arrow span{</code><code class="css keyword">border-color</code><code class="css plain">:</code><code class="css value">#FFF</code> <code class="css value">transparent</code> <code class="css value">transparent</code><code class="css plain">; </code><code class="css keyword">top</code><code class="css plain">:</code><code class="css value">-7px</code><code class="css plain">;} </code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p><img src="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/27141534-f457141016864329a010b9151b167c09.png" alt="">&nbsp;</p>
+<p>&nbsp;举一反三：不规则三角箭头的气泡框又如何实现？</p>
+<p>&nbsp;<img src="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/27141603-fa1e89b3bee84e4c9adaa77d133ffb3a.png" alt=""></p>
+<p>HTML结构同前面一样：</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_450555" class="syntaxhighlighter  html"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="html plain">&lt;</code><code class="html keyword">div</code> <code class="html plain">class="tag"&gt;</code></div><div class="line number2 index1 alt1"><code class="html spaces">&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">div</code> <code class="html plain">class="arrow"&gt;</code></div><div class="line number3 index2 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">em</code><code class="html plain">&gt;&lt;/</code><code class="html keyword">em</code><code class="html plain">&gt;&lt;</code><code class="html keyword">span</code><code class="html plain">&gt;&lt;/</code><code class="html keyword">span</code><code class="html plain">&gt;</code></div><div class="line number4 index3 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;/</code><code class="html keyword">div</code><code class="html plain">&gt;</code></div><div class="line number5 index4 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">CSS气泡框实现</code></div><div class="line number6 index5 alt1"><code class="html plain">&lt;/</code><code class="html keyword">div</code><code class="html plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>矩形框CSS样式稍微改动一下：</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_647092" class="syntaxhighlighter  css"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="css plain">.tag{ </code><code class="css keyword">width</code><code class="css plain">:</code><code class="css value">300px</code><code class="css plain">; </code><code class="css keyword">height</code><code class="css plain">:</code><code class="css value">100px</code><code class="css plain">;</code><code class="css keyword">position</code><code class="css plain">:</code><code class="css value">relative</code><code class="css plain">; </code><code class="css keyword">background-color</code><code class="css plain">:</code><code class="css value">#09F</code><code class="css plain">;}</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>&nbsp;重新定位一下三角箭头：</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_664983" class="syntaxhighlighter  css"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="css plain">.arrow{ </code><code class="css keyword">position</code><code class="css plain">:</code><code class="css value">absolute</code><code class="css plain">; </code><code class="css keyword">width</code><code class="css plain">:</code><code class="css value">70px</code><code class="css plain">; </code><code class="css keyword">height</code><code class="css plain">:</code><code class="css value">60px</code><code class="css plain">; </code><code class="css keyword">left</code><code class="css plain">:</code><code class="css value">-70px</code><code class="css plain">; </code><code class="css keyword">bottom</code><code class="css plain">:</code><code class="css value">10px</code><code class="css plain">;}</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>元素相邻的两边border-style值设为solid（显示），另两边设为transparent（不会显示）</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_742931" class="syntaxhighlighter  css"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="css plain">.arrow *{ </code><code class="css keyword">display</code><code class="css plain">:</code><code class="css value">block</code><code class="css plain">; </code><code class="css keyword">position</code><code class="css plain">:</code><code class="css value">absolute</code><code class="css plain">; </code><code class="css keyword">border-style</code><code class="css plain">:</code><code class="css value">dashed</code> <code class="css value">solid</code> <code class="css value">solid</code> <code class="css value">dashed</code><code class="css plain">; </code><code class="css keyword">font-size</code><code class="css plain">:</code><code class="css value">0</code><code class="css plain">; </code><code class="css keyword">line-height</code><code class="css plain">:</code><code class="css value">0</code><code class="css plain">; }</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>首先模拟一个直角三角形，把一个元素的相邻两边color设为相同的值，另外两边颜色设为透明，即可得到一个直角：</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_742992" class="syntaxhighlighter  css"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="css plain">.arrow em{</code><code class="css keyword">border-color</code><code class="css plain">:</code><code class="css value">transparent</code> <code class="css value">#09F</code> <code class="css value">#09F</code> <code class="css value">transparent</code><code class="css plain">; </code><code class="css keyword">border-width</code><code class="css plain">:</code><code class="css value">30px</code> <code class="css value">35px</code><code class="css plain">;}</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>&nbsp;<img src="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/27171828-b0bd5c465bd74639945e72007dd11feb.jpg" alt=""></p>
+<p>把两个直角三角形重叠在一起就可以得到一个不规则三角形</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_45450" class="syntaxhighlighter  css"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="css plain">.arrow span{ </code><code class="css keyword">border-width</code><code class="css plain">:</code><code class="css value">20px</code> <code class="css value">35px</code><code class="css plain">;</code><code class="css keyword">border-color</code><code class="css plain">:</code><code class="css value">transparent</code> <code class="css value">#FFF</code> <code class="css value">#FFF</code> <code class="css value">transparent</code><code class="css plain">; </code><code class="css keyword">bottom</code><code class="css plain">:</code><code class="css value">0</code><code class="css plain">;}</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p><img src="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/27173638-57063cb1878f4d2c82c4beee0fc51873.jpg" alt=""></p>
+<p>至此，不规则三角箭头的气泡框效果已经实现。</p>
+<p><img src="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/27173839-80e772024c43456eaf5229fdec4025c2.png" alt=""></p>
+<p>除了通过设置元素的border来模拟小三角之外，还可以用特殊字符来模拟，用特殊字符模拟小三角同样需要用到定位和重叠覆盖，只不过不需要调整border属性了。</p>
+<p>先来看一个菱形“◆” ，它在页面中的代码是“&amp;#9670”，需要注意的是页面编码需要设置为utf-8，在网页中可以把◆当作文字处理，可以通过调整font-size来它的大小、通过color来设置它的颜色。</p>
+<p>HTML结构依然用前面的，不同的是在em、span标签中加入了 ◆</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_87645" class="syntaxhighlighter  html"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="html plain">&lt;</code><code class="html keyword">div</code> <code class="html plain">class="tag"&gt;</code></div><div class="line number2 index1 alt1"><code class="html spaces">&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">div</code> <code class="html plain">class="arrow"&gt;</code></div><div class="line number3 index2 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;</code><code class="html keyword">em</code><code class="html plain">&gt;◆&lt;/</code><code class="html keyword">em</code><code class="html plain">&gt;&lt;</code><code class="html keyword">span</code><code class="html plain">&gt;◆&lt;/</code><code class="html keyword">span</code><code class="html plain">&gt;</code></div><div class="line number4 index3 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">&lt;/</code><code class="html keyword">div</code><code class="html plain">&gt;</code></div><div class="line number5 index4 alt2"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">CSS气泡框实现</code></div><div class="line number6 index5 alt1"><code class="html plain">&lt;/</code><code class="html keyword">div</code><code class="html plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>先来设置最外层div的样式，得到一个矩形框：</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_549655" class="syntaxhighlighter  css"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="css plain">.tag{ </code><code class="css keyword">width</code><code class="css plain">:</code><code class="css value">300px</code><code class="css plain">; </code><code class="css keyword">height</code><code class="css plain">:</code><code class="css value">100px</code><code class="css plain">;</code><code class="css keyword">position</code><code class="css plain">:</code><code class="css value">relative</code><code class="css plain">; </code><code class="css keyword">border</code><code class="css plain">:</code><code class="css value">5px</code> <code class="css value">solid</code> <code class="css value">#09F</code><code class="css plain">;} </code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>&nbsp;<img src="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/27173957-b8573dfb6bc840cda65bdbe8dff99032.png" alt=""></p>
+<p>接着定位箭头最外层容器div，便于观察可以先设置一个背景色 ：&nbsp;</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_101911" class="syntaxhighlighter  css"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="css plain">.arrow{ </code><code class="css keyword">position</code><code class="css plain">:</code><code class="css value">absolute</code><code class="css plain">; </code><code class="css keyword">width</code><code class="css plain">:</code><code class="css value">40px</code><code class="css plain">; </code><code class="css keyword">height</code><code class="css plain">:</code><code class="css value">40px</code><code class="css plain">; </code><code class="css keyword">left</code><code class="css plain">:</code><code class="css value">100px</code><code class="css plain">; </code><code class="css keyword">bottom</code><code class="css plain">:</code><code class="css value">-40px</code><code class="css plain">; </code><code class="css keyword">overflow</code><code class="css plain">:</code><code class="css value">hidden</code><code class="css plain">;}</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p><img src="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/27174050-30d1ec8c3c784d9abac45b4fb266ea96.png" alt="">&nbsp;</p>
+<p>再对◆设置样式：</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_377561" class="syntaxhighlighter  css"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="css plain">.arrow *{ </code><code class="css keyword">display</code><code class="css plain">:</code><code class="css value">block</code><code class="css plain">; </code><code class="css keyword">position</code><code class="css plain">:</code><code class="css value">absolute</code><code class="css plain">; </code><code class="css keyword">font-size</code><code class="css plain">:</code><code class="css value">40px</code><code class="css plain">; </code><code class="css keyword">line-height</code><code class="css plain">:</code><code class="css value">40px</code><code class="css plain">; </code><code class="css keyword">width</code><code class="css plain">:</code><code class="css value">40px</code><code class="css plain">; </code><code class="css keyword">font-family</code><code class="css plain">:SimSun; </code><code class="css keyword">font-style</code><code class="css plain">:</code><code class="css value">normal</code><code class="css plain">; </code><code class="css keyword">font-weight</code><code class="css plain">:</code><code class="css value">normal</code><code class="css plain">; </code><code class="css keyword">text-align</code><code class="css plain">:</code><code class="css value">center</code><code class="css plain">; </code><code class="css keyword">vertical-align</code><code class="css plain">:</code><code class="css value">middle</code><code class="css plain">;}</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>&nbsp;<img src="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/27174149-a6d66657cbb04bb48f74a62f7746d105.png" alt=""></p>
+<p>注意：为了◆主流浏览器中显示一致，需要清除浏览器的默认字体样式，特别注意这里字体的设置</p>
+<p>再分别修改em、span标签的字体颜色，并对这两个标签定位：</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_185159" class="syntaxhighlighter  css"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="css plain">.arrow em{ </code><code class="css keyword">color</code><code class="css plain">:</code><code class="css value">#09F</code><code class="css plain">; </code><code class="css keyword">top</code><code class="css plain">:</code><code class="css value">-15px</code><code class="css plain">;}</code></div><div class="line number2 index1 alt1"><code class="css plain">.arrow span{ </code><code class="css keyword">color</code><code class="css plain">:</code><code class="css value">#FFF</code><code class="css plain">; </code><code class="css keyword">top</code><code class="css plain">:</code><code class="css value">-22px</code><code class="css plain">;}</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>&nbsp;<img src="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/27174330-3d10fdb16a204292b0a7a6262ebcfa99.png" alt=""></p>
+<p>注意：该例子中em和span两个元素垂直方向相差约7px，原来同上面提到的一样，差值理论上应该是2(border-width)2的平方根</p>
+<p>完整CSS样式：</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_372295" class="syntaxhighlighter  css"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="css plain">.tag{ </code><code class="css keyword">width</code><code class="css plain">:</code><code class="css value">300px</code><code class="css plain">; </code><code class="css keyword">height</code><code class="css plain">:</code><code class="css value">100px</code><code class="css plain">;</code><code class="css keyword">position</code><code class="css plain">:</code><code class="css value">relative</code><code class="css plain">; </code><code class="css keyword">border</code><code class="css plain">:</code><code class="css value">5px</code> <code class="css value">solid</code> <code class="css value">#09F</code><code class="css plain">;}</code></div><div class="line number2 index1 alt1"><code class="css plain">.arrow{ </code><code class="css keyword">position</code><code class="css plain">:</code><code class="css value">absolute</code><code class="css plain">; </code><code class="css keyword">width</code><code class="css plain">:</code><code class="css value">40px</code><code class="css plain">; </code><code class="css keyword">height</code><code class="css plain">:</code><code class="css value">40px</code><code class="css plain">; </code><code class="css keyword">left</code><code class="css plain">:</code><code class="css value">100px</code><code class="css plain">; </code><code class="css keyword">bottom</code><code class="css plain">:</code><code class="css value">-40px</code><code class="css plain">; </code><code class="css keyword">overflow</code><code class="css plain">:</code><code class="css value">hidden</code><code class="css plain">;}</code></div><div class="line number3 index2 alt2"><code class="css plain">.arrow *{ </code><code class="css keyword">display</code><code class="css plain">:</code><code class="css value">block</code><code class="css plain">; </code><code class="css keyword">position</code><code class="css plain">:</code><code class="css value">absolute</code><code class="css plain">; </code><code class="css keyword">font-size</code><code class="css plain">:</code><code class="css value">40px</code><code class="css plain">; </code><code class="css keyword">line-height</code><code class="css plain">:</code><code class="css value">40px</code><code class="css plain">; </code><code class="css keyword">width</code><code class="css plain">:</code><code class="css value">40px</code><code class="css plain">;</code><code class="css keyword">font-family</code><code class="css plain">:SimSun; </code><code class="css keyword">font-style</code><code class="css plain">:</code><code class="css value">normal</code><code class="css plain">; </code><code class="css keyword">font-weight</code><code class="css plain">:</code><code class="css value">normal</code><code class="css plain">;</code><code class="css keyword">text-align</code><code class="css plain">:</code><code class="css value">center</code><code class="css plain">; </code><code class="css keyword">vertical-align</code><code class="css plain">:</code><code class="css value">middle</code><code class="css plain">;}</code></div><div class="line number4 index3 alt1"><code class="css plain">.arrow em{ </code><code class="css keyword">color</code><code class="css plain">:</code><code class="css value">#09F</code><code class="css plain">; </code><code class="css keyword">top</code><code class="css plain">:</code><code class="css value">-15px</code><code class="css plain">;}</code></div><div class="line number5 index4 alt2"><code class="css plain">.arrow span{ </code><code class="css keyword">color</code><code class="css plain">:</code><code class="css value">#FFF</code><code class="css plain">; </code><code class="css keyword">top</code><code class="css plain">:</code><code class="css value">-22px</code><code class="css plain">;}</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>最终效果如下：</p>
+<p><img src="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/27174509-770883fa209045a294b56f1d4b972e33.png" alt="">&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;HTML特殊字符查询：<a href="http://ikwebdesigner.com/special-characters/">http://ikwebdesigner.com/special-characters/</a></p>
+<p>&nbsp;</p>
+<p>补充：以上方式实现小三角的过程中不可避免的增加了多余的标签，如果不要求所有浏览器中显示一致的话，&nbsp;我们可以利用css3来实现这个小三角</p>
+<p>HTML结构：</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_701268" class="syntaxhighlighter  html"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="html plain">&lt;</code><code class="html keyword">div</code> <code class="html plain">class="tag"&gt;</code></div><div class="line number2 index1 alt1"><code class="html spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="html plain">css3气泡框</code></div><div class="line number3 index2 alt2"><code class="html plain">&lt;/</code><code class="html keyword">div</code><code class="html plain">&gt;</code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>CSS:</p>
+<div class="cnblogs_Highlighter sh-gutter">
+<div><div id="highlighter_915251" class="syntaxhighlighter  css"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="css plain">.tag{ </code></div><div class="line number2 index1 alt1"><code class="css spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="css keyword">width</code><code class="css plain">:</code><code class="css value">300px</code><code class="css plain">;</code></div><div class="line number3 index2 alt2"><code class="css spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="css keyword">height</code><code class="css plain">:</code><code class="css value">100px</code><code class="css plain">;</code></div><div class="line number4 index3 alt1"><code class="css spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="css keyword">border</code><code class="css plain">:</code><code class="css value">5px</code> <code class="css value">solid</code> <code class="css value">#09F</code><code class="css plain">; </code></div><div class="line number5 index4 alt2"><code class="css spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="css keyword">position</code><code class="css plain">:</code><code class="css value">relative</code><code class="css plain">;</code></div><div class="line number6 index5 alt1"><code class="css spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="css keyword">background-color</code><code class="css plain">:</code><code class="css value">#FFF</code><code class="css plain">;</code></div><div class="line number7 index6 alt2"><code class="css plain">} </code></div><div class="line number8 index7 alt1"><code class="css plain">.tag:before,.tag:after{</code></div><div class="line number9 index8 alt2"><code class="css spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="css keyword">content</code><code class="css plain">:</code><code class="css string">""</code><code class="css plain">;</code><code class="css keyword">display</code><code class="css plain">:</code><code class="css value">block</code><code class="css plain">; </code></div><div class="line number10 index9 alt1"><code class="css spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="css keyword">border-width</code><code class="css plain">:</code><code class="css value">20px</code><code class="css plain">; </code></div><div class="line number11 index10 alt2"><code class="css spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="css keyword">position</code><code class="css plain">:</code><code class="css value">absolute</code><code class="css plain">; </code><code class="css keyword">bottom</code><code class="css plain">:</code><code class="css value">-40px</code><code class="css plain">;</code></div><div class="line number12 index11 alt1"><code class="css spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="css keyword">left</code><code class="css plain">:</code><code class="css value">100px</code><code class="css plain">;</code></div><div class="line number13 index12 alt2"><code class="css spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="css keyword">border-style</code><code class="css plain">:</code><code class="css value">solid</code> <code class="css value">dashed</code> <code class="css value">dashed</code><code class="css plain">;</code></div><div class="line number14 index13 alt1"><code class="css spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="css keyword">border-color</code><code class="css plain">:</code><code class="css value">#09F</code> <code class="css value">transparent</code> <code class="css value">transparent</code><code class="css plain">;</code></div><div class="line number15 index14 alt2"><code class="css spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="css keyword">font-size</code><code class="css plain">:</code><code class="css value">0</code><code class="css plain">; </code></div><div class="line number16 index15 alt1"><code class="css spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="css keyword">line-height</code><code class="css plain">:</code><code class="css value">0</code><code class="css plain">;</code></div><div class="line number17 index16 alt2"><code class="css plain">}</code></div><div class="line number18 index17 alt1"><code class="css plain">.tag:after{</code></div><div class="line number19 index18 alt2"><code class="css spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="css keyword">bottom</code><code class="css plain">:</code><code class="css value">-33px</code><code class="css plain">;</code></div><div class="line number20 index19 alt1"><code class="css spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="css keyword">border-color</code><code class="css plain">:</code><code class="css value">#FFF</code> <code class="css value">transparent</code> <code class="css value">transparent</code><code class="css plain">;</code></div><div class="line number21 index20 alt2"><code class="css plain">} </code></div></div></td></tr></tbody></table></div></div>
+</div>
+<p>效果同上。&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory">分类: <a href="http://www.cnblogs.com/daxiong/category/244450.html">CSS</a></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/daxiong/tag/css/">css</a></div>
+<div id="blog_post_info"><div id="green_channel">
+绿色通道：
+<a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(3158630,cb_blogId,1);green_channel_success(this,'谢谢推荐！');">好文要顶</a>
+<a id="green_channel_follow" onclick="c_follow();" href="javascript:void(0);">关注我</a>
+<a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a><a id="green_channel_contact" href="http://msg.cnblogs.com/send/%E5%80%92%E9%9C%89%E7%86%8A" target="_blank">与我联系</a>
+<a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/icon_weibo_24.png" alt=""></a>
+</div>
+<div id="author_profile">
+<div id="author_profile_info" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/daxiong/" target="_blank"><img src="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/u131078.jpg" class="author_avatar" alt=""></a>
+<div id="author_profile_detail" class="author_profile_info">
+<a href="http://home.cnblogs.com/u/daxiong/">倒霉熊</a><br>
+<a href="http://home.cnblogs.com/u/daxiong/followees">关注 - 4</a><br>
+<a href="http://home.cnblogs.com/u/daxiong/followers">粉丝 - 8</a>
+</div>
+</div>
+<div class="clear"></div>
+<div id="author_profile_honor"></div>
+<div id="author_profile_follow">
+    <a href="javascript:void(0);" onclick="c_follow();return false;">+加关注</a>
+</div>
+</div>
+<div id="div_digg">										
+    <div class="diggit" onclick="votePost(3158630,'Digg')">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+	<div class="buryit" onclick="votePost(3158630,'Bury')"> 
+		<span class="burynum" id="bury_count">0</span>
+	</div>
+	<div class="clear"></div>	
+	<div class="diggword" id="digg_tips">
+    (请您对文章做出评价)
+    </div>	
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2013-06-27 14:10</span> <a href="http://www.cnblogs.com/daxiong/">倒霉熊</a> 阅读(<span id="post_view_count">8384</span>) 评论(<span id="post_comment_count">3</span>) &nbsp;<a href="http://i.cnblogs.com/EditArticles.aspx?postid=3158630" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(3158630);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,isLogined=false,cb_blogId=70224,cb_entryId=3158630,cb_blogApp=currentBlogApp,cb_blogUserGuid='fe60881f-2458-df11-ba8f-001cf0cd104b',cb_entryCreatedDate='2013/6/27 14:10:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"><div id="comments_pager_top"></div>
+<br>
+<div class="feedback_area_title">评论列表</div>
+<div class="feedbackNoItems"></div>	
+
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#3205963" class="layer">#1楼</a><a name="3205963" id="comment_anchor_3205963"></a>  <span class="comment_date">2015-06-11 10:56</span> <a id="a_comment_author_3205963" href="http://www.cnblogs.com/masterymastery/" target="_blank">吉他之神</a> <a href="http://msg.cnblogs.com/send/%E5%90%89%E4%BB%96%E4%B9%8B%E7%A5%9E" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3205963" class="blog_comment_body">写的非常清晰</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3205963,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3205963,'Bury',this)">反对(0)</a></div><span id="comment_3205963_avatar" style="display:none;">http://pic.cnblogs.com/face/346831/20150101111910.png</span>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#3235063" class="layer">#2楼</a><a name="3235063" id="comment_anchor_3235063"></a>  <span class="comment_date">2015-07-25 13:29</span> <a id="a_comment_author_3235063" href="http://home.cnblogs.com/u/790055/" target="_blank">幸福n-1次方</a> <a href="http://msg.cnblogs.com/send/%E5%B9%B8%E7%A6%8Fn-1%E6%AC%A1%E6%96%B9" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3235063" class="blog_comment_body">谢谢 用上了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3235063,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3235063,'Bury',this)">反对(0)</a></div>
+			</div>
+		</div>
+	
+		<div class="feedbackItem">
+			<div class="feedbackListSubtitle">
+				<div class="feedbackManage">
+					&nbsp;&nbsp;<span class="comment_actions"></span>
+				</div>
+				<a href="#3244683" class="layer">#3楼</a><a name="3244683" id="comment_anchor_3244683"></a><span id="comment-maxId" style="display:none;">3244683</span><span id="comment-maxDate" style="display:none;">2015/8/10 11:25:25</span>  <span class="comment_date">2015-08-10 11:25</span> <a id="a_comment_author_3244683" href="http://www.cnblogs.com/asunzhang/" target="_blank">ccnazhang</a> <a href="http://msg.cnblogs.com/send/ccnazhang" title="发送站内短消息" class="sendMsg2This">&nbsp;</a>
+			</div>
+			<div class="feedbackCon">
+				<div id="comment_body_3244683" class="blog_comment_body">写的真的太棒了，我一个非专业前端竟然看懂了</div><div class="comment_vote"><a href="javascript:void(0);" class="comment_digg" onclick="return voteComment(3244683,'Digg',this)">支持(0)</a><a href="javascript:void(0);" class="comment_bury" onclick="return voteComment(3244683,'Bury',this)">反对(0)</a></div><span id="comment_3244683_avatar" style="display:none;">http://pic.cnblogs.com/face/583971/20140530164349.png</span>
+			</div>
+		</div>
+	<div id="comments_pager_bottom"></div></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" id="lnk_RefreshComments" onclick="return RefreshCommentList();">刷新评论</a><a href="#" onclick="return RefreshPage();">刷新页面</a><a href="#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login('commentform');">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="site_nav_under"><a href="http://www.cnblogs.com/" target="_blank" title="开发者的网上家园">博客园首页</a><a href="http://q.cnblogs.com/" target="_blank" title="程序员问答社区">博问</a><a href="http://news.cnblogs.com/" target="_blank" title="IT新闻">新闻</a><a href="http://home.cnblogs.com/ing/" target="_blank">闪存</a><a href="http://job.cnblogs.com/" target="_blank">程序员招聘</a><a href="http://kb.cnblogs.com/" target="_blank">知识库</a></div>
+<div id="opt_under_post"></div>
+<script type="text/javascript">
+    var enableGoogleAd = canShowAdsense(); 
+    fixPostBodyFormat();
+</script>
+<div id="google_ad_c1" class="c_ad_block"><object data="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/IBM_Bluemix_C1.htm" type="application/x-shockwave-flash" height="250" width="300"><param name="src" value="http://img.cnblogs.com/ad/IBM_Bluemix_C1.swf"></object></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/530293/" target="_blank">官方坦承没必要：WinRAR不会迎来“一个无用的漏洞修复补丁”</a><br> ·  <a href="http://news.cnblogs.com/n/530292/" target="_blank">新版支付宝曝光：类似朋友圈的“生活圈”</a><br> ·  <a href="http://news.cnblogs.com/n/530291/" target="_blank">诺贝尔奖已经发了114年：奖金咋还没用完？</a><br> ·  <a href="http://news.cnblogs.com/n/530290/" target="_blank">玩机大福利！Android 6.0源代码公布</a><br> ·  <a href="http://news.cnblogs.com/n/530289/" target="_blank">中国大陆科学家首获诺贝尔科学奖的五点启示</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="google_ad_c2" class="c_ad_block"><a href="http://e.jikexueyuan.com/python.html?hmsr=cnb_banner_python_09.14" target="_blank"><img src="%E7%BA%AFCSS%E6%B0%94%E6%B3%A1%E6%A1%86%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%E6%8E%A2%E7%A9%B6%20-%20%E5%80%92%E9%9C%89%E7%86%8A%20-%20%E5%8D%9A%E5%AE%A2%E5%9B%AD_files/24442-20150914101340023-1721833902.jpg" alt="" height="60" width="468"></a></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/530044/" target="_blank">HTTPS背后的加密算法</a><br> ·  <a href="http://kb.cnblogs.com/page/529285/" target="_blank">下一代云计算模式：Docker正掀起个性化商业革命</a><br> ·  <a href="http://kb.cnblogs.com/page/528495/" target="_blank">野生程序员的故事</a><br> ·  <a href="http://kb.cnblogs.com/page/528972/" target="_blank">状态机的两种写法</a><br> ·  <a href="http://kb.cnblogs.com/page/528971/" target="_blank">状态机思路在程序设计中的应用</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+$(function () {
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 200);
+});
+</script>
+</div>
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/daxiong/">倒霉熊</a><br>园龄：<a href="http://home.cnblogs.com/u/daxiong/" title="入园时间：2010-05-05">5年5个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/daxiong/followers/">8</a><br>关注：<a href="http://home.cnblogs.com/u/daxiong/followees/">4</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="cnblogs.UserManager.FollowBlogger('fe60881f-2458-df11-ba8f-001cf0cd104b')">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar" style=""><table id="blogCalendar" class="Cal" title="日历" cellpadding="0" cellspacing="0">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar('2015/09/01');return false;">&lt;</a></td><td align="center">2015年10月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar('2015/11/01');return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" abbr="日" scope="col" align="center">日</th><th class="CalDayHeader" abbr="一" scope="col" align="center">一</th><th class="CalDayHeader" abbr="二" scope="col" align="center">二</th><th class="CalDayHeader" abbr="三" scope="col" align="center">三</th><th class="CalDayHeader" abbr="四" scope="col" align="center">四</th><th class="CalDayHeader" abbr="五" scope="col" align="center">五</th><th class="CalDayHeader" abbr="六" scope="col" align="center">六</th></tr><tr><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td align="center">1</td><td align="center">2</td><td class="CalWeekendDay" align="center">3</td></tr><tr><td class="CalWeekendDay" align="center">4</td><td align="center">5</td><td class="CalTodayDay" align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td class="CalWeekendDay" align="center">10</td></tr><tr><td class="CalWeekendDay" align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td class="CalWeekendDay" align="center">17</td></tr><tr><td class="CalWeekendDay" align="center">18</td><td align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td class="CalWeekendDay" align="center">24</td></tr><tr><td class="CalWeekendDay" align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td class="CalWeekendDay" align="center">31</td></tr><tr><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk" type="text">&nbsp;<input onclick="zzk_go()" value="找找看" id="btnZzk" class="btn_my_zzk" type="button"></div>
+<div id="widget_my_google" class="div_my_zzk"><input name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk" type="text">&nbsp;<input onclick="google_go()" value="谷歌搜索" class="btn_my_zzk" type="button"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/daxiong/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/daxiong/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/daxiong/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/daxiong/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/daxiong/tag/" title="我的博客的标签列表">我的标签</a></li>
+<li><a id="itemListLink" onclick="this.blur();WarpClass('itemListLink', 'itemListLin_con');return false;" href="#">更多链接</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_articlecategory" class="catListArticleCategory sidebar-block">
+<h3 class="catListTitle">文章分类<span style="font-size:11px;font-weight:normal">(14)</span></h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/daxiong/category/244450.html">CSS(13)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/daxiong/category/487746.html">HTML5</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/daxiong/category/381063.html">Javascript(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/daxiong/category/381064.html">PHP</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_links270066" class="catList sidebar-block">
+<h3 class="catListTitle">友情链接</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://webdesigner.5d6d.com/" rel="nofollow" target="_blank">webdesigner资源站</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.yangzh.net/" rel="nofollow" target="_blank">大漠沙尘</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.nuerhui.org/" rel="nofollow" target="_blank">恩施女儿会</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/daxiong/articles/3158630.html#3244683">1. Re:纯CSS气泡框实现方法探究</a></li>
+    <li class="recent_comment_body">写的真的太棒了，我一个非专业前端竟然看懂了</li>
+    <li class="recent_comment_author">--ccnazhang</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/daxiong/articles/3158630.html#3235063">2. Re:纯CSS气泡框实现方法探究</a></li>
+    <li class="recent_comment_body">谢谢 用上了</li>
+    <li class="recent_comment_author">--幸福n-1次方</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/daxiong/articles/3158630.html#3205963">3. Re:纯CSS气泡框实现方法探究</a></li>
+    <li class="recent_comment_body">写的非常清晰</li>
+    <li class="recent_comment_author">--吉他之神</li>
+    <li class="recent_comment_title"><a href="http://www.cnblogs.com/daxiong/articles/3159821.html#3106440">4. Re:IE6中display为none时仍占据3px？？？</a></li>
+    <li class="recent_comment_body">确实有就个问题，这个解决方法让我想起了：ie中绝对定位后的超链接内容为空时无法点击，当时的解决方法也是通过背景或者透明度等方法解决。演示代码：对于楼主的研究，其实我还发现一个更有趣的问题。楼主演示的代......</li>
+    <li class="recent_comment_author">--繁华已逝</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div style="display: none;" id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div style="display: none;" id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div style="display: none;" id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2015 倒霉熊
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>

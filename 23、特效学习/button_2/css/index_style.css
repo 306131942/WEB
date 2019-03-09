@@ -1,0 +1,183 @@
+﻿/* CSS Document */
+*{   margin:0;
+      padding:0;}
+	  
+body{background:#FF9428;}
+
+.box{width:800px;
+        heigth:280px;
+		margin:50px auto;
+	
+		/* overflow:hidden;*/
+		 position:relative;}
+
+		
+.box  .link{
+		
+                width:205px;
+                height:280px;
+				float:left;
+				margin:0 20px;
+			
+	}
+.link  .icon{
+	display:block;
+	width:100%;
+	height:190px;
+	transition:all  0.2s ease-out ;
+	-moz-transition:all  0.2s ease-out ;
+    -webkit-transition:all  0.2s ease-out ;
+    -o-transition:all  0.2s ease-out ;
+	}
+	
+.mission-link .icon{
+	background:   url(../img/play.png) no-repeat center center;
+	
+}
+.play-link .icon{
+	background: url(../img/mission.png) no-repeat center center;
+	
+}
+.touch-link .icon{
+	background: url(../img/touch.png) no-repeat center center;
+	
+}
+
+.link  .icon:hover{
+	transform: scale(1.2);//rotate(360deg) 
+	-webkit-transform:scale(1.2);//rotate(360deg)  
+	}
+	
+
+.button{
+	display:block;
+	border-radius:3px;
+       width:130px;
+	   height:45px;
+	   text-decoration:none;
+	   color:RGB(0,153,89);
+	/*   background:rgb(25,99,140);*/
+	font-family:"微软雅黑";
+	font-weight:bolder;
+	
+	border:2px solid rgba(0,153,89,0.5);
+	padding-left:23px;
+	padding-top:13px;	
+	margin:0 auto;
+	position:relative;
+	box-sizing:border-box;
+	-ms-box-sizing:boder-box;
+	-o-box-sizing:boder-box;
+	-moz-box-sizing:boder-box;
+	-webkit-box-sizing:boder-box;
+		background:url(../img/allow.png)  no-repeat  80px center;
+	transition:all  0.4s ease ;
+	-moz-transition:all  0.4s ease ;
+    -webkit-transition:all  0.4s ease ;
+    -o-transition:all  0.4s ease ;
+	
+	}
+.button:hover{
+	 border:2px solid rgba(0,153,89,1);
+	 background-position:90px center ;
+	  color:#FFF;	 /*transition:*/
+	 	
+	 }
+
+
+.button .line{
+	/*display:block;*/
+	position:absolute;
+	background:none;
+	transition:all  0.4s ease ;
+	-moz-transition:all  0.4s ease ;
+    -webkit-transition:all  0.4s ease ;
+    -o-transition:all  0.4s ease ;
+	
+	}
+	
+	
+.button:hover  .line{
+	  background:#000;
+	 
+	}	
+	/*
+.button  .line-top{
+      height:2px;
+	  width:0px;
+	  left:-50%;
+	top:-2px;
+	
+	}
+.button:hover  .line-top{
+	width:100%;
+	left:-2px;
+	}
+		
+.button  .line-right{
+      height:0px;
+	  width:2px;
+	  top:-100%;
+	right:-2px;
+	
+	}
+.button:hover  .line-right{
+	height:100%;
+	top:-2px;
+	}
+		
+/*.button  .line-botton{                           看不懂为什么没用
+      height:2px;
+	  width:0;
+	  right:-50%;
+	botton:-2px;	
+	}
+.button:hover  .line-botton{
+	width:100%;
+	right:-2px;
+	}
+	
+.button  .line-left{
+      height:0px;
+	  width:2px;
+	  botton:-100%;
+	left:-2px;	
+	}
+.button:hover  .line-left{
+	height:100%;
+	botton:-2px;
+	}
+*/
+.tip{
+	position:absolute;
+	padding:0 14px;
+	height:35px;
+	background:rgb(0,153,89);
+	color:#FFF;
+	font-size:18px;
+	margin:0 auto;
+	border-radius:3px;
+	-ms-border-radius:3px;
+	-moz-border-radius:3px;
+	-o-border-radius:3px;
+	-webkit-border-radius:3px;
+	top:115px;
+	opacity:0;}
+	
+	.tip em{font-style:normal;
+	}
+	
+	.tip span{
+		display:block;
+		width:0;
+		height:0;
+		overflow:hidden;
+		border:7px  solid  transparent;
+		border-top-color:rgb(0,153,89);/*三角形*/
+		position:absolute;
+		top:34px;
+		left:50%;
+		margin-left:-3px;
+		}
+	
+	

@@ -1,0 +1,117 @@
+﻿/*共用样式*/
+.news_location{margin-top:0px;margin-bottom: 10px;}
+    .news_location a {
+        color:#3E88C5;
+        font-size:14px;
+    }
+     .news_location a:hover {
+        color:red;
+    }
+
+/*距离样式*/
+.m_r_50{margin-right:50px;}
+.m_b_15{margin-bottom:15px;}
+.m_b_10{margin-bottom:10px;}
+
+/*------------------------资讯内页样式-----------------------------------*/
+.art_box,.art_related,.ad670_1,.ask11_box,.hotfocus,.art_hotbox,.art_conbox,.art_list_l{border:1px solid #D8D9D9;}
+.art_con_left{width:660px;_width:660px;overflow:hidden;float:left;}
+.art_box{font:14px/26px simsun;padding:14px 4px 14px 14px;_padding:0px;}
+.art_box h1{font-size:24px;line-height:45px;text-align:center;}
+.art_box .art_info{font-size:12px;color:#888;text-align:center;}
+.art_box .art_info span a{padding-left:20px;}
+.art_box .attention{font-size:12px;height:30px;border:#e1eded 1px solid;}
+.art_box .attention a{padding-right:10px; color:#1C66B0}
+.art_box .attention a:hover{color:red}
+.art_box .attention .label{padding:0 15px;height:30px;line-height:30px; border-bottom:#e1eded 1px solid; overflow:hidden;}
+.art_box .attention .label a {border-radius: 10px;background:rgb(232, 237, 240); padding:5px; margin-left:10px;}
+.art_box .attention .label a:hover {background:#6293BB; color:white; text-decoration:none;}
+.art_box .summary{background:rgb(247, 247, 247);border:1px solid #E1EDED; font:14px/24px simsun; margin:10px 0 0; overflow:hidden; padding:15px;text-indent:24px;}
+.art_box .art_con{height:100%;overflow:hidden;text-align:left;}
+.art_box .art_con p{margin-top:20px;}
+
+.sc {
+    padding:25px;
+    padding-top:10px;
+    padding-left:0px;
+    clear: both;
+    color: #333333;
+    font-size: 14px;
+    height: auto;
+    overflow: hidden;
+    width: 610px;
+    border-bottom:1px dashed #6293BB;
+    margin-bottom:30px;
+}
+.sc li {
+    float: left;
+    height: 25px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 568px;
+}
+.sc a {
+    color: #6293bb;
+}
+.sc a:hover {
+    color: red;
+}
+.ad_cont_03 {
+    padding: 8px 0 10px 0px;
+}
+
+.ad_cont_03 .clist li {
+    float: left;
+    height: 26px;
+    line-height: 26px;
+    overflow: hidden;
+    width: 144px;
+}
+.ad_cont_03 .clist li a:link, .ad_cont_03 .clist li a:visited {
+    color: #666666;
+}
+.ad_cont_03 .clist li a:hover {
+    color: #CC0000;
+}
+#ccont04 .clist li {
+    width: 276px;
+}
+.clist a:link {
+    color: #333333;
+}
+.cf6 a:link, .clist_02 a:link {
+    color: #444444;
+}
+.clist a:visited {
+    color: #666666;
+}
+.clist a:hover {
+    color: #CC0000;
+}
+
+.detail .digg {
+	margin: 30px 0px 40px; text-align: center; display: block; 
+}
+
+.detail .digg dl {
+	margin: 0px 10px; padding: 1px; border-radius: 3px; border: 1px solid rgb(204, 204, 204); width: 77px; text-align: center; display: inline-block;float:left;
+}
+.detail .digg dt {
+	background-color: #6293BB; border-radius: 4px; font: 18px/36px Microsoft YaHei; width: 77px; height: 36px; color: rgb(255, 255, 255); cursor: pointer; font-size-adjust: none; font-stretch: normal;
+}
+.detail .digg dd {
+	height: 20px; color: rgb(102, 102, 102); line-height: 20px;
+}
+.detail .digg .support {
+	margin-left:30%;
+}
+.hotTag {
+    height: 36px;
+    line-height: 36px;
+    padding: 0 0 0 14px;
+    border: 1px solid #D8D9D9;
+}
+.hotTag a {
+    padding: 0 12px 0 0;
+}

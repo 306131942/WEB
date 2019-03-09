@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        /*百度答案*/
+        #demo{
+            width:100px;
+            height:100px;
+            background-color:#fff;
+            position:relative;
+            border:2px solid #333;
+        }
+        #demo:after, #demo:before{
+            border: solid transparent ;
+            content:" ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            left: 100%;
+            /*top: 20px;*/
+        }
+        #demo:after{
+            border-width: 10px;
+            border-left-color: #006600;
+            top: 20px;
+        }
+        #demo:before{
+            border-width: 12px;
+            border-left-color: #FF9428;
+            top: 18px;
+        }
+
+        /*1理解过程*/
+        .tag{
+            width:300px;
+            height:100px;
+            border:5px solid #09F;
+            position:relative;
+        }
+        .tag em{
+            display:block;
+            border-width:20px;
+            position:absolute;
+            bottom:-40px;
+            left:100px;
+            border-style:solid;
+            border-color:red #ffff00 #000 #006699;
+        }
+
+        /*演示!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!结果*/
+        .tag1{
+            width:300px;
+            height:100px;
+            border:5px solid #09F;
+            position:relative;
+            background-color:#FFF;
+        }
+        .tag1 em{
+            display:block;
+            border-width:20px;
+            position:absolute;
+            bottom:-40px;
+            left:100px;
+            border-style:solid;
+            border-color:#FF6600 transparent transparent;
+        }
+        .tag1 span{
+            display:block;
+            border-width:20px;
+            position:absolute;
+            bottom:-33px;
+            left:100px;
+            border-style:solid;
+            border-color:#000 transparent transparent;
+        }
+
+        /*优化结果*/
+        .tag2{
+            width:300px;
+            height:100px;
+            border:5px solid #09F;
+            position:relative;
+            /*background-color:#8a6d3b;*/
+        }
+        .arrow{
+            position:absolute;
+            width:40px;
+            height:40px;
+            bottom:-40px;
+            left:100px;
+            /*background-color:#FF9428;*/
+        }
+        .arrow *{
+            display:block;
+            border-width:20px;
+            position:absolute;
+            border-style:solid;
+        }
+        .arrow em{
+            border-color:#09F transparent transparent;
+        }
+        .arrow span{
+            border-color:#fff transparent transparent;
+            top:-7px;
+        }
+
+        /*<!--百度!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!自己做的结果-->*/
+        #demo1{
+            width: 100px;
+            height: 100px;
+            background-color: #fff;
+            position: relative;
+           border: 2px solid #000;
+        }
+
+        #demo1:before, #demo1:after{
+            display: block;
+            content: " ";
+            position: absolute;
+            height: 0;
+            width: 0;
+            border-width:10px;
+            right: -20px;
+            top:20px;
+            border-style:solid;
+            border-color: transparent transparent transparent #000;
+            /*font-size:0;*/
+            /*line-height:0;*/
+        }
+        #demo1:after{
+            right:-18px;
+            border-color: transparent transparent transparent #fff ;
+        }
+
+
+
+
+        /*扩展*/
+        .de{ width:300px; height:100px;position:relative;
+                 border:5px solid #09F;
+                background-color:#fff;
+            left:200px;
+
+        }
+        .dee { position:absolute; width:70px; height:60px; left:-70px; bottom:10px;
+                 /*background-color: #c7254e;*/
+        }
+        .dee *{ display:block; position:absolute;
+                 border-style:solid;
+                 font-size:0; line-height:0; }
+        .dee em{border-color:transparent #000 #000 transparent; border-width:30px 35px;
+            left:-5px;}/*右下不透明*/
+        .dee span{ border-width:20px 35px;border-color:transparent #FF9428 #FF9428 transparent;
+            bottom:0;
+            left:-5px;
+        }
+
+
+
+        #ff{
+            height: 0;
+            width: 0;
+            border-style: solid;
+            border-width: 20px 30px;
+            border-color:transparent #09F #000 transparent;
+        }
+    </style>
+</head>
+
+<body>
+<!--&lt;!&ndash;百度答案&ndash;&gt;-->
+<!--<div id="demo">-->
+<!--</div>-->
+
+<br/>
+<br/>
+<br/>
+<!--理解过程-->
+<div class="tag">
+    <em></em>
+    <span></span>
+    CSS气泡框实现
+</div>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<!--演示答案-->
+<div class="tag1">
+    <em></em>
+    <span></span>
+    CSS气泡框实现
+</div>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<!--优化结果-->
+<div class="tag2">
+    <div class="arrow">
+        <em></em>
+        <span></span>
+    </div>
+    CSS气泡框实现
+</div>
+
+<br/>
+<br/>
+<br/>
+
+<!--百度答案-->
+<div id="demo">
+</div>
+<br/>
+
+<!--百度自己做的结果-->
+<div id="demo1">
+    百度的答案哦
+</div>
+
+<br/>
+<br/>
+<br/>
+
+
+<!--扩展-->
+<div class="de">
+    <div class="dee">
+        <em></em>
+        <span></span>
+    </div>
+    CSS气泡框实现
+</div>
+<br/>
+
+
+
+<div id="ff">
+
+</div>
+</body>
+</html>
